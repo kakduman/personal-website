@@ -71,13 +71,12 @@ header {
 }
 
 .header-centered {
-    /* background: linear-gradient(270deg, #ff7e5f, #feb47b); This is an example gradient */
     background: linear-gradient(220deg, rgba(10,200,80,.8), rgba(255,127,63,0) 70.71%),
             linear-gradient(130deg, rgba(0,50,170,.8), rgba(0,127,255,0) 70.71%),
             linear-gradient(340deg, rgba(100,0,170,.8), rgba(0,200,255,0) 70.71%);
     padding: 50px 0;
     text-align: center;
-    color: white; /* This ensures the text is visible on the gradient */
+    color: white; /* Text color */
 }
 
 .header-centered h1 {
@@ -89,6 +88,23 @@ header {
     margin-top: 0.5em; /* This adds some spacing between the h1 and the p elements */
 }
 
+.header-centered-reversed {
+    background: linear-gradient(-220deg, rgba(10,200,80,.8), rgba(255,127,63,0) 70.71%),
+            linear-gradient(-130deg, rgba(0,50,170,.8), rgba(0,127,255,0) 70.71%),
+            linear-gradient(-340deg, rgba(100,0,170,.8), rgba(0,200,255,0) 70.71%);
+    padding: 50px 0;
+    text-align: center;
+    color: white; /* Text color */
+}
+
+.header-centered-reversed h1 {
+    font-size: 2.5em;
+}
+
+.header-centered-reversed p {
+    font-size: 1.2em;
+    margin-top: 0.5em; /* This adds some spacing between the h1 and the p elements */
+}
 
 .about-me {
     padding: 20px 0;
@@ -135,8 +151,35 @@ header {
     color: #fff;
     padding: 10px 20px;
     text-decoration: none;
+    border-radius: 25px; /* This value makes the button rounded. Adjust as needed. */
+    transition: background 0.3s ease; /* Smooth background color transition on hover */
 }
 
 .btn:hover {
-    background: #555;
+    background: #18e;
+}
+
+.btn-small {
+    display: inline-block;
+    background: #333;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 13px; /* This value makes the button rounded. Adjust as needed. */
+    transition: background 0.3s ease; /* Smooth background color transition on hover */
+    margin-left: 10px; /* Adds spacing between the title and the button */
+
+}
+
+.btn-small:hover {
+    background: #18e;
+}
+
+.project-header {
+    display: flex;
+    align-items: center;
+}
+.project-item h2 {
+    margin: 0; /* Adjust as needed */
+    flex-grow: 0; /* Allows the title to grow and fill the space */
 }

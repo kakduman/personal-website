@@ -12,13 +12,13 @@
             <h1 class="name">
                 <a href="index.html">Koray Akduman</a>
             </h1>
-                <a href="index.html">About</a>
-                <a href="projects.html">Projects</a>
+                <!-- <a href="index.html">About</a> -->
+                <a href="#projects-section">Projects</a>
                 <!-- Social links with images -->
-                <a href="https://www.linkedin.com" target="_blank">
+                <a href="https://www.linkedin.com/in/korayakduman/" target="_blank">
                     <img src="assets/linkedin-blue.svg" alt="LinkedIn" class="social-icon">
                 </a>
-                <a href="https://github.com" target="_blank">
+                <a href="https://github.com/kakduman" target="_blank">
                     <img src="assets/github-blue.svg" alt="GitHub" class="social-icon">
                 </a>
             </div>
@@ -28,19 +28,115 @@
     <div class="header-centered">
         <div class="container">
             <h1>Koray Akduman</h1>
-            <p>Software Engineer</p>
+            <p>Student, Software Engineer, System Administrator</p>
         </div>
     </div>
     
-    <section class="about-me">
+    <section id="about-section" class="about-me">
         <div class="container about-container">
             <div class="profile-image">
-                <img src="assets/selfie.jpg" alt="Koray Akduman" />
+                <img src="assets/selfie.png" alt="Koray Akduman" />
             </div>
             <div class="about-text">
                 <h2>About Me</h2>
-                <p>Hi, I'm Koray. I'm a junior at Yale majoring in Computer Science. I also run Birdflop, the only 501(c)3 nonprofit Minecraft server host designed to foment interest in computer science and technology.</p>
-                <a href="projects.html" class="btn">View Projects</a>
+                <br>
+                <p>Hi, I'm Koray. I'm a junior at Yale majoring in Computer Science. I also run Birdflop, the only 501(c)3 nonprofit Minecraft server host designed to foment interest in computer science and technology. I'm passionate about machine learning, open-source software, and hiking. I also love mulling cider and over the best zeugmas (pun intended)! <br>
+                    <br>
+                    Most recently, I started working on my personal website (on December 24). There's lots to come...</p>
+                    <br>
+                <a href="#projects-section" class="btn">View Projects</a>
+                <a href="assets/Koray_Akduman_Resume_PUBLIC_2023-12.pdf" target="_blank" class="btn">View Resume</a>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="projects-section" class="projects">
+        <div class="header-centered-reversed">
+            <div class="container">
+                <h1>Selected Projects</h1>
+            </div>
+        </div>
+        <div class="container">
+
+            <div class="project-item">
+                <br>
+                <div class="project-header">
+                    <h2>Botflop</h2>
+                    <a href="https://github.com/birdflop/botflop" target="_blank" class="btn-small">View GitHub</a>
+                </div>
+                <p>
+                    <i>January 2021 - Present</i>
+                    <hr style="height:1px; visibility:hidden;" />
+
+                    Lead a team to create Botflop: an open-source Discord bot in JavaScript that analyzes timings delay reports to suggest mitigations for common Minecraft server issues. It also automatically uploads text files to a globally accessible bin. Botflop has helped 300,000+ users in 1,800+ Discord servers.<br><br>
+                </p>
+            </div>
+
+            <div class="project-item">
+                <br>
+                <div class="project-header">
+                    <h2>Birdflop CDN</h2>
+                </div>
+                <p>
+                    <i>July 2021 - Present</i>
+                    <hr style="height:1px; visibility:hidden;" />
+
+                    Maintain a Content Distribution Network (CDN) for Birdflop to make locally hosted files available across the world.<br><br>
+                </p>
+            </div>
+
+            <div class="project-item">
+                <br>
+                <div class="project-header">
+                    <h2>Sir Stabby’s Perpetual Motion Machine</h2>
+                    <a href="https://github.com/birdflop/botflop" target="_blank" class="btn-small">View GitHub</a>
+                </div>
+                <p>
+                    <i>December 2023</i>
+                    <hr style="height:1px; visibility:hidden;" />
+
+                    Constructed an embedded system using Python & C++ featuring voice FFTs, two-way wireless communication, OpenAI APIs, ESP32 controllers, and servos.<br><br>
+                </p>
+            </div>
+
+            <div class="project-item">
+                <br>
+                <div class="project-header">
+                    <h2>Binflop</h2>
+                    <a href="https://bin.birdflop.com" target="_blank" class="btn-small">Try It Out</a>
+                </div>
+                <p>
+                    <i>February 2021 - July 2021</i>
+                    <hr style="height:1px; visibility:hidden;" />
+    
+                    Created a fork of hastebin.com that patches bugs and implements improvements.                 <hr style="height:1px; visibility:hidden;" />
+    
+                    Bugs patched:<br>
+                    - Ctrl + A, Ctrl + C no longer copies button text nor line numbers.<br>
+                    - Line numbering is correct across all browsers, all zoom settings, and all uploaded files.
+                    <hr style="height:1px; visibility:hidden;" />
+                    Improvements:<br>
+                    - Colors are more vibrant and visible.<br>
+                    - Functions box no longer conceals part of the first line.<br>
+                    - Added a toggleable "Hide IPs" button to hide all public IPs.<br>
+                    - Binflop links retain their content permanently.<br>
+                    - Expanded REST API.<br><br>
+                </p>
+            </div>
+
+            <div class="project-item">
+                <br>
+                <div class="project-header">
+                    <h2>RGBirdflop</h2>
+                    <a href="https://birdflop.com/resources/rgb" target="_blank" class="btn-small">Try It Out</a>
+                    <a href="https://github.com/birdflop/website" target="_blank" class="btn-small">View GitHub</a>
+                </div>
+                <p>
+                    <i>February 2021 - March 2021</i>
+                    <hr style="height:1px; visibility:hidden;" />
+                    Developed a website in with 30,000+ monthly users that calculates and formats hex code gradients for Minecraft. <br><br>
+                </p>
             </div>
         </div>
     </section>
