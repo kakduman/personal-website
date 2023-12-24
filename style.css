@@ -94,13 +94,39 @@ header {
     padding: 20px 0;
 }
 
-.about-me h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center; /* This aligns items vertically */
+    justify-content: space-between; /* This adds space between the text and image */
 }
 
-.about-me p {
-    margin-bottom: 20px;
+.profile-image {
+    flex-basis: 35%; /* Adjust the width of the image container */
+    order: -1; /* This ensures the image comes first on mobile */
+    padding: 10px; /* Optional spacing around the image */
+}
+
+.profile-image img {
+    max-width: 100%; /* Ensures the image is responsive and doesn't overflow its container */
+    height: auto; /* Maintains the aspect ratio of the image */
+}
+
+.about-text {
+    flex-basis: 60%; /* Adjust the width of the text container */
+    padding: 10px; /* Optional spacing around the text */
+}
+
+/* Responsive design: on smaller screens, stack image and text vertically */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+    }
+    .profile-image,
+    .about-text {
+        flex-basis: 100%; /* Both image and text take full width on small screens */
+        order: 0; /* Reset the order to stack them correctly */
+    }
 }
 
 .btn {
