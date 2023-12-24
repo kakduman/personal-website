@@ -1,62 +1,18 @@
 /* Reset some basic elements */
 body, h1, h2, p { margin: 0; padding: 0; }
+
 /* Basic styling */
 body {
     font-family: 'Jost', sans-serif;
     line-height: 1.6;
 }
+
 .container {
-    width: 80%;
+    width: 60%;
     margin: auto;
     overflow: hidden;
 }
-nav {
-    background: #333;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-}
-nav a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0 20px;
-}
-nav a:hover {
-    color: #ddd;
-}
-header-centered {
-    background: #eee;
-    padding: 50px 0;
-    text-align: center;
-}
-header h1 {
-    font-size: 2.5em;
-}
-.about-me {
-    padding: 20px 0;
-}
-.about-me h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
-.about-me p {
-    margin-bottom: 20px;
-}
-.btn {
-    display: inline-block;
-    background: #333;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-}
-.btn:hover {
-    background: #555;
-}
 
-/* Add the reset and base styles from the previous snippet here */
-
-/* Header styles */
 header {
     background: #eee;
     padding: 20px 0;
@@ -64,42 +20,97 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+
 .name {
-    font-size: 2.5em;
     font-weight: bold;
     margin-left: 20px; /* Adjust as needed */
-    flex: 1;
-    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and size */
+    flex-grow: 1;
 }
-.navigation {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    transition: transform 0.3s ease; /* Smooth transition for size */
-}
-.navigation a {
-    text-decoration: none;
+
+.name a {
     color: #333;
-    margin-left: 20px;
-}
-.social-icon {
-    width: 24px; /* Adjust size as needed */
-    height: 24px; /* Adjust size as needed */
+    text-decoration: none;
+    display: inline-block; /* This allows transform to work on inline elements */
     transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and size */
 }
 
 /* Hover effect for the name and links */
-.name:hover, .navigation a:hover, .navigation .social-icon:hover {
+.name a:hover, .navigation a:hover, .navigation .social-icon:hover {
     color: #18e; /* Shade of blue */
     transform: scale(1.04); /* Slightly larger size */
+}
+
+.navigation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 20px;
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and size */
+}
+
+.social-icon {
+    width: 24px; /* Adjust size as needed */
+    height: 24px; /* Adjust size as needed */
+    transition: filter 0.3s ease, transform 0.3s ease; /* Smooth transition for color and size */
 }
 
 /* Ensure the social icons only change color and not size */
 .navigation .social-icon {
     filter: grayscale(100%); /* Optional: make icons grayscale initially */
-    transition: filter 0.3s ease, transform 0.3s ease; /* Smooth transition for filter and size */
+    transition: filter 0.3s ease; /* Smooth transition for filter */
 }
+
 .navigation .social-icon:hover {
     filter: none; /* Full color on hover */
     transform: none; /* No size change for icons */
+}
+
+.header-centered {
+    /* background: linear-gradient(270deg, #ff7e5f, #feb47b); This is an example gradient */
+    background: linear-gradient(217deg, rgba(60,255,50,.8), rgba(255,127,63,0) 70.71%),
+            linear-gradient(127deg, rgba(0,60,200,.8), rgba(0,127,255,0) 70.71%),
+            linear-gradient(336deg, rgba(60,0,200,.8), rgba(0,200,255,0) 70.71%);
+    padding: 50px 0;
+    text-align: center;
+    color: white; /* This ensures the text is visible on the gradient */
+}
+
+.header-centered h1 {
+    font-size: 2.5em;
+}
+
+.header-centered p {
+    font-size: 1.2em;
+    margin-top: 0.5em; /* This adds some spacing between the h1 and the p elements */
+}
+
+
+.about-me {
+    padding: 20px 0;
+}
+
+.about-me h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.about-me p {
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: #555;
 }
