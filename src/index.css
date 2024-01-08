@@ -1,0 +1,199 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Reset some basic elements */
+body, h1, h2, p { margin: 0; padding: 0; }
+
+/* Basic styling */
+body {
+    font-family: 'Jost', sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    width: 60%;
+    margin: auto;
+    overflow: hidden;
+}
+
+header {
+    background: #eee;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name {
+    font-weight: bold;
+    margin-left: 20px; /* Adjust as needed */
+    flex-grow: 1;
+}
+
+.name a {
+    color: #333;
+    text-decoration: none;
+    display: inline-block; /* This allows transform to work on inline elements */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and size */
+}
+
+/* Hover effect for the name and links */
+.name a:hover, .navigation a:hover, .navigation .social-icon:hover {
+    color: #18e; /* Shade of blue */
+    transform: scale(1.04); /* Slightly larger size */
+}
+
+.navigation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 20px;
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and size */
+}
+
+.social-icon {
+    width: 24px; /* Adjust size as needed */
+    height: 24px; /* Adjust size as needed */
+    transition: filter 0.3s ease, transform 0.3s ease; /* Smooth transition for color and size */
+}
+
+/* Ensure the social icons only change color and not size */
+.navigation .social-icon {
+    filter: grayscale(100%); /* Optional: make icons grayscale initially */
+    transition: filter 0.3s ease; /* Smooth transition for filter */
+}
+
+.navigation .social-icon:hover {
+    filter: none; /* Full color on hover */
+    transform: none; /* No size change for icons */
+}
+
+.header-centered {
+    background: linear-gradient(220deg, rgba(10,200,80,.8), rgba(255,127,63,0) 70.71%),
+            linear-gradient(130deg, rgba(0,50,170,.8), rgba(0,127,255,0) 70.71%),
+            linear-gradient(340deg, rgba(100,0,170,.8), rgba(0,200,255,0) 70.71%);
+    padding: 50px 0;
+    text-align: center;
+    color: white; /* Text color */
+}
+
+.header-centered h1 {
+    font-size: 2.5em;
+}
+
+.header-centered p {
+    font-size: 1.2em;
+    margin-top: 0.5em; /* This adds some spacing between the h1 and the p elements */
+}
+
+.header-centered-reversed {
+    background: linear-gradient(-220deg, rgba(10,200,80,.8), rgba(255,127,63,0) 70.71%),
+            linear-gradient(-130deg, rgba(0,50,170,.8), rgba(0,127,255,0) 70.71%),
+            linear-gradient(-340deg, rgba(100,0,170,.8), rgba(0,200,255,0) 70.71%);
+    padding: 50px 0;
+    text-align: center;
+    color: white; /* Text color */
+}
+
+.header-centered-reversed h1 {
+    font-size: 2.5em;
+}
+
+.header-centered-reversed p {
+    font-size: 1.2em;
+    margin-top: 0.5em; /* This adds some spacing between the h1 and the p elements */
+}
+
+.about-me {
+    padding: 20px 0;
+}
+
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center; /* This aligns items vertically */
+    justify-content: space-between; /* This adds space between the text and image */
+}
+
+.profile-image {
+    flex-basis: 35%; /* Adjust the width of the image container */
+    order: -1; /* This ensures the image comes first on mobile */
+    padding: 10px; /* Optional spacing around the image */
+}
+
+.profile-image img {
+    max-width: 100%; /* Ensures the image is responsive and doesn't overflow its container */
+    height: auto; /* Maintains the aspect ratio of the image */
+}
+
+.about-text {
+    flex-basis: 60%; /* Adjust the width of the text container */
+    padding: 10px; /* Optional spacing around the text */
+}
+
+/* Responsive design: on smaller screens, stack image and text vertically */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+    }
+    .profile-image,
+    .about-text {
+        flex-basis: 100%; /* Both image and text take full width on small screens */
+        order: 0; /* Reset the order to stack them correctly */
+    }
+}
+
+.btn {
+    display: inline-block;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 25px; /* This value makes the button rounded. Adjust as needed. */
+    transition: background 0.3s ease; /* Smooth background color transition on hover */
+}
+
+.btn:hover {
+    background: #18e;
+}
+
+.btn-small {
+    display: inline-block;
+    background: #333;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 13px; /* This value makes the button rounded. Adjust as needed. */
+    transition: background 0.3s ease; /* Smooth background color transition on hover */
+    margin-left: 10px; /* Adds spacing between the title and the button */
+
+}
+
+.btn-small:hover {
+    background: #18e;
+}
+
+.project-header {
+    display: flex;
+    align-items: center;
+}
+.project-item h2 {
+    margin: 0; /* Adjust as needed */
+    flex-grow: 0; /* Allows the title to grow and fill the space */
+}

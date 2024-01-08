@@ -145,7 +145,7 @@ header {
     }
 }
 
-.btn {
+.btn-large {
     display: inline-block;
     background: #333;
     color: #fff;
@@ -155,7 +155,11 @@ header {
     transition: background 0.3s ease; /* Smooth background color transition on hover */
 }
 
-.btn:hover {
+.btn-large:not(:first-child) {
+    margin-left: 10px; /* Adds spacing between the two buttons by adding a left margin to the second button (not the first) */
+}
+
+.btn-large:hover {
     background: #18e;
 }
 
