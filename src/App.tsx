@@ -1,21 +1,15 @@
-// src/App.js
 import React from 'react';
-import Header from './components/Header/Header';
-import AboutSection from './components/AboutSection/AboutSection';
-import ProjectsSection from './components/ProjectsSection/ProjectsSection';
-import Hero from './components/Hero/Hero';
-// import other components as needed
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './routes/HomePage';
 
-const App: React.FC = () => {
+const App = () => {
   return (
-    <div className="App">
-      <Header />
-      <Hero />
-      <AboutSection />
-      <ProjectsSection />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
