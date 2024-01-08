@@ -7,7 +7,7 @@ import Hero from './components/Hero/Hero';
 // import other components as needed
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
       <Header />

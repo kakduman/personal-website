@@ -1,7 +1,7 @@
 import React from 'react';
 import '../starter-styles/starter-styles.css';
 
-function Header() {
+const Header: React.FC = () => {
   return (
     <header>
         <div className="container header-content navigation">

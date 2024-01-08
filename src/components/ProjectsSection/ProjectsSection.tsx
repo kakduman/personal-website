@@ -1,8 +1,8 @@
 import React from 'react';
 import '../starter-styles/starter-styles.css';
 
-function ProjectsSection() {
-  return (
+const ProjectsSection: React.FC = () => {
+    return (
     <section id="projects-section" className="projects">
         <div className="header-centered-reversed">
             <div className="container">

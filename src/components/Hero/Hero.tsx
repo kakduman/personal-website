@@ -1,7 +1,7 @@
 import React from 'react';
 import '../starter-styles/starter-styles.css';
 
-function Hero() {
+const Hero: React.FC = () => {
   return (
     <div className="header-centered">
         <div className="container">
