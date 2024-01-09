@@ -42,7 +42,7 @@ const AboutSection: React.FC = () => {
             <div className="about-text">
                 <h2>About Me</h2>
                 <br/>
-                <p>Hi, I'm Koray. I'm a junior at Yale majoring in Computer Science. I also run Birdflop, the only 501(c)3 nonprofit Minecraft server host designed to foment interest in computer science and technology. I'm passionate about machine learning, open-source software, and hiking. I also love mulling cider and{" "}
+                <p>Hi, I'm Koray. I'm a junior at Yale majoring in Computer Science. I also run Birdflop, the only 501(c)3 nonprofit Minecraft server host designed to foment interest in computer science and technology. I'm passionate about machine learning and open-source software. I also love mulling cider and{" "}
                 <span 
                         className="highlighted-text"
                         onMouseEnter={handleMouseEnter}
