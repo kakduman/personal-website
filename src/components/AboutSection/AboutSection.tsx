@@ -1,7 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../starter-styles/starter-styles.css';
+import confetti from 'canvas-confetti';
 
-function AboutSection() {
+const AboutSection: React.FC = () => {
+
+    const triggerConfetti = (event: React.MouseEvent<HTMLButtonElement>) => {
+        const { clientX, clientY } = event;
+    
+        // Calculate position relative to the window
+        const canvasX = clientX / window.innerWidth;
+        const canvasY = clientY / window.innerHeight;
+    
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { x: canvasX, y: canvasY },
+          colors: ['#00cccc', '#0088cc', '#00cc66']
+        });
+      };
+      
+
+      const [showTooltip, setShowTooltip] = useState(false);
+      const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+      const handleMouseMove = (event: React.MouseEvent) => {
+          setMousePosition({
+              x: event.clientX,
+              y: event.clientY
+          });
+      };
+  
+      const handleMouseEnter = () => setShowTooltip(true);
+      const handleMouseLeave = () => setShowTooltip(false);
+    
   return (
     <section id="about-section" className="about-me">
         <div className="container about-container">
@@ -11,7 +42,25 @@ function AboutSection() {
             <div className="about-text">
                 <h2>About Me</h2>
                 <br/>
-                <p>Hi, I'm Koray. I'm a junior at Yale majoring in Computer Science. I also run Birdflop, the only 501(c)3 nonprofit Minecraft server host designed to foment interest in computer science and technology. I'm passionate about machine learning, open-source software, and hiking. I also love mulling cider and over the best zeugmas (pun intended)!
+                <p>Hi, I'm Koray. I'm a junior at Yale majoring in Computer Science. I also run Birdflop, the only 501(c)3 nonprofit Minecraft server host designed to foment interest in computer science and technology. I'm passionate about machine learning, open-source software, and hiking. I also love mulling cider and{" "}
+                <span 
+                        className="highlighted-text"
+                        onMouseEnter={handleMouseEnter}
+                        onMouseMove={handleMouseMove}
+                        onMouseLeave={handleMouseLeave}>
+                        over the best zeugmas
+                    </span>.
+                    {showTooltip && (
+                        <div 
+                            className="tooltip" 
+                            style={{ 
+                                left: `${mousePosition.x}px`, 
+                                top: `${mousePosition.y - 30}px` /* Adjust the Y-offset to position the tooltip above the cursor */
+                            }}>
+                            <p><strong>Why's this funny?</strong></p>
+                            <p>A zeugma is a sentence that uses a word in two different meanings. In this case, "mulling" cider and "mulling over" zeugmas is in itself a zeugma, simultaneously making it a pun. Also, "zeugma" looks and sounds funny.</p>
+                        </div>
+                    )}
                     <br/>
                     <br/>
                     Most recently, I started working on my personal website (on December 24) using React with Typescript. There's lots to come...</p>
@@ -19,6 +68,7 @@ function AboutSection() {
                 <div>
                     <a href="#projects-section" className="btn-large">View Projects</a>
                     <a href="/assets/Koray_Akduman_Resume_PUBLIC_2023-12.pdf" target="_blank" className="btn-large">View Resume</a>
+                    <button className="btn-large" onClick={(e) => triggerConfetti(e)}>Celebrate</button>
                 </div>
             </div>
         </div>

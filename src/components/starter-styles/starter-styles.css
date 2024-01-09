@@ -145,7 +145,7 @@ header {
     }
 }
 
-.btn-large {
+.btn-large, .btn-large a {
     display: inline-block;
     background: #333;
     color: #fff;
@@ -153,6 +153,10 @@ header {
     text-decoration: none;
     border-radius: 25px; /* This value makes the button rounded. Adjust as needed. */
     transition: background 0.3s ease; /* Smooth background color transition on hover */
+    font-family: 'Jost', sans-serif; /* Ensures the font family is consistent */
+    font-size: 1em; /* Adjust the font size as needed */
+    line-height: 1.6; /* Adjust line height to match other elements if necessary */
+    border: none; /* Removes any default border */
 }
 
 .btn-large:not(:first-child) {
@@ -186,4 +190,22 @@ header {
 .project-item h2 {
     margin: 0; /* Adjust as needed */
     flex-grow: 0; /* Allows the title to grow and fill the space */
+}
+
+.highlighted-text {
+    color: blue;
+    cursor: pointer;
+}
+
+.tooltip {
+    position: fixed;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transform: translate(-50%, -100%); /* Center horizontally and move up */
+    z-index: 1000;
+    max-width: 300px; /* Maximum width of the tooltip */
+    word-wrap: break-word; /* Ensure text wraps inside the tooltip */
 }
