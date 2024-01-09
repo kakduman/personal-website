@@ -73,7 +73,7 @@ const ProjectsSection: React.FC = () => {
                     <a href="https://bin.birdflop.com" target="_blank" className="btn-small" rel="noreferrer">Try It Out</a>
                 </div>
                 <p>
-                    <i>Febr/uary 2021 - July 2021</i>
+                    <i>February 2021 - July 2021</i>
                     <hr style={{ height: '1px', visibility: 'hidden' }} />
     
                     Created a fork of hastebin.com that patches bugs and implements improvements.                 
@@ -81,10 +81,10 @@ const ProjectsSection: React.FC = () => {
     
                     Bugs patched:<br/>
                     - Ctrl + A, Ctrl + C no longer copies button text nor line numbers.<br/>
-                    - Line numbering is correct across all br/owsers, all zoom settings, and all uploaded files.
+                    - Line numbering is correct across all browsers, all zoom settings, and all uploaded files.
                     <hr style={{ height: '1px', visibility: 'hidden' }} />
                     Improvements:<br/>
-                    - Colors are more vibr/ant and visible.<br/>
+                    - Colors are more vibrant and visible.<br/>
                     - Functions box no longer conceals part of the first line.<br/>
                     - Added a toggleable "Hide IPs" button to hide all public IPs.<br/>
                     - Binflop links retain their content permanently.<br/>
@@ -100,7 +100,7 @@ const ProjectsSection: React.FC = () => {
                     <a href="https://github.com/birdflop/website" target="_blank" className="btn-small" rel="noreferrer">View GitHub</a>
                 </div>
                 <p>
-                    <i>Febr/uary 2021 - March 2021</i>
+                    <i>February 2021 - March 2021</i>
                     <hr style={{ height: '1px', visibility: 'hidden' }} />
                     Developed a website in with 30,000+ monthly users that calculates and formats hex code gradients for Minecraft. <br/><br/>
                 </p>
