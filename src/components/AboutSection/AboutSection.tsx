@@ -67,7 +67,7 @@ const AboutSection: React.FC = () => {
                 <br/>
                 <div>
                     <a href="#projects-section" className="btn-large">View Projects</a>
-                    <a href="/assets/Koray_Akduman_Resume_PUBLIC_2023-12.pdf" target="_blank" className="btn-large">View Resume</a>
+                    <a href="/assets/Koray_Akduman_Resume_PUBLIC_2024_1.pdf" target="_blank" className="btn-large">View Resume</a>
                     <button className="btn-large" onClick={(e) => triggerConfetti(e)}>Celebrate</button>
                 </div>
             </div>
