@@ -102,7 +102,7 @@ const ProjectsSection: React.FC = () => {
                 <p>
                     <i>February 2021 - March 2021</i>
                     <hr style={{ height: '1px', visibility: 'hidden' }} />
-                    Developed a website in with 30,000+ monthly users that calculates and formats hex code gradients for Minecraft. <br/><br/>
+                    Developed a website with 30,000+ monthly users that calculates and formats hex code gradients for Minecraft. <br/><br/>
                 </p>
             </div>
 
