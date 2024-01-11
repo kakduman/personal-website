@@ -32,10 +32,10 @@ const ProjectsSection: React.FC = () => {
                     <a href="https://github.com/birdflop/botflop" target="_blank" className="btn-small" rel="noreferrer">View GitHub</a>
                 </div>
                 <p>
-                    <i>January 2021 - Present</i>
+                    <i>January 2021 - July 2023</i>
                     <hr style={{ height: '1px', visibility: 'hidden' }} />
 
-                    Lead a team to create Botflop: an open-source Discord bot in JavaScript that analyzes timings delay reports to suggest mitigations for common Minecraft server issues. It also automatically uploads text files to a globally accessible bin. Botflop has helped 300,000+ users in 1,800+ Discord servers.<br/><br/>
+                    Led a team to create Botflop: an open-source Discord bot in JavaScript that analyzes timings delay reports to suggest mitigations for common Minecraft server issues. It also automatically uploads text files to a globally accessible bin. Botflop has helped 300,000+ users in 1,800+ Discord servers.<br/><br/>
                 </p>
             </div>
 
