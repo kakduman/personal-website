@@ -42,7 +42,7 @@ const AboutSection: React.FC = () => {
             <div className="about-text">
                 <h2>About Me</h2>
                 <br/>
-                <p>Hi, I'm Koray. I'm a junior at Yale majoring in Computer Science. I also run Birdflop, the only 501(c)3 nonprofit Minecraft server host designed to foment interest in computer science and technology. I'm passionate about machine learning and open-source software. I also love mulling cider and{" "}
+                <p>Hi, I'm Koray. I'm a junior at Yale majoring in Computer Science. I also run <a href="https://www.birdflop.com/">Birdflop</a>, the only 501(c)(3) nonprofit that's aiming to expand interest in technology and computer science through affordable and accessible virtual server hosting. I'm passionate about machine learning and open-source software. I also love mulling cider and{" "}
                 <span 
                         className="highlighted-text"
                         onMouseEnter={handleMouseEnter}
@@ -58,7 +58,7 @@ const AboutSection: React.FC = () => {
                                 top: `${mousePosition.y - 30}px` /* Adjust the Y-offset to position the tooltip above the cursor */
                             }}>
                             <p><strong>Why's this funny?</strong></p>
-                            <p>A zeugma is a sentence that uses a word in two different meanings. In this case, "mulling" cider and "mulling over" zeugmas is in itself a zeugma, simultaneously making it a pun. Also, "zeugma" looks and sounds funny.</p>
+                            <p>A zeugma ("ZOOG-muh") is a sentence that uses a word in two different meanings. In this case, "mulling" cider and "mulling over" zeugmas is in itself a zeugma, simultaneously making it a pun. Also, "zeugma" looks and sounds funny.</p>
                         </div>
                     )}
                     <br/>
