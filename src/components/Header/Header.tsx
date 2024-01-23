@@ -6,7 +6,7 @@ const Header: React.FC = () => {
     <header>
         <div className="container header-content navigation">
             <h1 className="name">
-                <a href="index.html">Koray Akduman</a>
+                <a href="/">Koray Akduman</a>
             </h1>
                 <a href="#projects-section">Projects</a>
                 <a href="https://www.linkedin.com/in/korayakduman/" target="_blank" rel="noopener noreferrer">
