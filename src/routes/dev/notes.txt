@@ -1,0 +1,13 @@
+            <div className="project-item">
+                <br/>
+                <div className="project-header">
+                    <h2>FlockMarket (In-Progress)</h2>
+                </div>
+                <p>
+                    <i>October 2023 - Present</i>
+                    <div className="button-container">
+                        <a href="https://github.com/kakduman/flock-market" target="_blank" className="btn-small" rel="noreferrer">View GitHub</a>
+                    </div>
+                    Currently developing Minecraft's most comprehensive economy and trading plugin. FlockMarket intends to implement a trading system for in-game items complete with a web UI and REST API to allow for algorithmic trading.<br/><br/>
+                </p>
+            </div>

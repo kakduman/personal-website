@@ -44,7 +44,7 @@ const AboutSection: React.FC = () => {
             <div className="about-text">
                 <h2>About Me</h2>
                 <br/>
-                <p>Hi, I'm Koray. I'm a junior at Yale majoring in Computer Science. I also run <a href="https://www.birdflop.com/">Birdflop</a>, the only 501(c)(3) nonprofit that's aiming to expand interest in technology and computer science through affordable and accessible virtual server hosting. I'm passionate about machine learning and open-source software. I also love mulling cider and{" "}
+                <p>Hi, I'm Koray. I'm a junior Computer Science major at Yale and an incoming software engineering intern (infrastructure) at Roblox. I also run <a href="https://www.birdflop.com/">Birdflop</a>, the only 501(c)(3) nonprofit that's aiming to expand interest in technology and computer science through affordable and accessible virtual server hosting. I'm passionate about machine learning and open-source software. I also love mulling cider and{" "}
                 <span 
                         className="highlighted-text"
                         onMouseEnter={handleMouseEnter}
@@ -65,7 +65,7 @@ const AboutSection: React.FC = () => {
                     )}
                     <br/>
                     <br/>
-                    Most recently, I started working on my personal website (on December 24) using React with Typescript. There's lots to come...</p>
+                    Most recently, I started working on my personal website using React with Typescript. There's lots to come...</p>
                 <br/>
                 <div className="button-container">
                     <a href="#projects-section" className="btn-large">View Projects</a>
