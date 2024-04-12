@@ -1,3 +1,5 @@
+/* src/index.css */
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -196,4 +198,10 @@ header {
 .project-item h2 {
     margin: 0; /* Adjust as needed */
     flex-grow: 0; /* Allows the title to grow and fill the space */
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Adjust the base font size for smaller screens */
+    }
 }

@@ -1,3 +1,5 @@
+// src/components/ProjectsSection/ProjectsSection.tsx
+
 import React from 'react';
 import '../starter-styles/starter-styles.css';
 
@@ -15,13 +17,14 @@ const ProjectsSection: React.FC = () => {
                 <br/>
                 <div className="project-header">
                     <h2>Birdflop</h2>
-                    <a href="https://birdflop.com/" target="_blank" className="btn-small" rel="noreferrer">View Website</a>
-                    <a href="https://github.com/birdflop/website" target="_blank" className="btn-small" rel="noreferrer">View Website GitHub</a>
                 </div>
                 <p>
                     <i>August 2020 - Present</i>
-                    <hr style={{ height: '1px', visibility: 'hidden' }} />
-                    Created the world's only 501(c)3 nonprofit virtual game server host aiming to promote interest in technology and computer science. Used knowledge of Python, JavaScript, HTML/CSS, PHP, Linux/UNIX, Docker, and Java to perform software engineering and system administration tasks, linking ~10 hand-built bare metal servers hosting applications cumulatively used by 500,000+ users.<br/><br/>
+                    <div className="button-container">
+                        <a href="https://birdflop.com/" target="_blank" className="btn-small" rel="noreferrer">View Website</a>
+                        <a href="https://github.com/birdflop/website" target="_blank" className="btn-small" rel="noreferrer">View Website GitHub</a>
+                    </div>
+                    Created the world's only 501(c)(3) nonprofit virtual game server host aiming to promote interest in technology and computer science. Used knowledge of Python, JavaScript, HTML/CSS, PHP, Linux/UNIX, Docker, and Java to perform software engineering and system administration tasks, linking ~10 hand-built bare metal servers hosting applications and custom resources cumulatively used by 250,000+ monthly users.<br/><br/>
                 </p>
             </div>
 
@@ -29,12 +32,12 @@ const ProjectsSection: React.FC = () => {
                 <br/>
                 <div className="project-header">
                     <h2>Botflop</h2>
-                    <a href="https://github.com/birdflop/botflop" target="_blank" className="btn-small" rel="noreferrer">View GitHub</a>
                 </div>
                 <p>
                     <i>January 2021 - July 2023</i>
-                    <hr style={{ height: '1px', visibility: 'hidden' }} />
-
+                    <div className="button-container">
+                        <a href="https://github.com/birdflop/botflop" target="_blank" className="btn-small" rel="noreferrer">View GitHub</a>
+                    </div>
                     Led a team to create Botflop: an open-source Discord bot in JavaScript that analyzes timings delay reports to suggest mitigations for common Minecraft server issues. It also automatically uploads text files to a globally accessible bin. Botflop has helped 300,000+ users in 1,800+ Discord servers.<br/><br/>
                 </p>
             </div>
@@ -56,11 +59,12 @@ const ProjectsSection: React.FC = () => {
                 <br/>
                 <div className="project-header">
                     <h2>Sir Stabby’s Perpetual Motion Machine</h2>
-                    <a href="https://github.com/AddisonGoolsbee/sir-stabbys-torture-device" target="_blank" className="btn-small" rel="noreferrer">View GitHub</a>
                 </div>
                 <p>
                     <i>December 2023</i>
-                    <hr style={{ height: '1px', visibility: 'hidden' }} />
+                    <div className="button-container">
+                        <a href="https://github.com/AddisonGoolsbee/sir-stabbys-torture-device" target="_blank" className="btn-small" rel="noreferrer">View GitHub</a>
+                    </div>
 
                     Constructed an embedded system using Python & C++ featuring voice FFTs, two-way wireless communication, OpenAI APIs, ESP32 controllers, and servos.<br/><br/>
                 </p>
@@ -70,11 +74,12 @@ const ProjectsSection: React.FC = () => {
                 <br/>
                 <div className="project-header">
                     <h2>Binflop</h2>
-                    <a href="https://bin.birdflop.com" target="_blank" className="btn-small" rel="noreferrer">Try It Out</a>
                 </div>
                 <p>
                     <i>February 2021 - July 2021</i>
-                    <hr style={{ height: '1px', visibility: 'hidden' }} />
+                    <div className="button-container">
+                        <a href="https://bin.birdflop.com" target="_blank" className="btn-small" rel="noreferrer">Try It Out</a>
+                    </div>
     
                     Created a fork of hastebin.com that patches bugs and implements improvements.                 
                     <hr style={{ height: '1px', visibility: 'hidden' }} />
@@ -96,12 +101,13 @@ const ProjectsSection: React.FC = () => {
                 <br/>
                 <div className="project-header">
                     <h2>RGBirdflop</h2>
-                    <a href="https://birdflop.com/resources/rgb" target="_blank" className="btn-small" rel="noreferrer">Try It Out</a>
-                    <a href="https://github.com/birdflop/website" target="_blank" className="btn-small" rel="noreferrer">View GitHub</a>
                 </div>
                 <p>
                     <i>February 2021 - March 2021</i>
-                    <hr style={{ height: '1px', visibility: 'hidden' }} />
+                    <div className="button-container">
+                        <a href="https://birdflop.com/resources/rgb" target="_blank" className="btn-small" rel="noreferrer">Try It Out</a>
+                        <a href="https://github.com/birdflop/website" target="_blank" className="btn-small" rel="noreferrer">View GitHub</a>
+                    </div>
                     Developed a website with 30,000+ monthly users that calculates and formats hex code gradients for Minecraft. <br/><br/>
                 </p>
             </div>
@@ -112,11 +118,12 @@ const ProjectsSection: React.FC = () => {
                 <br/>
                 <div className="project-header">
                     <h2>FlockMarket (In-Progress)</h2>
-                    <a href="https://github.com/kakduman/flock-market" target="_blank" className="btn-small" rel="noreferrer">View GitHub</a>
                 </div>
                 <p>
                     <i>October 2023 - Present</i>
-                    <hr style={{ height: '1px', visibility: 'hidden' }} />
+                    <div className="button-container">
+                        <a href="https://github.com/kakduman/flock-market" target="_blank" className="btn-small" rel="noreferrer">View GitHub</a>
+                    </div>
                     Currently developing Minecraft's most comprehensive economy and trading plugin. FlockMarket intends to implement a trading system for in-game items complete with a web UI and REST API to allow for algorithmic trading.<br/><br/>
                 </p>
             </div>

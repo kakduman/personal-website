@@ -1,3 +1,5 @@
+// src/components/AboutSection/AboutSection.tsx
+
 import React, { useState } from 'react';
 import '../starter-styles/starter-styles.css';
 import confetti from 'canvas-confetti';
@@ -65,7 +67,7 @@ const AboutSection: React.FC = () => {
                     <br/>
                     Most recently, I started working on my personal website (on December 24) using React with Typescript. There's lots to come...</p>
                 <br/>
-                <div>
+                <div className="button-container">
                     <a href="#projects-section" className="btn-large">View Projects</a>
                     <a href="/assets/private/Koray_Akduman_Resume_PUBLIC.pdf" target="_blank" className="btn-large">View Resume</a>
                     <button className="btn-large" onClick={(e) => triggerConfetti(e)}>Celebrate</button>

@@ -1,3 +1,5 @@
+// src/components/Hero/Hero.tsx
+
 import React from 'react';
 import '../starter-styles/starter-styles.css';
 

@@ -1,3 +1,5 @@
+/* src/components/starter-styles/starter-styles.css */
+
 /* Reset some basic elements */
 body, h1, h2, p { margin: 0; padding: 0; }
 
@@ -133,34 +135,27 @@ header {
     padding: 10px; /* Optional spacing around the text */
 }
 
-/* Responsive design: on smaller screens, stack image and text vertically */
-@media (max-width: 768px) {
-    .about-container {
-        flex-direction: column;
-    }
-    .profile-image,
-    .about-text {
-        flex-basis: 100%; /* Both image and text take full width on small screens */
-        order: 0; /* Reset the order to stack them correctly */
-    }
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* Spacing between buttons */
 }
 
-.btn-large, .btn-large a {
+.btn-large {
     display: inline-block;
     background: #333;
     color: #fff;
-    padding: 10px 20px;
+    padding: 10px 20px; /* Adjust padding as needed */
     text-decoration: none;
-    border-radius: 25px; /* This value makes the button rounded. Adjust as needed. */
-    transition: background 0.3s ease; /* Smooth background color transition on hover */
-    font-family: 'Jost', sans-serif; /* Ensures the font family is consistent */
-    font-size: 1em; /* Adjust the font size as needed */
-    line-height: 1.6; /* Adjust line height to match other elements if necessary */
-    border: none; /* Removes any default border */
+    border-radius: 25px;
+    transition: background 0.3s ease;
+    margin-right: 10px; /* Add right margin for spacing between buttons */
+    font-size: 1em;
 }
 
-.btn-large:not(:first-child) {
-    margin-left: 10px; /* Adds spacing between the two buttons by adding a left margin to the second button (not the first) */
+.btn-large:first-child, .btn-small:first-child {
+    margin-left: 0; /* Remove left margin for the first button */
 }
 
 .btn-large:hover {
@@ -176,7 +171,8 @@ header {
     border-radius: 13px; /* This value makes the button rounded. Adjust as needed. */
     transition: background 0.3s ease; /* Smooth background color transition on hover */
     margin-left: 10px; /* Adds spacing between the title and the button */
-
+    margin-top: 2px;
+    margin-bottom: 3px;
 }
 
 .btn-small:hover {
@@ -208,4 +204,55 @@ header {
     z-index: 1000;
     max-width: 300px; /* Maximum width of the tooltip */
     word-wrap: break-word; /* Ensure text wraps inside the tooltip */
+}
+
+
+@media (max-width: 768px) {
+    .btn-large, .btn-small {
+        margin-bottom: 10px; /* Add space between buttons when they wrap */
+    }
+
+    .btn-small {
+        /* make the buttons smaller on smaller screens */
+        padding: 5px 10px;
+        flex: 1;
+        text-align: center;
+        white-space: normal;
+        min-width: 0;
+    }
+
+    .button-container {
+        flex-direction: row; /* Keep buttons in a row */
+    }
+
+    .btn-large {
+        flex: 1; /* Distribute space evenly among buttons */
+        text-align: center; /* Center-align the text */
+        white-space: normal; /* Allow text to wrap */
+        padding: 15px 10px; /* Adjust padding to accommodate wrapped text */
+        min-width: 0; /* Prevent buttons from growing beyond the container's width */
+    }
+
+    .profile-image img {
+        max-width: 70%; /* Adjust the maximum width of the image on smaller screens */
+        display: block; /* Display the image as a block element */
+        margin: 0 auto; /* Center the image horizontally */
+    }
+
+    .container {
+        width: 90%; /* Adjust the width for smaller screens */
+    }
+
+    h1 {
+        font-size: medium; /* Adjust font sizes for smaller screens */
+    }
+
+    .about-container {
+        flex-direction: column;
+    }
+
+    .profile-image, .about-text {
+        flex-basis: 100%; /* Both image and text take full width on small screens */
+        order: 0; /* Reset the order to stack them correctly */
+    }
 }

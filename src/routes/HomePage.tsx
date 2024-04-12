@@ -1,4 +1,5 @@
-// src/App.js
+// src/routes/HomePage.tsx
+
 import React from 'react';
 import Header from '../components/Header/Header';
 import AboutSection from '../components/AboutSection/AboutSection';
