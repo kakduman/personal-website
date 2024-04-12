@@ -142,24 +142,23 @@ header {
     gap: 8px; /* Spacing between buttons */
 }
 
-.btn-large {
+.btn-large, .btn-large a, .btn-large button {
     display: inline-block;
     background: #333;
     color: #fff;
-    padding: 10px 20px; /* Adjust padding as needed */
+    padding: 10px 20px;
     text-decoration: none;
     border-radius: 25px;
     transition: background 0.3s ease;
-    margin-right: 10px; /* Add right margin for spacing between buttons */
+    border: none; /* Remove default border */
+    outline: none; /* Remove outline on focus */
+    font-family: 'Jost', sans-serif;
     font-size: 1em;
+    line-height: 1.6;
 }
 
 .btn-large:first-child, .btn-small:first-child {
     margin-left: 0; /* Remove left margin for the first button */
-}
-
-.btn-large:hover {
-    background: #18e;
 }
 
 .btn-small {
@@ -175,7 +174,7 @@ header {
     margin-bottom: 3px;
 }
 
-.btn-small:hover {
+.btn-small:hover, .btn-large:hover, .btn-large a:hover, .btn-large button:hover {
     background: #18e;
 }
 
