@@ -22,7 +22,7 @@ const ProjectsSection: React.FC = () => {
                     <i>August 2020 - Present</i>
                     <div className="button-container">
                         <a href="https://birdflop.com/" target="_blank" className="btn-small" rel="noreferrer">View Website</a>
-                        <a href="https://github.com/birdflop/website" target="_blank" className="btn-small" rel="noreferrer">View Website GitHub</a>
+                        <a href="https://github.com/birdflop/web" target="_blank" className="btn-small" rel="noreferrer">View Website GitHub</a>
                     </div>
                     Created the world's only 501(c)(3) nonprofit virtual game server host aiming to promote interest in technology and computer science. Used knowledge of Python, JavaScript, HTML/CSS/JS, Qwik, PHP, Linux/UNIX, Docker, and Java to perform software engineering and system administration tasks, linking ~10 hand-built bare metal servers hosting applications and custom resources cumulatively used by 250,000+ monthly users.<br/><br/>
                 </p>
@@ -134,7 +134,7 @@ const ProjectsSection: React.FC = () => {
                     <i>February 2021 - March 2021</i>
                     <div className="button-container">
                         <a href="https://birdflop.com/resources/rgb" target="_blank" className="btn-small" rel="noreferrer">Try It Out</a>
-                        <a href="https://github.com/birdflop/website" target="_blank" className="btn-small" rel="noreferrer">View GitHub</a>
+                        <a href="https://github.com/birdflop/web" target="_blank" className="btn-small" rel="noreferrer">View GitHub</a>
                     </div>
                     Developed a website with 30,000+ monthly users that calculates and formats hex code gradients for Minecraft. <br/><br/>
                 </p>
