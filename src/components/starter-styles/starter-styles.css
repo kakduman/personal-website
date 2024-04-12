@@ -25,7 +25,7 @@ header {
 
 .name {
     font-weight: bold;
-    margin-left: 20px; /* Adjust as needed */
+    margin-left: 20px;
     flex-grow: 1;
 }
 
@@ -167,7 +167,7 @@ header {
     color: #fff;
     padding: 5px 10px;
     text-decoration: none;
-    border-radius: 13px; /* This value makes the button rounded. Adjust as needed. */
+    border-radius: 13px; /* This value makes the button rounded. */
     transition: background 0.3s ease; /* Smooth background color transition on hover */
     margin-left: 10px; /* Adds spacing between the title and the button */
     margin-top: 2px;
@@ -183,7 +183,7 @@ header {
     align-items: center;
 }
 .project-item h2 {
-    margin: 0; /* Adjust as needed */
+    margin: 0; 
     flex-grow: 0; /* Allows the title to grow and fill the space */
 }
 
