@@ -1,0 +1,54 @@
+/* Default vertical timeline styles */
+.timeline {
+    position: relative;
+    border-left: 2px solid #e5e7eb;
+    padding-left: 1.5rem;
+}
+
+.timeline-item {
+    position: relative;
+    margin-left: 0rem;
+}
+
+/* Custom styles for the horizontal timeline at large screens */
+@media (min-width: 1200px) {
+    .timeline {
+        display: flex;
+        justify-content: space-between;
+        border-left: none;
+        border-top: 2px solid #e5e7eb;
+        padding-left: 0;
+        padding-top: 1.5rem;
+        flex-direction: row-reverse; /* Reverse the order of items */
+    }
+
+    .timeline-item {
+        margin-right: 10px; /* Reduce margin between items */
+        flex: 1;
+        text-align: left;
+        padding-top: 0; /* Remove any top padding */
+        padding-bottom: 0; /* Remove any bottom padding */
+    }
+
+    .timeline-item h3 {
+        font-size: 0.95rem; /* Smaller font size for title */
+        margin-bottom: 0.25rem; /* Reduce spacing below title */
+        line-height: 1.25; /* Reduce line height for tighter spacing */
+    }
+
+    .timeline-item time{
+        font-size: 0.8rem; /* Smaller font size for time and company */
+        line-height: 1.25rem; /* Reduce line height to make text more compact */
+        margin-bottom: 0.25rem; /* Reduce spacing below time and company */
+    }
+    .timeline-item p {
+        font-size: 0.875rem; /* Smaller font size for time and company */
+        line-height: 1.25rem; /* Reduce line height to make text more compact */
+        margin-bottom: 0.25rem; /* Reduce spacing below time and company */
+    }
+
+    .timeline-item span {
+        left: 0%;
+        top: -2.1rem;
+    }
+}
