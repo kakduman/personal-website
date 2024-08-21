@@ -12,7 +12,6 @@ const ProjectsSection: React.FC = () => {
             </div>
         </div>
         <div className="container">
-
             <div className="project-item">
                 <br/>
                 <div className="project-header">
@@ -59,7 +58,7 @@ const ProjectsSection: React.FC = () => {
             <div className="project-item">
                 <br/>
                 <div className="project-header">
-                    <h2>Sir Stabby’s Perpetual Motion Machine</h2>
+                    <h2>Sir Stabby's Perpetual Motion Machine</h2>
                 </div>
                 <p>
                     <i>December 2023</i>
