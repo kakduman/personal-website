@@ -206,6 +206,17 @@ header {
 }
 
 
+@media (min-width: 1200px) {
+    .profile-image img {
+        max-width: 70%; /* Adjust the maximum width when the screen is larger */
+        margin: 0 auto; /* Center the image horizontally */
+    }
+
+    .container {
+        width: 70%; /* Adjust the container width on larger screens */
+    }
+}
+
 @media (max-width: 768px) {
     .btn-large, .btn-small {
         margin-bottom: 10px; /* Add space between buttons when they wrap */
