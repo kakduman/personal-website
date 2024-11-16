@@ -15,7 +15,7 @@ const ProjectsSection: React.FC = () => {
             <div className="project-item">
                 <br/>
                 <div className="project-header">
-                    <h2>Birdflop</h2>
+                    <h2 className="text-2xl font-bold">Birdflop</h2>
                 </div>
                 <p>
                     <i>August 2020 - Present</i>
@@ -30,7 +30,7 @@ const ProjectsSection: React.FC = () => {
             <div className="project-item">
                 <br/>
                 <div className="project-header">
-                    <h2>Character-based N-gram Model Predicting Language Groups and Evolution</h2>
+                    <h2 className="text-2xl font-bold">Character-based N-gram Model Predicting Language Groups and Evolution</h2>
                 </div>
                 <p>
                     <i>March 2024</i>
@@ -44,7 +44,7 @@ const ProjectsSection: React.FC = () => {
             <div className="project-item">
                 <br/>
                 <div className="project-header">
-                    <h2>Paper: Distinguishing features of long COVID identified through immune profiling</h2>
+                    <h2 className="text-2xl font-bold">Paper: Distinguishing features of long COVID identified through immune profiling</h2>
                 </div>
                 <p>
                     <i>Nature, September 2023</i>
@@ -58,7 +58,7 @@ const ProjectsSection: React.FC = () => {
             <div className="project-item">
                 <br/>
                 <div className="project-header">
-                    <h2>Sir Stabby's Perpetual Motion Machine</h2>
+                    <h2 className="text-2xl font-bold">Sir Stabby's Perpetual Motion Machine</h2>
                 </div>
                 <p>
                     <i>December 2023</i>
@@ -73,7 +73,7 @@ const ProjectsSection: React.FC = () => {
             <div className="project-item">
                 <br/>
                 <div className="project-header">
-                    <h2>Botflop</h2>
+                    <h2 className="text-2xl font-bold">Botflop</h2>
                 </div>
                 <p>
                     <i>January 2021 - July 2023</i>
@@ -87,7 +87,7 @@ const ProjectsSection: React.FC = () => {
             <div className="project-item">
                 <br/>
                 <div className="project-header">
-                    <h2>Birdflop CDN</h2>
+                    <h2 className="text-2xl font-bold">Birdflop CDN</h2>
                 </div>
                 <p>
                     <i>July 2021 - Present</i>
@@ -100,7 +100,7 @@ const ProjectsSection: React.FC = () => {
             <div className="project-item">
                 <br/>
                 <div className="project-header">
-                    <h2>Binflop</h2>
+                    <h2 className="text-2xl font-bold">Binflop</h2>
                 </div>
                 <p>
                     <i>February 2021 - July 2021</i>
@@ -127,7 +127,7 @@ const ProjectsSection: React.FC = () => {
             <div className="project-item">
                 <br/>
                 <div className="project-header">
-                    <h2>RGBirdflop</h2>
+                    <h2 className="text-2xl font-bold">RGBirdflop</h2>
                 </div>
                 <p>
                     <i>February 2021 - March 2021</i>

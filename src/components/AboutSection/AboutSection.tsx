@@ -42,7 +42,7 @@ const AboutSection: React.FC = () => {
                 <img src="/assets/selfie.png" alt="Koray Akduman" />
             </div>
             <div className="about-text">
-                <h2>About Me</h2>
+                <h2 className="text-2xl font-bold">About Me</h2>
                 <br/>
                 <p>
                     Hi, I'm Koray. I'm a senior at Yale majoring in Computer Science. I also run <a href="https://www.birdflop.com/">Birdflop</a>, the only 501(c)(3) nonprofit that's aiming to expand interest in technology and computer science through affordable and accessible virtual server hosting. I'm passionate about machine learning and open-source software. I also love mulling cider and{" "}
@@ -70,7 +70,7 @@ const AboutSection: React.FC = () => {
                 <br/>
                 <div className="button-container">
                     <a href="#projects-section" className="btn-large">View Projects</a>
-                    <a href="/assets/private/Koray_Akduman_Resume_PUBLIC.pdf" target="_blank" className="btn-large">View Resume</a>
+                    {/* <a href="/assets/private/Koray_Akduman_Resume_PUBLIC.pdf" target="_blank" className="btn-large">View Resume</a> */}
                     <button className="btn-large" onClick={(e) => triggerConfetti(e)}>Celebrate</button>
                 </div>
             </div>
