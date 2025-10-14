@@ -6,81 +6,70 @@ const FADE_DURATION = 300;
 
 const BadgeOverlay: React.FC = () => {
   const { toastQueue, definitions, popToast } = useBadges();
-  const [visible, setVisible] = useState(false);
-  const [displayingBadgeId, setDisplayingBadgeId] = useState<string | null>(null);
-  const currentBadgeRef = useRef<string | null>(null);
-  const timersRef = useRef<{ hide: ReturnType<typeof setTimeout>; remove: ReturnType<typeof setTimeout> } | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [currentBadgeId, setCurrentBadgeId] = useState<string | null>(null);
+  const timerRef = useRef<number | null>(null);
+  const popToastRef = useRef(popToast);
 
-  const activeBadgeId = toastQueue[0];
+  // Keep popToast ref updated without triggering effects
+  useEffect(() => {
+    popToastRef.current = popToast;
+  }, [popToast]);
 
   const displayBadge = useMemo(
-    () => definitions.find((badge) => badge.id === displayingBadgeId),
-    [definitions, displayingBadgeId]
+    () => currentBadgeId ? definitions.find((badge) => badge.id === currentBadgeId) : undefined,
+    [definitions, currentBadgeId]
   );
 
+  // Process the queue
   useEffect(() => {
-    console.log(`[Badge] Effect running - activeBadgeId: ${activeBadgeId}, currentBadge: ${currentBadgeRef.current}, queue:`, toastQueue);
-    
-    // Clear existing timers if any
-    if (timersRef.current) {
-      console.log(`[Badge] Clearing existing timers`);
-      clearTimeout(timersRef.current.hide);
-      clearTimeout(timersRef.current.remove);
-      timersRef.current = null;
-    }
-
-    // No badge to display - reset state
-    if (!activeBadgeId) {
-      console.log(`[Badge] No active badge, resetting state`);
-      currentBadgeRef.current = null;
-      setVisible(false);
-      setDisplayingBadgeId(null);
+    // Already displaying a badge, don't interrupt
+    if (timerRef.current !== null) {
       return;
     }
 
-    // Already displaying this badge
-    if (currentBadgeRef.current === activeBadgeId) {
-      console.log(`[Badge] Already displaying ${activeBadgeId}, skipping`);
+    // Nothing in queue
+    if (toastQueue.length === 0) {
+      setIsVisible(false);
+      setCurrentBadgeId(null);
       return;
     }
 
-    console.log(`[Badge] Starting display for: ${activeBadgeId}`);
+    // Start displaying the next badge
+    const nextBadgeId = toastQueue[0];
+    console.log(`[BadgeOverlay] Displaying badge: ${nextBadgeId}`);
     
-    // Track current badge
-    currentBadgeRef.current = activeBadgeId;
-    
-    // Show the new badge
-    setDisplayingBadgeId(activeBadgeId);
-    setVisible(true);
+    setCurrentBadgeId(nextBadgeId);
+    setIsVisible(true);
 
-    // Hide animation
-    const hideTimer = setTimeout(() => {
-      console.log(`[Badge] Hiding: ${activeBadgeId}`);
-      setVisible(false);
+    // Schedule hide animation
+    const hideTimer = window.setTimeout(() => {
+      console.log(`[BadgeOverlay] Hiding badge: ${nextBadgeId}`);
+      setIsVisible(false);
     }, DISPLAY_DURATION - FADE_DURATION);
 
-    // Remove from queue and reset state
-    const removeTimer = setTimeout(() => {
-      console.log(`[Badge] Removing from queue: ${activeBadgeId}, queue before pop:`, toastQueue);
-      currentBadgeRef.current = null;
-      setDisplayingBadgeId(null);
-      setVisible(false);
-      popToast();
-      timersRef.current = null;
+    // Schedule removal from queue
+    const removeTimer = window.setTimeout(() => {
+      console.log(`[BadgeOverlay] Completed badge: ${nextBadgeId}`);
+      timerRef.current = null;
+      setCurrentBadgeId(null);
+      popToastRef.current();
     }, DISPLAY_DURATION);
 
-    timersRef.current = { hide: hideTimer, remove: removeTimer };
+    // Store timer ID so we know we're processing
+    timerRef.current = removeTimer;
 
     return () => {
-      if (timersRef.current) {
-        console.log(`[Badge] Cleanup - clearing timers for ${activeBadgeId}`);
-        clearTimeout(timersRef.current.hide);
-        clearTimeout(timersRef.current.remove);
+      if (timerRef.current !== null) {
+        console.log(`[BadgeOverlay] Cleaning up timers for: ${nextBadgeId}`);
+        clearTimeout(hideTimer);
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
       }
     };
-  }, [activeBadgeId, popToast]);
+  }, [toastQueue]);
 
-  if (!displayBadge || !visible) {
+  if (!displayBadge || !isVisible) {
     return null;
   }
 

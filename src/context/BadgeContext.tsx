@@ -202,9 +202,11 @@ export const BadgeProvider: React.FC<React.PropsWithChildren> = ({ children }) =
   }, []);
 
   const popToast = useCallback(() => {
+    console.log(`[BadgeContext] popToast called`);
     setToastQueue((prev) => {
-      console.log(`[Badge] popToast called - before:`, prev, `after:`, prev.slice(1));
-      return prev.slice(1);
+      const next = prev.slice(1);
+      console.log(`[BadgeContext] Queue update - before:`, prev, `after:`, next);
+      return next;
     });
   }, []);
 
@@ -322,7 +324,16 @@ export const BadgeProvider: React.FC<React.PropsWithChildren> = ({ children }) =
     unlockBadge,
     toastQueue,
     popToast,
-  }), [state.unlocked, state.celebrateCount, toastQueue]);
+  }), [
+    state.unlocked,
+    state.celebrateCount,
+    registerCelebration,
+    registerProjectButtonClick,
+    markSectionSeen,
+    unlockBadge,
+    toastQueue,
+    popToast,
+  ]);
 
   return <BadgeContext.Provider value={contextValue}>{children}</BadgeContext.Provider>;
 };

@@ -86,14 +86,14 @@ const AboutSection: React.FC = () => {
                 <h2 className="text-2xl font-bold">About Me</h2>
                 <br/>
                 <p>
-                    Hi, I'm Koray. I'm a software engineer at Roblox on the Infrastructure {'>'} Observability team. I also run <a href="https://www.birdflop.com/">Birdflop</a>, the only 501(c)(3) nonprofit that's aiming to expand interest in technology and computer science through affordable and accessible virtual server hosting. I'm passionate about machine learning and open-source software. I also love mulling cider and{" "}
+                    Hi, I'm Koray. I'm a software engineer at Roblox on the Infrastructure {'>'} Observability team. I also run <a href="https://www.birdflop.com/">Birdflop</a>, the only 501(c)(3) nonprofit that's aiming to expand interest in technology and computer science through affordable and accessible virtual server hosting. I graduated from Yale with a B.S. in computer science and a passion for machine learning and open-source software. I also love mulling cider and{" "}
                     <span 
                         className="highlighted-text"
                         onMouseEnter={handleMouseEnter}
                         onMouseMove={handleMouseMove}
                         onMouseLeave={handleMouseLeave}>
                         over the best zeugmas
-                    </span>.
+                    </span>. This website has a few easter eggs. Can you find them all?
                     {showTooltip && (
                         <div 
                             className="tooltip" 
