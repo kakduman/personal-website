@@ -24,16 +24,72 @@ const UPGRADES: Omit<Upgrade, 'owned'>[] = [
   { id: 'quantum-compartier', name: 'Quantum Compartier', description: 'Turns one celebration into many (if left unobserved).', cost: 100000, cps: 1000 },
 ];
 
+const UPGRADES_STORAGE_KEY = 'personal-website::celebrate-upgrades';
+const LOCAL_COUNT_STORAGE_KEY = 'personal-website::celebrate-local-count';
+const LAST_SYNCED_COUNT_STORAGE_KEY = 'personal-website::celebrate-last-synced';
+
+const loadUpgrades = (): Upgrade[] => {
+  try {
+    const stored = localStorage.getItem(UPGRADES_STORAGE_KEY);
+    if (!stored) {
+      return UPGRADES.map(u => ({ ...u, owned: 0 }));
+    }
+    
+    const parsed = JSON.parse(stored) as Upgrade[];
+    // Merge with UPGRADES to ensure we have all upgrades (in case new ones were added)
+    return UPGRADES.map(u => {
+      const saved = parsed.find(p => p.id === u.id);
+      return saved ? saved : { ...u, owned: 0 };
+    });
+  } catch (error) {
+    console.warn('Failed to load upgrades from storage', error);
+    return UPGRADES.map(u => ({ ...u, owned: 0 }));
+  }
+};
+
+const loadLocalCount = (globalCount: number): number => {
+  try {
+    const stored = localStorage.getItem(LOCAL_COUNT_STORAGE_KEY);
+    if (!stored) {
+      return globalCount;
+    }
+    
+    const parsed = parseFloat(stored);
+    return parsed;
+  } catch (error) {
+    console.warn('Failed to load local count from storage', error);
+    return globalCount;
+  }
+};
+
+const loadLastSyncedCount = (globalCount: number): number => {
+  try {
+    const stored = localStorage.getItem(LAST_SYNCED_COUNT_STORAGE_KEY);
+    if (!stored) {
+      return globalCount;
+    }
+    
+    return parseFloat(stored);
+  } catch (error) {
+    console.warn('Failed to load last synced count from storage', error);
+    return globalCount;
+  }
+};
+
 const CelebratePage: React.FC = () => {
   const { registerCelebration, celebrateCount, unlockBadge } = useBadges();
-  const [localCount, setLocalCount] = useState(celebrateCount);
-  const [upgrades, setUpgrades] = useState<Upgrade[]>(
-    UPGRADES.map(u => ({ ...u, owned: 0 }))
-  );
+  const [localCount, setLocalCount] = useState(() => loadLocalCount(celebrateCount));
+  const [upgrades, setUpgrades] = useState<Upgrade[]>(loadUpgrades);
   const [isHolding, setIsHolding] = useState(false);
   const holdIntervalRef = useRef<number | null>(null);
   const autoClickIntervalRef = useRef<number | null>(null);
-  const lastSyncedCount = useRef(celebrateCount);
+  const lastSyncedCount = useRef(loadLastSyncedCount(celebrateCount));
+
+  // Helper to update lastSyncedCount and save to localStorage
+  const updateLastSyncedCount = (value: number) => {
+    lastSyncedCount.current = value;
+    localStorage.setItem(LAST_SYNCED_COUNT_STORAGE_KEY, value.toString());
+  };
 
   // Unlock the Party Seeker badge on mount
   useEffect(() => {
@@ -45,9 +101,19 @@ const CelebratePage: React.FC = () => {
     const diff = celebrateCount - lastSyncedCount.current;
     if (diff > 0) {
       setLocalCount(prev => prev + diff);
-      lastSyncedCount.current = celebrateCount;
+      updateLastSyncedCount(celebrateCount);
     }
   }, [celebrateCount]);
+
+  // Save upgrades to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem(UPGRADES_STORAGE_KEY, JSON.stringify(upgrades));
+  }, [upgrades]);
+
+  // Save local count to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem(LOCAL_COUNT_STORAGE_KEY, localCount.toString());
+  }, [localCount]);
 
   // Calculate total celebrations per second
   const totalCPS = upgrades.reduce((sum, upgrade) => sum + (upgrade.cps * upgrade.owned), 0);
@@ -69,7 +135,7 @@ const CelebratePage: React.FC = () => {
       
       // Sync to global count every second
       registerCelebration();
-      lastSyncedCount.current += 1;
+      updateLastSyncedCount(lastSyncedCount.current + 1);
     }, 100);
 
     return () => {
@@ -82,7 +148,7 @@ const CelebratePage: React.FC = () => {
   const celebrate = (event: React.MouseEvent<HTMLButtonElement>) => {
     registerCelebration();
     setLocalCount(prev => prev + 1);
-    lastSyncedCount.current += 1;
+    updateLastSyncedCount(lastSyncedCount.current + 1);
     triggerConfetti(event);
   };
 
@@ -108,7 +174,7 @@ const CelebratePage: React.FC = () => {
     holdIntervalRef.current = window.setInterval(() => {
       registerCelebration();
       setLocalCount(prev => prev + 1);
-      lastSyncedCount.current += 1;
+      updateLastSyncedCount(lastSyncedCount.current + 1);
       triggerConfetti(event as any);
     }, 100);
   };

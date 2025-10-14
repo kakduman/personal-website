@@ -93,7 +93,7 @@ const AboutSection: React.FC = () => {
                         onMouseMove={handleMouseMove}
                         onMouseLeave={handleMouseLeave}>
                         over the best zeugmas
-                    </span>. This website has a few easter eggs. Can you find them all?
+                    </span>. <br/><br/>This website has a few easter eggs. Can you find them all?
                     {showTooltip && (
                         <div 
                             className="tooltip" 
