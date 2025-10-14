@@ -1,9 +1,17 @@
 import React from 'react';
 import '../starter-styles/starter-styles.css';
 import '../starter-styles/experiences.css';
+import { useSectionObserver } from '../../hooks/useSectionObserver';
 
 const ExperienceSection: React.FC = () => {
+    useSectionObserver('experience-section');
+
     const experiences = [
+        {
+            title: 'Software Engineer (Infrastructure > Observability)',
+            company: 'Roblox',
+            duration: 'Jul. 2025 - Present',
+        },
         {
             title: 'Executive & Technical Director',
             company: 'Birdflop, 501(c)(3)',
@@ -15,7 +23,7 @@ const ExperienceSection: React.FC = () => {
             duration: 'Mar. 2023 - Present',
         },
         {
-            title: 'Software Engineer Intern (Infrastructure > Telemetry)',
+            title: 'Software Engineer Intern (Infrastructure > Observability)',
             company: 'Roblox',
             duration: 'May 2024 - Aug. 2024',
         },

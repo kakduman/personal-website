@@ -205,6 +205,41 @@ header {
     word-wrap: break-word; /* Ensure text wraps inside the tooltip */
 }
 
+.badge-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    pointer-events: none;
+    z-index: 2000;
+}
+
+.badge-toast {
+    background: rgba(30, 30, 30, 0.9);
+    color: #fff;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 0 24px 80px 0;
+    min-width: 200px;
+    max-width: 320px;
+    pointer-events: auto;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(6px);
+    transition: transform 0.3s ease, opacity 0.3s ease, pointer-events 0s linear 0.3s;
+}
+
+.badge-toast h3 {
+    margin: 0 0 4px;
+    font-size: 1.1rem;
+}
+
+.badge-toast p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
 
 @media (min-width: 1200px) {
     .profile-image img {
