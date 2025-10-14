@@ -141,8 +141,15 @@ export const BadgeProvider: React.FC<React.PropsWithChildren> = ({ children }) =
   }, [state]);
 
   const enqueueToast = useCallback((badgeId: BadgeId) => {
-    console.log(`[Badge] Enqueueing toast for: ${badgeId}`);
-    setToastQueue((prev) => [...prev, badgeId]);
+    setToastQueue((prev) => {
+      // Don't add if already in queue
+      if (prev.includes(badgeId)) {
+        console.log(`[BadgeContext] Badge ${badgeId} already in queue, skipping`);
+        return prev;
+      }
+      console.log(`[BadgeContext] Enqueueing toast for: ${badgeId}`);
+      return [...prev, badgeId];
+    });
   }, []);
 
   const unlockBadge = useCallback((badgeId: BadgeId) => {

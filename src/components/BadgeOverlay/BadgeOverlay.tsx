@@ -10,6 +10,7 @@ const BadgeOverlay: React.FC = () => {
   const [currentBadgeId, setCurrentBadgeId] = useState<string | null>(null);
   const timerRef = useRef<number | null>(null);
   const popToastRef = useRef(popToast);
+  const displayedBadgesRef = useRef<Set<string>>(new Set());
 
   // Keep popToast ref updated without triggering effects
   useEffect(() => {
@@ -35,8 +36,18 @@ const BadgeOverlay: React.FC = () => {
       return;
     }
 
-    // Start displaying the next badge
+    // Get the next badge
     const nextBadgeId = toastQueue[0];
+    
+    // Skip if already displayed in this session
+    if (displayedBadgesRef.current.has(nextBadgeId)) {
+      console.log(`[BadgeOverlay] Badge ${nextBadgeId} already displayed, skipping`);
+      popToastRef.current();
+      return;
+    }
+
+    // Mark as displayed
+    displayedBadgesRef.current.add(nextBadgeId);
     console.log(`[BadgeOverlay] Displaying badge: ${nextBadgeId}`);
     
     setCurrentBadgeId(nextBadgeId);

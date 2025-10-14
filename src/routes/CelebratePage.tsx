@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 import { useBadges } from '../context/BadgeContext';
+import BadgeOverlay from '../components/BadgeOverlay/BadgeOverlay';
 import './CelebratePage.css';
 
 interface Upgrade {
@@ -161,6 +162,7 @@ const CelebratePage: React.FC = () => {
 
   return (
     <div className="celebrate-page">
+      <BadgeOverlay />
       <Link to="/" className="back-button">← Back to Website</Link>
       
       <div className="celebrate-container">
