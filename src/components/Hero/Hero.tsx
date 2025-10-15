@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
     <section id="hero-section" className="header-centered">
         <div className="container">
             <h1>Koray Akduman</h1>
-            <p>Student, Software Engineer, System Administrator</p>
+            <p>Software Engineer</p>
         </div>
     </section>
   );
