@@ -20,7 +20,7 @@ const ExperienceSection: React.FC = () => {
         {
             title: 'Undergraduate Researcher',
             company: 'Yale Department of Computer Science (van Dijk Lab)',
-            duration: 'Mar. 2023 - Present',
+            duration: 'Mar. 2023 - Jan. 2025',
         },
         {
             title: 'Software Engineer Intern (Infrastructure > Observability)',
