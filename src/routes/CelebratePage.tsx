@@ -1033,7 +1033,7 @@ const CelebratePage: React.FC = () => {
         
         return { ...prev, timeLeft: prev.timeLeft - 1, moles: newMoles };
       });
-    }, 500); // Lower this for faster mole speed
+    }, 750); // Lower this for faster mole speed
   };
 
   const whackMole = (index: number) => {
