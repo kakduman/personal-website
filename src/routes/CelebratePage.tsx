@@ -1251,7 +1251,7 @@ const CelebratePage: React.FC = () => {
                     const costs = UPGRADE_RESOURCE_COSTS[factoryProduction.targetUpgradeId] || [10, 10, 10];
                     return (
                       <p className="requirements-text">
-                        Requires: {costs[0]} 🎊 | {costs[1]} ⚡ | {costs[2]} 😊
+                        Requires: {costs[0]} 🎊 {costs[1]} ⚡ {costs[2]} 😊
                       </p>
                     );
                   })()}
