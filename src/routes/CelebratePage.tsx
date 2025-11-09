@@ -86,17 +86,15 @@ interface FactoryProduction {
 
 const FORTUNES: string[] = [
   "You will find a bug in production soon... oh wait, wrong fortune!",
-  "A wild celebration approaches! Mash that button!",
   "Your code will compile on the first try.",
   "Beware of semicolons in unexpected places.",
   "A mysterious stranger will star your GitHub repo.",
   "Your next deploy will be on a Friday at 5pm.",
   "The universe is just a giant callback function.",
-  "Confetti is just happiness data.",
   "Tomorrow you will remember to fetch before pulling.",
   "Your debugging skills will be tested by a missing comma.",
   "The answer you seek is in the console.log.",
-  "You will achieve inbox zero... not today though."
+  "You can't spell celebration without AI."
 ];
 
 const PARTY_GUESTS: Omit<PartyGuest, 'id'>[] = [
