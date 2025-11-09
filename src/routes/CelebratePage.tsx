@@ -930,7 +930,7 @@ const CelebratePage: React.FC = () => {
     
     if (localCount >= requiredForPrestige) {
       const confirmed = window.confirm(
-        `Prestige and reset? You'll get:\n- +10% click power permanently\n- +5% production permanently\n- +25% factory speed permanently\n- +1% crit chance permanently\n- Better crit multiplier\n\nYou'll lose all celebrations, upgrades, and factory resources!`
+        `Prestige and reset? You'll get:\n- +10% click power permanently\n- +5% production permanently\n- +25% factory speed permanently\n- +25% factory resource production permanently\n- +1% crit chance permanently\n- Better crit multiplier\n\nYou'll lose all celebrations, upgrades, and factory resources!`
       );
       
       if (confirmed) {
