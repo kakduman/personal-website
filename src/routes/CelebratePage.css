@@ -763,15 +763,6 @@
   text-align: center;
 }
 
-.prestige-bonus-text {
-  margin-top: 15px;
-  padding: 10px;
-  background: rgba(255, 215, 0, 0.1);
-  border-radius: 8px;
-  color: #d4af37;
-  font-weight: 600;
-  text-align: center;
-}
 
 .factory-access-button {
   width: 100%;
@@ -1058,8 +1049,8 @@
   height: 100%;
   pointer-events: none;
   background-image: 
-    radial-gradient(circle, white 1px, transparent 1px),
-    radial-gradient(circle, white 1px, transparent 1px);
+    radial-gradient(circle, white 2px, transparent 2px),
+    radial-gradient(circle, white 2px, transparent 2px);
   background-size: 100px 100px, 150px 150px;
   background-position: 0 0, 50px 50px;
   animation: snowFall 20s linear infinite;
@@ -1233,7 +1224,8 @@
   font-size: 2rem;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease;
+  position: relative;
 }
 
 .reaction-box.waiting {
@@ -1305,7 +1297,6 @@
 
 .factory-production h3,
 .factory-resources h3,
-.factory-upgrades h3,
 .factory-minigames h3 {
   margin-bottom: 15px;
   color: #555;
@@ -1373,8 +1364,7 @@
   color: #333;
 }
 
-.resource-item button,
-.factory-upgrades button {
+.resource-item button {
   padding: 8px 15px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -1386,21 +1376,9 @@
   font-family: 'Jost', sans-serif;
 }
 
-.resource-item button:hover,
-.factory-upgrades button:hover {
+.resource-item button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-}
-
-.factory-upgrades {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.factory-upgrades button {
-  padding: 12px;
-  text-align: left;
 }
 
 /* Minigames Panel */

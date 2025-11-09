@@ -80,8 +80,6 @@ interface FactoryProduction {
     energy: number;
     happiness: number;
   };
-  workers: number;
-  efficiency: number;
 }
 
 const FORTUNES: string[] = [
@@ -308,9 +306,7 @@ const CelebratePage: React.FC = () => {
   const [factoryProduction, setFactoryProduction] = useState<FactoryProduction>({
     targetUpgradeId: 'ryan',
     progress: 0,
-    resources: { confetti: 0, energy: 0, happiness: 0 }, // Start with 0, earn through minigames
-    workers: 1,
-    efficiency: 1.0,
+    resources: { confetti: 0, energy: 0, happiness: 0 } // Start with 0, earn through minigames
   });
   const [activeMinigame, setActiveMinigame] = useState<string | null>(null);
   const [whackAMoleGame, setWhackAMoleGame] = useState({ score: 0, timeLeft: 30, moles: Array(9).fill(false) });
@@ -600,8 +596,8 @@ const CelebratePage: React.FC = () => {
 
     const interval = window.setInterval(() => {
       setFactoryProduction(prev => {
-        const prestigeBonus = 1 + (prestigeLevel * 0.5); // +50% per prestige!
-        const productionRate = 1.0 * prev.workers * prev.efficiency * prestigeBonus; // Much faster: 1% per second base
+        const prestigeBonus = 1 + (prestigeLevel * 0.25); // +25% per prestige
+        const productionRate = 1.0 * prestigeBonus;
         const newProgress = prev.progress + productionRate;
         
         const resourceCosts = UPGRADE_RESOURCE_COSTS[prev.targetUpgradeId] || [10, 10, 10];
@@ -934,7 +930,7 @@ const CelebratePage: React.FC = () => {
     
     if (localCount >= requiredForPrestige) {
       const confirmed = window.confirm(
-        `Prestige and reset? You'll get:\n- +10% click power permanently\n- +5% production permanently\n- +50% factory speed permanently\n- +1% crit chance permanently\n- Better crit multiplier\n\nYou'll lose all celebrations, upgrades, and factory resources!`
+        `Prestige and reset? You'll get:\n- +10% click power permanently\n- +5% production permanently\n- +25% factory speed permanently\n- +1% crit chance permanently\n- Better crit multiplier\n\nYou'll lose all celebrations, upgrades, and factory resources!`
       );
       
       if (confirmed) {
@@ -982,24 +978,7 @@ const CelebratePage: React.FC = () => {
     return `${secs}s`;
   };
 
-  // Factory management functions
-  const hireWorker = () => {
-    const cost = 1000 * Math.pow(1.5, factoryProduction.workers - 1); // Easier scaling
-    if (localCount >= cost) {
-      setLocalCount(prev => prev - cost);
-      setFactoryProduction(prev => ({ ...prev, workers: prev.workers + 1 }));
-    }
-  };
-
-  const upgradeEfficiency = () => {
-    const cost = 2000 * Math.pow(1.3, Math.floor((factoryProduction.efficiency - 1) * 10)); // Easier scaling
-    if (localCount >= cost) {
-      setLocalCount(prev => prev - cost);
-      setFactoryProduction(prev => ({ ...prev, efficiency: prev.efficiency + 0.1 }));
-    }
-  };
-
-  // Minigame: Whack-a-Mole - Rewards Confetti (🐹 resource)
+  // Minigame: Whack-a-Mole - Rewards Confetti
   const startWhackAMole = () => {
     setShowFactory(false); // Close factory when starting minigame
     setActiveMinigame('whack-a-mole');
@@ -1011,7 +990,8 @@ const CelebratePage: React.FC = () => {
           clearInterval(gameInterval);
           const baseReward = 100;
           const performanceBonus = Math.floor(prev.score * 1.5); // Extra bonus for high scores
-          const confettiReward = baseReward * prev.score + performanceBonus;
+          const prestigeMultiplier = 1 + (prestigeLevel * 0.25); // +25% per prestige
+          const confettiReward = Math.floor((baseReward * prev.score + performanceBonus) * prestigeMultiplier);
           setFactoryProduction(p => ({
             ...p,
             resources: { ...p.resources, confetti: p.resources.confetti + confettiReward }
@@ -1043,7 +1023,7 @@ const CelebratePage: React.FC = () => {
     });
   };
 
-  // Minigame: Memory Match - Rewards Energy (⚡ resource)
+  // Minigame: Memory Match - Rewards Energy
   const startMemoryGame = () => {
     setShowFactory(false); // Close factory when starting minigame
     const emojis = ['🎉', '🎊', '🎈', '🎁', '🎂', '🎆', '🎇', '✨'];
@@ -1069,7 +1049,8 @@ const CelebratePage: React.FC = () => {
             const totalFlips = prev.flipped.length / 2; // Rough estimate of moves
             const baseReward = 1000;
             const performanceBonus = Math.max(0, 1000 - totalFlips * 5); // Bonus for efficiency
-            const energyReward = Math.floor(baseReward + performanceBonus);
+            const prestigeMultiplier = 1 + (prestigeLevel * 0.25); // +25% per prestige
+            const energyReward = Math.floor((baseReward + performanceBonus) * prestigeMultiplier);
             setFactoryProduction(p => ({
               ...p,
               resources: { ...p.resources, energy: p.resources.energy + energyReward }
@@ -1125,6 +1106,10 @@ const CelebratePage: React.FC = () => {
       } else {
         happinessReward = 200; // Okay
       }
+      
+      // Apply prestige multiplier
+      const prestigeMultiplier = 1 + (prestigeLevel * 0.25); // +25% per prestige
+      happinessReward = Math.floor(happinessReward * prestigeMultiplier);
       
       setFactoryProduction(p => ({
         ...p,
@@ -1281,19 +1266,6 @@ const CelebratePage: React.FC = () => {
                 <button onClick={startReactionTest} className="minigame-button">
                   ⚡ Reaction Test → 😊 Happiness
                 </button>
-              </div>
-              
-              <div className="factory-upgrades">
-                <h3>Factory Upgrades</h3>
-                <button onClick={hireWorker}>
-                  Hire Worker ({factoryProduction.workers} employed) - {formatNumber(1000 * Math.pow(1.5, factoryProduction.workers - 1))} cel
-                </button>
-                <button onClick={upgradeEfficiency}>
-                  Upgrade Efficiency ({(factoryProduction.efficiency * 100).toFixed(0)}%) - {formatNumber(2000 * Math.pow(1.3, Math.floor((factoryProduction.efficiency - 1) * 10)))} cel
-                </button>
-                <p className="prestige-bonus-text">
-                  ✨ Prestige Bonus: +{(prestigeLevel * 50)}% production speed
-                </p>
               </div>
             </div>
           </div>
