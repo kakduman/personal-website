@@ -634,34 +634,6 @@ interface Planet {
 * **Worker threads**: Offload heavy computation to web workers
 * **Incremental saves**: Auto-save progress every 30 seconds
 
----
-
-## Monetization Considerations (Optional)
-
-If you want to monetize v3, here are ethical options:
-
-### Cosmetics (No Pay-to-Win)
-* Custom confetti patterns
-* Building skins/themes
-* Planet visual themes
-* UI color schemes
-* Sound packs
-
-### Quality of Life (No Pay-to-Win)
-* Cloud save slots
-* Import/export save files
-* Statistics dashboard
-* Achievement showcases
-
-### Support Options
-* "Buy me a coffee" button
-* Donation tiers with cosmetic rewards
-* Supporter badge
-
-**Important**: Keep all gameplay mechanics free and accessible.
-
----
-
 ## Development Roadmap
 
 ### Phase 1: Foundation (v3.0-alpha)
@@ -787,12 +759,3 @@ The key innovations:
 5. **Multi-planet expansion** provides end-game complexity and replayability
 
 By following this spec, v3 will offer a unique progression experience that stands out in the incremental game genre.
-
----
-
-**End of Specification Document**
-
-*Last Updated: [Current Date]*
-*Version: v3.0-draft*
-*Status: Design Phase*
-
