@@ -114,22 +114,23 @@ The v2 upgrades evolve into **AI Workers** with part slots:
 * Parts are **researched** (cost celebrations + resources) then **installed**
 * Can only install one part of each category per AI Worker
 * Higher tier parts require research from previous tiers
+* Installed parts do not reset with each prestige
 
 #### Part Research Costs
 
 Parts are researched using a combination of:
 * **Celebrations** (main currency from v2)
-* **Research Points** (new currency, earned from achievements/milestones)
 * **Blueprints** (rare drops from golden celebrations and events)
+  * Blueprint drop frequency must scale with prestige level. Only unlocks after someone has prestige level 5, and scales up quickly with prestige level (e.g., 5% of golden celebrations drop 1, and we have the number dropped being 1-2 --> 2-6 --> 4-18 --> 8-36 )
 
 Example Research Cost:
 
-| Part                  | Celebrations | Research Points | Blueprints |
+| Part                  | Celebrations (M) | Research Points | Blueprints |
 | --------------------- | -----------: | --------------: | ---------: |
-| Basic Processor T1    |      10,000  |               5 |          1 |
-| Multi-Core CPU T2     |     100,000  |              25 |          3 |
-| Quantum Processor T3  |   1,000,000  |             100 |         10 |
-| Neural Processor T4   |  10,000,000  |             500 |         25 |
+| Basic Processor T1    |      100  |               5 |          1 |
+| Multi-Core CPU T2     |     1,000  |              25 |          3 |
+| Quantum Processor T3  |   10,000  |             100 |         10 |
+| Neural Processor T4   |  100,000  |             500 |         25 |
 
 ### Synergy System
 
@@ -162,7 +163,7 @@ New currency that gates progress:
 
 ### Unlock Condition
 
-After researching **25 different parts** OR reaching **Prestige Level 10**, the **Research Tree** tab unlocks.
+After researching **24 different parts** OR reaching **Prestige Level 10**, the **Research Tree** tab unlocks.
 
 ### Research Tree Structure
 
