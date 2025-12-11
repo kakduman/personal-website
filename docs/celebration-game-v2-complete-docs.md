@@ -781,33 +781,3 @@ Data persists between sessions on the same device/browser.
 4. Experience rare random events (Jackpot, Midas, Santa)
 5. Push for high combo records
 6. Explore secret Konami code
-
----
-
-## 19. Strategy Tips
-
-### Maximizing Celebrations
-* **Combo chains**: Keep clicking to maintain combo for +0.1% per level
-* **Weather/Mood timing**: Manual clicks get 2× bonus during Stormy + Party Mode
-* **Golden celebrations**: Always click these for instant boosts + power-up chances
-* **Random events**: Jackpot event is most valuable when you have high celebration count
-
-### Prestige Optimization
-* Wait until you have significantly more than the requirement before prestiging
-* First prestige at 1M is worth it early for the permanent bonuses
-* Each prestige makes minigames 25% more rewarding
-
-### Factory Strategy
-* Balance resource gathering across all three minigames
-* Target lower-tier upgrades first (cheaper resource costs)
-* Prestige bonuses make factory much more efficient
-
-### Power-Up Stacking
-* Multiple power-ups of same type multiply (e.g., 2× Frenzy = 49× clicks)
-* Combine Elder Blessing with critical hits for massive single-click value
-* Time manual clicking during Confetti Storm (5× everything)
-
----
-
-This completes the technical documentation for Celebration Game v2 as currently implemented.
-
