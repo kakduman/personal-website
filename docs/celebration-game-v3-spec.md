@@ -999,11 +999,11 @@ This section breaks down the full v3 spec into **shippable incremental versions*
 ### Version Overview
 
 ```
-v3.0 (Foundation)     → Core clicker + save system
+v2 (Foundation)       → Core clicker + save system (EXISTING)
        ↓
-v3.1 (Parts System)   → AI Workers + Parts + Blueprints
+v3.1 (Parts System)   → AI Workers + Parts + Blueprints ✅ IMPLEMENTED
        ↓
-v3.2 (Tech Tree)      → Insight + Tech Tree + Phase transitions
+v3.2 (Tech Tree)      → Insight + Tech Tree + Phase transitions ✅ IMPLEMENTED
        ↓
 v3.3 (AGI Event)      → AGI cutscene + Mode transition
        ↓
@@ -1020,26 +1020,38 @@ v3.8 (Polish)         → Achievements + Balancing + Victory conditions
 
 ---
 
+### v2 — Foundation (EXISTING)
 
-### v3.1 — Parts System (Est. 3-4 days)
+**Status**: ✅ Complete (CelebratePage.tsx)
+
+The existing v2 implementation provides:
+- Click to generate celebrations
+- 10 upgrades with scaling costs (1.15x)
+- CPS calculation and display
+- Auto-save to localStorage
+- Prestige system
+- Golden celebrations & power-ups
+- Weather/mood system
+- Party guests & achievements
+- Factory with minigames
+
+---
+
+### v3.1 — Parts System (Est. 3-4 days) ✅ IMPLEMENTED
 
 **Goal**: Introduce AI Workers and part installation.
 
-**New Components**:
+**Implemented Components**:
 ```
 src/
 ├── components/
-│   ├── ResearchFacility/
-│   │   ├── WorkerCard.tsx       # Single AI Worker display
-│   │   ├── WorkerList.tsx       # All workers
-│   │   ├── PartSlot.tsx         # Part installation slot
-│   │   └── PartResearchModal.tsx # Part unlock UI
-│   └── ResourceBar.tsx          # Now includes blueprints
+│   └── ResearchFacility/
+│       ├── ResearchFacility.tsx  # Main facility UI
+│       ├── ResearchFacility.css  # Styles
+│       └── index.ts              # Export
 ├── data/
-│   ├── workers.ts               # AI Worker definitions
-│   └── parts.ts                 # Part definitions (24 total)
-└── hooks/
-    └── usePartSystem.ts         # Part research/install logic
+│   ├── workers.ts                # 9 AI Worker definitions
+│   └── parts.ts                  # 24 part definitions (6 categories × 4 tiers)
 ```
 
 **Features**:
@@ -1052,17 +1064,11 @@ src/
 
 **State Additions** (v3.1):
 ```typescript
-interface GameState_v3_1 extends GameState_v3_0 {
-  version: '3.1';
-  blueprints: number;
-  researchedParts: string[];        // unlocked part IDs
-  workers: {
-    [workerId: string]: {
-      owned: number;
-      parts: { [slot: string]: string | null };
-    };
-  };
-}
+// Added to game state:
+blueprints: number;
+insight: number;
+researchedParts: string[];
+workers: AIWorker[];  // From src/data/workers.ts
 ```
 
 **Acceptance Criteria**:
@@ -1073,24 +1079,20 @@ interface GameState_v3_1 extends GameState_v3_0 {
 
 ---
 
-### v3.2 — Tech Tree (Est. 3-4 days)
+### v3.2 — Tech Tree (Est. 3-4 days) ✅ IMPLEMENTED
 
 **Goal**: Add Insight currency and tech tree progression.
 
-**New Components**:
+**Implemented Components**:
 ```
 src/
 ├── components/
-│   ├── TechTree/
-│   │   ├── TechTreeView.tsx     # Visual tree layout
-│   │   ├── TechNode.tsx         # Single node
-│   │   ├── TechBranch.tsx       # Branch connector
-│   │   └── NodeTooltip.tsx      # Effect details
-│   └── TabNavigation.tsx        # Switch between views
+│   └── TechTree/
+│       ├── TechTree.tsx          # Full tree UI with SVG connections
+│       ├── TechTree.css          # Styles
+│       └── index.ts              # Export
 ├── data/
-│   └── techNodes.ts             # All tech node definitions
-└── hooks/
-    └── useInsight.ts            # Insight generation logic
+│   └── techTree.ts               # 13 tech node definitions
 ```
 
 **Features**:
@@ -1478,97 +1480,175 @@ export function migrateState(state: any): GameState {
 
 ### Development Timeline Summary
 
-| Version | Features | Est. Time | Cumulative |
-|---------|----------|-----------|------------|
-| v3.0 | Foundation | 2-3 days | 2-3 days |
-| v3.1 | Parts System | 3-4 days | 5-7 days |
-| v3.2 | Tech Tree | 3-4 days | 8-11 days |
-| v3.3 | AGI Event | 2-3 days | 10-14 days |
-| v3.4 | Hex Grid | 4-5 days | 14-19 days |
-| v3.5 | Village Full | 4-5 days | 18-24 days |
-| v3.6 | Multi-Planet | 4-5 days | 22-29 days |
-| v3.7 | Prestige | 3-4 days | 25-33 days |
-| v3.8 | Polish | 3-4 days | 28-37 days |
+| Version | Features | Est. Time | Status |
+|---------|----------|-----------|--------|
+| v2 | Foundation | — | ✅ EXISTING |
+| v3.1 | Parts System | 3-4 days | ✅ IMPLEMENTED |
+| v3.2 | Tech Tree | 3-4 days | ✅ IMPLEMENTED |
+| v3.3 | AGI Event | 2-3 days | 🔲 TODO |
+| v3.4 | Hex Grid | 4-5 days | 🔲 TODO |
+| v3.5 | Village Full | 4-5 days | 🔲 TODO |
+| v3.6 | Multi-Planet | 4-5 days | 🔲 TODO |
+| v3.7 | Prestige | 3-4 days | 🔲 TODO |
+| v3.8 | Polish | 3-4 days | 🔲 TODO |
 
-**Total: ~4-6 weeks** for full implementation.
+**Remaining: ~3-4 weeks** for full implementation (v3.3-v3.8).
 
-Each version is **independently shippable** — players can enjoy v3.0-v3.3 as an enhanced clicker, then v3.4-v3.8 adds the city builder layer.
+Each version is **independently shippable** — players can enjoy v2-v3.3 as an enhanced clicker, then v3.4-v3.8 adds the city builder layer.
 
 ---
 
 ## Appendix: Developer Cheat Sheet
 
-Console commands for testing (paste in browser DevTools):
+Console commands for testing (paste in browser DevTools on /celebrate page):
+
+### v2 Cheats (Current Implementation - localStorage based)
 
 ```javascript
-// === PHASE 1-3 CHEATS ===
+// === CELEBRATION CHEATS ===
 
-// Add celebrations
-window.gameState.celebrations += 1e9; // Add 1 billion
+// Add celebrations (edit localStorage directly, then refresh)
+(() => {
+  const current = parseFloat(localStorage.getItem('personal-website::celebrate-local-count') || '0');
+  localStorage.setItem('personal-website::celebrate-local-count', (current + 1e20).toString());
+  alert('Added 1 billion celebrations! Refresh the page.');
+})();
+
+// Set celebrations to specific amount
+localStorage.setItem('personal-website::celebrate-local-count', '1000000000'); // 1 billion
+location.reload();
+
+// === PRESTIGE CHEATS ===
 
 // Set prestige level
-window.gameState.prestigeLevel = 10;
+localStorage.setItem('personal-website::celebrate-prestige', '10');
+location.reload();
+
+// === UPGRADE CHEATS ===
+
+// Give yourself 100 of each upgrade
+(() => {
+  const upgrades = JSON.parse(localStorage.getItem('personal-website::celebrate-upgrades') || '[]');
+  upgrades.forEach(u => u.owned = 100);
+  localStorage.setItem('personal-website::celebrate-upgrades', JSON.stringify(upgrades));
+  alert('All upgrades set to 100! Refresh the page.');
+})();
+
+// === VIEW CURRENT STATE ===
+
+// Show all saved data
+console.log({
+  celebrations: localStorage.getItem('personal-website::celebrate-local-count'),
+  prestige: localStorage.getItem('personal-website::celebrate-prestige'),
+  upgrades: JSON.parse(localStorage.getItem('personal-website::celebrate-upgrades') || '[]'),
+  stats: JSON.parse(localStorage.getItem('personal-website::celebrate-stats') || '{}'),
+  achievements: JSON.parse(localStorage.getItem('personal-website::celebrate-achievements') || '[]'),
+});
+
+// === RESET GAME ===
+
+// Full reset (careful!)
+(() => {
+  localStorage.removeItem('personal-website::celebrate-local-count');
+  localStorage.removeItem('personal-website::celebrate-last-synced');
+  localStorage.removeItem('personal-website::celebrate-upgrades');
+  localStorage.removeItem('personal-website::celebrate-stats');
+  localStorage.removeItem('personal-website::celebrate-achievements');
+  localStorage.removeItem('personal-website::celebrate-prestige');
+  alert('Game reset! Refresh the page.');
+})();
+```
+
+### v3.1+ Cheats (After Integration)
+
+Once v3.1 and v3.2 are integrated, add these localStorage keys:
+
+```javascript
+// === v3.1 PARTS SYSTEM ===
+
+// Add blueprints
+localStorage.setItem('personal-website::celebrate-blueprints', '1000');
 
 // Add insight
-window.gameState.insight += 1000;
+localStorage.setItem('personal-website::celebrate-insight', '2000');
 
-// Add blueprints  
-window.gameState.blueprints += 100;
+// Unlock all T1 parts
+(() => {
+  const parts = ['cpu-t1','memory-t1','storage-t1','network-t1','power-t1','cooling-t1'];
+  localStorage.setItem('personal-website::celebrate-researched-parts', JSON.stringify(parts));
+  location.reload();
+})();
 
-// Unlock all parts
-window.gameState.researchedParts = ['cpu-t1','cpu-t2','cpu-t3','cpu-t4','ram-t1','ram-t2','ram-t3','ram-t4','storage-t1','storage-t2','storage-t3','storage-t4','network-t1','network-t2','network-t3','network-t4','power-t1','power-t2','power-t3','power-t4','cooling-t1','cooling-t2','cooling-t3','cooling-t4'];
+// Unlock ALL parts
+(() => {
+  const parts = [
+    'cpu-t1','cpu-t2','cpu-t3','cpu-t4',
+    'memory-t1','memory-t2','memory-t3','memory-t4',
+    'storage-t1','storage-t2','storage-t3','storage-t4',
+    'network-t1','network-t2','network-t3','network-t4',
+    'power-t1','power-t2','power-t3','power-t4',
+    'cooling-t1','cooling-t2','cooling-t3','cooling-t4'
+  ];
+  localStorage.setItem('personal-website::celebrate-researched-parts', JSON.stringify(parts));
+  location.reload();
+})();
 
-// Skip to Phase 3
-window.gameState.currentPhase = 'tree';
+// === v3.2 TECH TREE ===
 
-// Trigger AGI event
-window.triggerAGI();
+// Unlock all tech nodes (except AGI)
+(() => {
+  const nodes = [
+    'ai-foundation',
+    'efficiency-protocols','optimization-algorithms','peak-efficiency',
+    'acceleration-theory','time-dilation','hyperspeed-processing',
+    'basic-automation','self-improvement','recursive-systems'
+  ];
+  localStorage.setItem('personal-website::celebrate-researched-nodes', JSON.stringify(nodes));
+  location.reload();
+})();
 
-// === PHASE 5 CHEATS ===
+// Unlock ALL nodes including AGI
+(() => {
+  const nodes = [
+    'ai-foundation',
+    'efficiency-protocols','optimization-algorithms','peak-efficiency',
+    'acceleration-theory','time-dilation','hyperspeed-processing',
+    'basic-automation','self-improvement','recursive-systems',
+    'agi'
+  ];
+  localStorage.setItem('personal-website::celebrate-researched-nodes', JSON.stringify(nodes));
+  location.reload();
+})();
+```
 
-// Add FLOPS
-window.gameState.village.flops += 1e9;
+### Quick Test Workflow
 
-// Add Watts capacity
-window.gameState.village.watts += 10000;
+```javascript
+// 1. Fast-track to Phase 2 unlock (prestige 5)
+localStorage.setItem('personal-website::celebrate-prestige', '5');
+localStorage.setItem('personal-website::celebrate-local-count', '100000000');
+location.reload();
 
-// Add Ore
-window.gameState.village.ore += 100000;
+// 2. Fast-track to Phase 3 unlock (12 parts researched)
+// First set prestige 5, then run:
+localStorage.setItem('personal-website::celebrate-blueprints', '500');
+localStorage.setItem('personal-website::celebrate-insight', '1500');
+localStorage.setItem('personal-website::celebrate-researched-parts', JSON.stringify([
+  'cpu-t1','cpu-t2','memory-t1','memory-t2','storage-t1','storage-t2',
+  'network-t1','network-t2','power-t1','power-t2','cooling-t1','cooling-t2'
+]));
+location.reload();
 
-// Add Alloys
-window.gameState.village.alloys += 10000;
-
-// Unlock all zones
-window.gameState.village.unlockedZones = ['landing','industrial','research','expansion','spaceport'];
-
-// Place building at coordinates (q, r)
-window.placeBuilding('server-rack', 0, 1);
-
-// Skip time (adds X seconds of production)
-window.skipTime(3600); // Skip 1 hour
-
-// Unlock planet
-window.unlockPlanet('ice-world');
-
-// === DEBUG COMMANDS ===
-
-// Show current state
-console.log(JSON.stringify(window.gameState, null, 2));
-
-// Reset game (careful!)
-window.resetGame();
-
-// Toggle debug mode (shows all stats)
-window.debugMode = true;
-
-// Speed up game tick (2x, 5x, 10x)
-window.gameSpeed = 10;
-
-// Force save
-window.saveGame();
-
-// Force load
-window.loadGame();
+// 3. Fast-track to AGI
+// Run all the above, then:
+localStorage.setItem('personal-website::celebrate-researched-nodes', JSON.stringify([
+  'ai-foundation',
+  'efficiency-protocols','optimization-algorithms','peak-efficiency',
+  'acceleration-theory','time-dilation','hyperspeed-processing',
+  'basic-automation','self-improvement','recursive-systems',
+  'agi'
+]));
+location.reload();
 ```
 
 ### Testing Checklist
