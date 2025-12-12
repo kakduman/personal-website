@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 import { useBadges } from '../context/BadgeContext';
 import BadgeOverlay from '../components/BadgeOverlay/BadgeOverlay';
+import TechTree from '../components/TechTree';
+import { PART_DEFINITIONS, getPart, canResearchPart, PartCategory, CATEGORY_INFO } from '../data/parts';
+import { TECH_NODES, canResearchNode } from '../data/techTree';
 import './CelebratePage.css';
 
 interface Upgrade {
@@ -167,6 +170,12 @@ const LAST_SYNCED_COUNT_STORAGE_KEY = 'personal-website::celebrate-last-synced';
 const STATS_STORAGE_KEY = 'personal-website::celebrate-stats';
 const ACHIEVEMENTS_STORAGE_KEY = 'personal-website::celebrate-achievements';
 const PRESTIGE_STORAGE_KEY = 'personal-website::celebrate-prestige';
+// v3.1 storage keys
+const BLUEPRINTS_STORAGE_KEY = 'personal-website::celebrate-blueprints';
+const INSIGHT_STORAGE_KEY = 'personal-website::celebrate-insight';
+const RESEARCHED_PARTS_STORAGE_KEY = 'personal-website::celebrate-researched-parts';
+// v3.2 storage keys
+const RESEARCHED_NODES_STORAGE_KEY = 'personal-website::celebrate-researched-nodes';
 
 const loadUpgrades = (): Upgrade[] => {
   try {
@@ -242,6 +251,44 @@ const loadPrestigeLevel = (): number => {
   }
 };
 
+// v3.1 load functions
+const loadBlueprints = (): number => {
+  try {
+    const stored = localStorage.getItem(BLUEPRINTS_STORAGE_KEY);
+    return stored ? parseInt(stored, 10) : 0;
+  } catch {
+    return 0;
+  }
+};
+
+const loadInsight = (): number => {
+  try {
+    const stored = localStorage.getItem(INSIGHT_STORAGE_KEY);
+    return stored ? parseFloat(stored) : 0;
+  } catch {
+    return 0;
+  }
+};
+
+const loadResearchedParts = (): string[] => {
+  try {
+    const stored = localStorage.getItem(RESEARCHED_PARTS_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+};
+
+// v3.2 load functions
+const loadResearchedNodes = (): string[] => {
+  try {
+    const stored = localStorage.getItem(RESEARCHED_NODES_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+};
+
 const createAchievements = (): Achievement[] => [
   { id: 'first-click', name: 'Getting Started', description: 'Make your first click', reward: 10, unlocked: false, condition: (stats) => stats.totalClicks >= 1 },
   { id: 'hundred-clicks', name: 'Warming Up', description: 'Click 100 times', reward: 100, unlocked: false, condition: (stats) => stats.totalClicks >= 100 },
@@ -278,6 +325,22 @@ const loadAchievements = (): Achievement[] => {
 const CelebratePage: React.FC = () => {
   const { registerCelebration, celebrateCount, unlockBadge } = useBadges();
   const [localCount, setLocalCount] = useState(() => loadLocalCount(celebrateCount));
+  
+  // Cheat commands exposed to window for debugging
+  useEffect(() => {
+    const w = window as unknown as Record<string, unknown>;
+    w.setCelebrations = (n: number) => { setLocalCount(n); console.log(`🎉 Celebrations set to ${n}`); };
+    w.addCelebrations = (n: number) => { setLocalCount(prev => prev + n); console.log(`🎉 Added ${n} celebrations`); };
+    w.setBlueprints = (n: number) => { setBlueprints(n); console.log(`📘 Blueprints set to ${n}`); };
+    w.addBlueprints = (n: number) => { setBlueprints(prev => prev + n); console.log(`📘 Added ${n} blueprints`); };
+    w.setInsight = (n: number) => { setInsight(n); console.log(`💡 Insight set to ${n}`); };
+    w.addInsight = (n: number) => { setInsight(prev => prev + n); console.log(`💡 Added ${n} insight`); };
+    return () => {
+      delete w.setCelebrations; delete w.addCelebrations;
+      delete w.setBlueprints; delete w.addBlueprints;
+      delete w.setInsight; delete w.addInsight;
+    };
+  }, []);
   const [upgrades, setUpgrades] = useState<Upgrade[]>(loadUpgrades);
   const [activePowerUps, setActivePowerUps] = useState<Array<PowerUp & {endTime: number}>>([]);
   const [hoveredPowerUpId, setHoveredPowerUpId] = useState<string | null>(null);
@@ -313,6 +376,18 @@ const CelebratePage: React.FC = () => {
   const [memoryGame, setMemoryGame] = useState({ flipped: [] as number[], matched: [] as number[], cards: [] as string[] });
   const [reactionGame, setReactionGame] = useState({ waiting: true, startTime: 0, bestTime: Infinity });
   
+  // v3.1: Parts System (global bonuses)
+  const [blueprints, setBlueprints] = useState(loadBlueprints);
+  const [insight, setInsight] = useState(loadInsight);
+  const [researchedParts, setResearchedParts] = useState<string[]>(loadResearchedParts);
+  
+  // v3.2: Tech Tree
+  const [researchedNodes, setResearchedNodes] = useState<string[]>(loadResearchedNodes);
+  
+  // v3 UI state
+  const [showPartsLab, setShowPartsLab] = useState(false);
+  const [showTechTree, setShowTechTree] = useState(false);
+  
   const autoClickIntervalRef = useRef<number | null>(null);
   const lastSyncedCount = useRef(loadLastSyncedCount(celebrateCount));
   const comboTimerRef = useRef<number | null>(null);
@@ -345,6 +420,35 @@ const CelebratePage: React.FC = () => {
 
   useEffect(() => {
     localStorage.setItem(PRESTIGE_STORAGE_KEY, prestigeLevel.toString());
+  }, [prestigeLevel]);
+
+  // v3.1 save effects
+  useEffect(() => {
+    localStorage.setItem(BLUEPRINTS_STORAGE_KEY, blueprints.toString());
+  }, [blueprints]);
+
+  useEffect(() => {
+    localStorage.setItem(INSIGHT_STORAGE_KEY, insight.toString());
+  }, [insight]);
+
+  useEffect(() => {
+    localStorage.setItem(RESEARCHED_PARTS_STORAGE_KEY, JSON.stringify(researchedParts));
+  }, [researchedParts]);
+
+  // v3.2 save effects
+  useEffect(() => {
+    localStorage.setItem(RESEARCHED_NODES_STORAGE_KEY, JSON.stringify(researchedNodes));
+  }, [researchedNodes]);
+
+  // v3.1: Insight passive generation (1 per 10 seconds)
+  useEffect(() => {
+    if (prestigeLevel < 5) return; // Only after prestige 5
+    
+    const insightInterval = setInterval(() => {
+      setInsight(prev => prev + 1);
+    }, 10000); // 1 insight per 10 seconds
+    
+    return () => clearInterval(insightInterval);
   }, [prestigeLevel]);
 
   // Track game time
@@ -832,16 +936,20 @@ const CelebratePage: React.FC = () => {
     const comboBonus = combo * 0.001; // +0.1% per combo level
     const clickMult = getClickMultiplier();
     const bonus = getBonusFromPowerUps();
+    const partsBonusNow = getPartsBonus();
     
-    // Check for critical hit
-    const critChance = hasCritPowerUp() ? 1.0 : 0.1 + (prestigeLevel * 0.01); // Base 10% crit chance + 1% per prestige
+    // Check for critical hit (base 10% + prestige + storage parts)
+    const baseCritChance = 0.1 + (prestigeLevel * 0.01) + partsBonusNow.critChance;
+    const critChance = hasCritPowerUp() ? 1.0 : baseCritChance;
     const isCrit = Math.random() < critChance;
     
     if (isCrit) {
       setStats(prev => ({ ...prev, criticalHits: prev.criticalHits + 1 }));
     }
     
-    const critMult = isCrit ? (2 + prestigeLevel * 0.5) : 1; // Crit multiplier scales with prestige
+    // Crit multiplier (base 2x + prestige + storage parts)
+    const baseCritMult = 2 + (prestigeLevel * 0.5) + partsBonusNow.critMultiplier;
+    const critMult = isCrit ? baseCritMult : 1;
     
     return Math.floor((basePower * (1 + comboBonus) * clickMult * critMult) + bonus);
   };
@@ -923,6 +1031,38 @@ const CelebratePage: React.FC = () => {
     if (Math.random() < 0.3) {
       spawnRandomPowerUp();
     }
+    
+    // v3.1: Blueprint and insight drops (prestige 5+)
+    if (prestigeLevel >= 5) {
+      // Insight: guaranteed 2-5 per golden
+      const insightGain = 2 + Math.floor(Math.random() * 4);
+      setInsight(prev => prev + insightGain);
+      
+      // Blueprint drop chance scales with prestige
+      let dropChance = 0.15;
+      let minDrop = 1, maxDrop = 5;
+      
+      if (prestigeLevel >= 15) {
+        dropChance = 0.30;
+        minDrop = 20;
+        maxDrop = 50;
+      } else if (prestigeLevel >= 11) {
+        dropChance = 0.25;
+        minDrop = 8;
+        maxDrop = 24;
+      } else if (prestigeLevel >= 8) {
+        dropChance = 0.20;
+        minDrop = 3;
+        maxDrop = 10;
+      }
+      
+      if (Math.random() < dropChance) {
+        const blueprintGain = minDrop + Math.floor(Math.random() * (maxDrop - minDrop + 1));
+        setBlueprints(prev => prev + blueprintGain);
+        setEventMessage(`📘 +${blueprintGain} Blueprints! 💡 +${insightGain} Insight!`);
+        setTimeout(() => setEventMessage(null), 2000);
+      }
+    }
   };
 
   const handlePrestige = () => {
@@ -977,6 +1117,86 @@ const CelebratePage: React.FC = () => {
     if (minutes > 0) return `${minutes}m ${secs}s`;
     return `${secs}s`;
   };
+
+  // v3.1: Parts Lab handler - research parts that apply globally
+  const handleResearchPart = (partId: string) => {
+    const part = getPart(partId);
+    if (!part) return;
+    
+    const { canResearch } = canResearchPart(partId, researchedParts, localCount, insight, blueprints);
+    if (!canResearch) return;
+    
+    setLocalCount(prev => prev - part.researchCost.celebrations);
+    setInsight(prev => prev - part.researchCost.insight);
+    setBlueprints(prev => prev - part.researchCost.blueprints);
+    setResearchedParts(prev => [...prev, partId]);
+    setEventMessage(`🔧 Researched: ${part.name}! Bonuses now apply to all upgrades!`);
+    setTimeout(() => setEventMessage(null), 3000);
+  };
+
+  // Calculate global bonus from researched parts
+  // Calculate all bonuses from researched parts (uses highest tier per category)
+  const getPartsBonus = () => {
+    const bonus = {
+      cpsMultiplier: 0,      // CPU: passive income
+      comboMax: 0,           // Memory: max combo
+      comboDecay: 0,         // Memory: decay time bonus
+      critChance: 0,         // Storage: crit chance
+      critMultiplier: 0,     // Storage: bonus crit multiplier (celebrations from crits)
+      goldenSpawnRate: 0,    // Network: golden spawn rate
+      goldenReward: 0,       // Network: golden rewards
+      clickMultiplier: 0,    // Power: click strength
+      powerupDuration: 0,    // Cooling: power-up duration
+    };
+    
+    // Only use highest tier part in each category
+    const categories: PartCategory[] = ['cpu', 'memory', 'storage', 'network', 'power', 'cooling'];
+    categories.forEach(cat => {
+      const partsInCategory = PART_DEFINITIONS.filter(p => p.category === cat && researchedParts.includes(p.id));
+      if (partsInCategory.length > 0) {
+        const bestPart = partsInCategory.reduce((best, p) => p.tier > best.tier ? p : best);
+        bonus.cpsMultiplier += bestPart.effects.cpsMultiplier;
+        bonus.comboMax += bestPart.effects.comboMax;
+        bonus.comboDecay += bestPart.effects.comboDecay;
+        bonus.critChance += bestPart.effects.critChance;
+        bonus.critMultiplier += bestPart.effects.critMultiplier;
+        bonus.goldenSpawnRate += bestPart.effects.goldenSpawnRate;
+        bonus.goldenReward += bestPart.effects.goldenReward;
+        bonus.clickMultiplier += bestPart.effects.clickMultiplier;
+        bonus.powerupDuration += bestPart.effects.powerupDuration;
+      }
+    });
+    
+    return bonus;
+  };
+
+  // v3.2: Tech Tree handlers
+  const handleResearchNode = (nodeId: string) => {
+    const node = TECH_NODES.find(n => n.id === nodeId);
+    if (!node) return;
+    
+    const { canResearch } = canResearchNode(nodeId, researchedNodes, insight);
+    if (!canResearch) return;
+    
+    setInsight(prev => prev - node.cost);
+    setResearchedNodes(prev => [...prev, nodeId]);
+    setEventMessage(`🧠 Researched: ${node.name}!`);
+    setTimeout(() => setEventMessage(null), 2000);
+    
+    // Auto-research AI Foundation if not already done
+    if (nodeId !== 'ai-foundation' && !researchedNodes.includes('ai-foundation')) {
+      setResearchedNodes(prev => [...prev, 'ai-foundation']);
+    }
+  };
+
+  // Check if Parts Lab is unlocked (prestige 5+ or 100M celebrations)
+  const isPartsLabUnlocked = prestigeLevel >= 5 || localCount >= 100_000_000;
+  
+  // Check if Tech Tree is unlocked (12+ parts researched or prestige 10+)
+  const isTechTreeUnlocked = researchedParts.length >= 12 || prestigeLevel >= 10;
+  
+  // Calculate parts bonus for display and CPS calculation
+  const partsBonus = getPartsBonus();
 
   // Minigame: Whack-a-Mole - Rewards Confetti
   const startWhackAMole = () => {
@@ -1327,6 +1547,7 @@ const CelebratePage: React.FC = () => {
             Party Module {prestigeLevel > 0 && <span className="prestige-badge">✨ Prestige {prestigeLevel}</span>}
           </h1>
           
+          
           {/* Weather & Mood Display */}
           <div className="conditions-display">
             <div className="condition-item">
@@ -1388,6 +1609,120 @@ const CelebratePage: React.FC = () => {
           )}
         </div>
 
+        {/* v3.1: Parts Lab Modal */}
+        {showPartsLab && (
+          <div className="factory-overlay" onClick={() => setShowPartsLab(false)}>
+            <div className="parts-lab-modal" onClick={(e) => e.stopPropagation()}>
+              <button className="close-factory" onClick={() => setShowPartsLab(false)}>✕</button>
+              
+              <div className="parts-lab-header">
+                <h2>🔬 Parts Lab</h2>
+                <div className="parts-lab-resources-bar">
+                  <span>🎉 {formatNumber(localCount)}</span>
+                  <span>📘 {blueprints}</span>
+                  <span>💡 {Math.floor(insight)}</span>
+                </div>
+              </div>
+              
+              <p className="parts-lab-desc">Research components to boost ALL your upgrades!</p>
+              
+              <div className="parts-categories-grid">
+                {(['cpu', 'memory', 'storage', 'network', 'power', 'cooling'] as PartCategory[]).map(category => {
+                  const partsInCat = PART_DEFINITIONS.filter(p => p.category === category);
+                  const researchedInCat = partsInCat.filter(p => researchedParts.includes(p.id));
+                  const nextPart = partsInCat.find(p => !researchedParts.includes(p.id) && 
+                    (!p.prerequisite || researchedParts.includes(p.prerequisite)));
+                  
+                  return (
+                    <div key={category} className="parts-category-tile">
+                      <div className="cat-tile-header">
+                        <span className="cat-tile-icon">{CATEGORY_INFO[category].emoji}</span>
+                        <span className="cat-tile-name">{CATEGORY_INFO[category].name}</span>
+                        <span className="cat-tile-progress">{researchedInCat.length}/4</span>
+                      </div>
+                      
+                      <div className="cat-tile-desc">{CATEGORY_INFO[category].description}</div>
+                      
+                      <div className="cat-tile-tiers">
+                        {partsInCat.map(part => {
+                          const isResearched = researchedParts.includes(part.id);
+                          const { canResearch } = canResearchPart(part.id, researchedParts, localCount, insight, blueprints);
+                          
+                          return (
+                            <div 
+                              key={part.id}
+                              className={`tier-dot ${isResearched ? 'done' : ''} ${canResearch ? 'available' : ''}`}
+                              title={`T${part.tier}: ${part.name}`}
+                            >
+                              T{part.tier}
+                            </div>
+                          );
+                        })}
+                      </div>
+                      
+                      {nextPart ? (
+                        <div className="cat-tile-next">
+                          <div className="next-part-info">
+                            <strong>{nextPart.name}</strong>
+                            <span className="next-part-effect">{nextPart.description}</span>
+                          </div>
+                          <div className="next-part-costs">
+                            <span className={localCount >= nextPart.researchCost.celebrations ? 'affordable' : ''}>
+                              🎉 {formatNumber(nextPart.researchCost.celebrations)}
+                            </span>
+                            <span className={insight >= nextPart.researchCost.insight ? 'affordable' : ''}>
+                              💡 {nextPart.researchCost.insight}
+                            </span>
+                            <span className={blueprints >= nextPart.researchCost.blueprints ? 'affordable' : ''}>
+                              📘 {nextPart.researchCost.blueprints}
+                            </span>
+                          </div>
+                          <button
+                            className="research-part-btn"
+                            onClick={() => handleResearchPart(nextPart.id)}
+                            disabled={!canResearchPart(nextPart.id, researchedParts, localCount, insight, blueprints).canResearch}
+                          >
+                            Research
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="cat-tile-complete">✓ Complete!</div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              
+              {researchedParts.length > 0 && (
+                <div className="parts-total-bonus">
+                  <strong>Active Bonuses:</strong>
+                  {partsBonus.cpsMultiplier > 0 && <span> +{(partsBonus.cpsMultiplier * 100).toFixed(0)}% CPS</span>}
+                  {partsBonus.comboMax > 0 && <span> • +{partsBonus.comboMax} Combo</span>}
+                  {partsBonus.critChance > 0 && <span> • +{(partsBonus.critChance * 100).toFixed(0)}% Crit</span>}
+                  {partsBonus.goldenSpawnRate > 0 && <span> • +{(partsBonus.goldenSpawnRate * 100).toFixed(0)}% Golden</span>}
+                  {partsBonus.clickMultiplier > 0 && <span> • +{(partsBonus.clickMultiplier * 100).toFixed(0)}% Click</span>}
+                  {partsBonus.powerupDuration > 0 && <span> • +{(partsBonus.powerupDuration * 100).toFixed(0)}% Power-ups</span>}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* v3.2: Tech Tree Modal */}
+        {showTechTree && isTechTreeUnlocked && (
+          <div className="factory-overlay" onClick={() => setShowTechTree(false)}>
+            <div className="factory-modal tech-tree-modal" onClick={(e) => e.stopPropagation()}>
+              <button className="factory-close" onClick={() => setShowTechTree(false)}>×</button>
+              <TechTree
+                researchedNodes={researchedNodes}
+                insight={insight}
+                onResearchNode={handleResearchNode}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Main Game */}
         <div className="celebrate-main">
           <div className="clicker-section">
             <button
@@ -1427,6 +1762,71 @@ const CelebratePage: React.FC = () => {
             </button>
             
             <h2>Upgrades</h2>
+            
+            {/* Parts Lab Tile - shows at prestige 5+ */}
+            {isPartsLabUnlocked && (
+              <div 
+                className="parts-lab-tile"
+                onClick={() => setShowPartsLab(true)}
+              >
+                <div className="parts-lab-tile-icon">🔬</div>
+                <div className="parts-lab-tile-content">
+                  <div className="parts-lab-tile-header">
+                    <span className="parts-lab-tile-name">Parts Lab</span>
+                    <span className="parts-lab-tile-count">{researchedParts.length}/24</span>
+                  </div>
+                  <div className="parts-lab-tile-desc">
+                    Research AI components to boost ALL upgrades
+                  </div>
+                  <div className="parts-lab-tile-categories">
+                    {(['cpu', 'memory', 'storage', 'network', 'power', 'cooling'] as PartCategory[]).map(cat => {
+                      const partsInCat = PART_DEFINITIONS.filter(p => p.category === cat && researchedParts.includes(p.id));
+                      const bestTier = partsInCat.length > 0 ? Math.max(...partsInCat.map(p => p.tier)) : 0;
+                      return (
+                        <div 
+                          key={cat} 
+                          className={`parts-lab-cat-icon ${bestTier > 0 ? 'active' : ''}`}
+                          title={`${CATEGORY_INFO[cat].name}: T${bestTier || '-'}`}
+                        >
+                          {CATEGORY_INFO[cat].emoji}
+                          {bestTier > 0 && <span className="cat-tier">T{bestTier}</span>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="parts-lab-tile-resources">
+                    <span>📘 {blueprints}</span>
+                    <span>💡 {Math.floor(insight)}</span>
+                    {researchedParts.length > 0 && (
+                      <span className="parts-bonus">{researchedParts.length} active</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {/* Tech Tree Tile - shows when 12+ parts researched or prestige 10+ */}
+            {isTechTreeUnlocked && (
+              <div 
+                className="parts-lab-tile tech-tree-tile"
+                onClick={() => setShowTechTree(true)}
+              >
+                <div className="parts-lab-tile-icon">🧠</div>
+                <div className="parts-lab-tile-content">
+                  <div className="parts-lab-tile-header">
+                    <span className="parts-lab-tile-name">Tech Tree</span>
+                    <span className="parts-lab-tile-count">{researchedNodes.length} researched</span>
+                  </div>
+                  <div className="parts-lab-tile-desc">
+                    Unlock powerful permanent bonuses with Insight
+                  </div>
+                  <div className="parts-lab-tile-resources">
+                    <span>💡 {Math.floor(insight)} Insight</span>
+                  </div>
+                </div>
+              </div>
+            )}
+            
             <div className="upgrades-list">
               {upgrades
                 .sort((a, b) => {

@@ -1064,7 +1064,7 @@
   height: 100%;
   pointer-events: none;
   background: rgba(50, 50, 100, 0.3);
-  animation: lightning 2s ease-in-out infinite;
+  /* Lightning animation removed - too intense */
 }
 
 .weather-fog {
@@ -1482,6 +1482,431 @@
   .minigames-panel {
     padding: 15px;
   }
+}
+
+/* =============================================
+   v3 Tab Navigation & Resources
+   ============================================= */
+
+.v3-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 15px 0;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.v3-tab {
+  padding: 10px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  font-family: 'Jost', sans-serif;
+}
+
+.v3-tab:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.v3-tab.active {
+  background: linear-gradient(135deg, #00cccc, #0088cc);
+  border-color: #00cccc;
+  box-shadow: 0 4px 15px rgba(0, 204, 204, 0.4);
+}
+
+.v3-resources {
+  display: flex;
+  gap: 15px;
+  margin-left: auto;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.v3-resource {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffd700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .v3-tabs {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .v3-resources {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* =============================================
+   Parts Lab Tile (in upgrades list)
+   ============================================= */
+
+.parts-lab-tile {
+  display: flex;
+  gap: 15px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 2px solid #7c3aed;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.2);
+}
+
+.parts-lab-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+  border-color: #a78bfa;
+}
+
+.parts-lab-tile-icon {
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: rgba(124, 58, 237, 0.2);
+  border-radius: 12px;
+}
+
+.parts-lab-tile-content {
+  flex: 1;
+}
+
+.parts-lab-tile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.parts-lab-tile-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.parts-lab-tile-count {
+  font-size: 0.9rem;
+  color: #a78bfa;
+  background: rgba(124, 58, 237, 0.3);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.parts-lab-tile-desc {
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+
+.parts-lab-tile-categories {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.parts-lab-cat-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: 1.1rem;
+  position: relative;
+  opacity: 0.5;
+  transition: all 0.2s;
+}
+
+.parts-lab-cat-icon.active {
+  opacity: 1;
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid #4CAF50;
+}
+
+.cat-tier {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  font-size: 0.6rem;
+  background: #4CAF50;
+  color: white;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+.parts-lab-tile-resources {
+  display: flex;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.parts-lab-tile-resources .parts-bonus {
+  color: #4CAF50;
+  font-weight: 600;
+}
+
+/* =============================================
+   Parts Lab Modal
+   ============================================= */
+
+.parts-lab-modal {
+  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 800px;
+  width: 95%;
+  max-height: 85vh;
+  overflow-y: auto;
+  color: #e0e0e0;
+  position: relative;
+}
+
+.parts-lab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.parts-lab-modal h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.parts-lab-resources-bar {
+  display: flex;
+  gap: 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.parts-lab-resources-bar span {
+  color: #fff;
+}
+
+.parts-lab-desc {
+  color: #888;
+  margin: 0 0 20px 0;
+  font-size: 0.9rem;
+}
+
+.parts-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.parts-category-tile {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.2s;
+}
+
+.parts-category-tile:hover {
+  border-color: rgba(124, 58, 237, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cat-tile-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.cat-tile-icon {
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(124, 58, 237, 0.2);
+  border-radius: 8px;
+}
+
+.cat-tile-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  flex: 1;
+}
+
+.cat-tile-progress {
+  font-size: 0.8rem;
+  color: #a78bfa;
+  background: rgba(124, 58, 237, 0.3);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.cat-tile-desc {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.cat-tile-tiers {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.tier-dot {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #666;
+  border: 2px solid transparent;
+}
+
+.tier-dot.done {
+  background: rgba(76, 175, 80, 0.3);
+  border-color: #4CAF50;
+  color: #4CAF50;
+}
+
+.tier-dot.available:not(.done) {
+  border-color: #00d4ff;
+  color: #00d4ff;
+  animation: tierPulse 2s infinite;
+}
+
+@keyframes tierPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.4); }
+  50% { box-shadow: 0 0 8px 2px rgba(0, 212, 255, 0.2); }
+}
+
+.cat-tile-next {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.next-part-info {
+  margin-bottom: 8px;
+}
+
+.next-part-info strong {
+  display: block;
+  color: #fff;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.next-part-effect {
+  font-size: 0.8rem;
+  color: #4CAF50;
+}
+
+.next-part-costs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+}
+
+.next-part-costs span {
+  color: #ff6b6b;
+}
+
+.next-part-costs span.affordable {
+  color: #4CAF50;
+}
+
+.research-part-btn {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(90deg, #7c3aed, #00d4ff);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.research-part-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+}
+
+.research-part-btn:disabled {
+  background: #444;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.cat-tile-complete {
+  text-align: center;
+  color: #4CAF50;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 12px;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 8px;
+}
+
+.parts-total-bonus {
+  margin-top: 20px;
+  padding: 12px;
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-radius: 8px;
+  text-align: center;
+  color: #aaa;
+}
+
+.parts-total-bonus strong {
+  color: #4CAF50;
+}
+
+/* Tech Tree Modal */
+.tech-tree-modal {
+  max-width: 1000px;
+  max-height: 90vh;
+  overflow: hidden;
+  padding: 0;
+}
+
+.tech-tree-modal .tech-tree {
+  border-radius: 0;
 }
 
 

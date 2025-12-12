@@ -1,0 +1,250 @@
+/* v3.2: Tech Tree - Simple List UI */
+
+.tech-tree-simple {
+  background: #0d1117;
+  border-radius: 12px;
+  padding: 20px;
+  color: #e0e0e0;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.tech-tree-simple .tree-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tech-tree-simple .tree-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.tree-resources {
+  display: flex;
+  gap: 16px;
+}
+
+.insight-display {
+  background: rgba(255, 200, 50, 0.15);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #ffc832;
+}
+
+.progress-display {
+  background: rgba(88, 166, 255, 0.15);
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: #58a6ff;
+}
+
+.branches-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.branch-section {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  border-left: 4px solid;
+  padding: 12px 16px;
+}
+
+.branch-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.branch-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.branch-desc {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.branch-nodes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tech-node-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+  transition: all 0.2s;
+}
+
+.tech-node-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tech-node-row.researched {
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.tech-node-row.available:not(.researched) {
+  background: rgba(88, 166, 255, 0.1);
+  border: 1px solid rgba(88, 166, 255, 0.3);
+}
+
+.node-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+}
+
+.node-status {
+  font-size: 1.2rem;
+  min-width: 28px;
+}
+
+.node-info {
+  flex: 1;
+}
+
+.node-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.node-name {
+  font-weight: bold;
+  color: #fff;
+}
+
+.node-cost {
+  font-size: 0.8rem;
+  color: #888;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.node-cost.affordable {
+  color: #4CAF50;
+  background: rgba(76, 175, 80, 0.15);
+}
+
+.node-cost.free {
+  color: #58a6ff;
+  background: rgba(88, 166, 255, 0.15);
+}
+
+.node-desc {
+  color: #aaa;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+.node-effects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.effect-badge {
+  font-size: 0.75rem;
+  background: rgba(76, 175, 80, 0.15);
+  color: #4CAF50;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.node-prereqs {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.node-prereqs .done {
+  color: #4CAF50;
+}
+
+.research-btn {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #58a6ff, #a371f7);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+  min-width: 100px;
+}
+
+.research-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
+}
+
+.research-btn:disabled {
+  background: #333;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.researched-badge {
+  color: #4CAF50;
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+}
+
+/* Scrollbar */
+.tech-tree-simple::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tech-tree-simple::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.tech-tree-simple::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.tech-tree-simple::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .tech-tree-simple .tree-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .tech-node-row {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .research-btn {
+    width: 100%;
+  }
+}
