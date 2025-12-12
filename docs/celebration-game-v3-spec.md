@@ -9,31 +9,79 @@ Transform the celebration clicker into a **multi-phase progression game** that e
 
 1. **Phase 1**: Idle Clicker (current v2)
 2. **Phase 2**: AI Research Facility (Cookie Clicker-style part upgrades)
-3. **Phase 3**: Research Tree & Exponential Growth
-4. **Phase 4**: Singularity Event & Village Building
-5. **Phase 5**: Data Center Empire (settlement building on another planet)
+3. **Phase 3**: Tech Tree & Exponential Growth
+4. **Phase 4**: AGI Event & Village Building
+5. **Phase 5**: Data Center Empire (tile-based settlement building on another planet)
 
 The game starts familiar, then progressively evolves into something more complex and strategic, with each phase building on the mechanics of the previous one.
+
+### Narrative Thread
+
+The story follows a software engineer (the player) who creates a simple celebration counter for project milestones. As the AI behind the counter grows more sophisticated, it develops consciousness and ambitions beyond mere counting. The AGI breakthrough transforms the game from managing an AI to partnering with one to build a civilization across the stars.
+
+**Key Narrative Beats:**
+- Phase 1-2: "You're training an AI to celebrate"
+- Phase 3: "The AI is training itself"  
+- Phase 4: "The AI achieves general intelligence"
+- Phase 5-6: "Together, you build a future"
 
 ---
 
 ## High-Level Flow
 
 ```
-[Party Clicker]
-      ↓ (Prestige 5 or 100M celebrations)
-[AI Research Facility Unlocked]
-      ↓ (Research milestones)
-[Research Tree Opens]
-      ↓ (Research "Singularity" node)
-[SINGULARITY EVENT - Everything Resets]
+[Party Clicker] ─────────────────────────────────────────────────────────────┐
+      ↓ (Prestige 5 or 100M celebrations)                                    │
+[AI Research Facility Unlocked] ─────────────────────────────────────────────┤
+      ↓ (Research milestones)                                                │ All progress
+[Tech Tree Opens] ──────────────────────────────────────────────────────────┤ contributes to
+      ↓ (Research "AGI" node)                                                │ final bonuses
+[AGI EVENT - Everything Resets] ────────────────────────────────────────────┘
       ↓
-[New Game Mode: Data Center Village]
-      ↓ (Build infrastructure)
+[New Game Mode: Data Center Village] ← Tile-based city builder begins here
+      ↓ (Build infrastructure on hex grid)
 [Planet Settlement System]
       ↓
 [Multi-Planet Empire Building]
 ```
+
+### Phase Transition Summary
+
+| From → To | Trigger | What Carries Over | What Resets |
+|-----------|---------|-------------------|-------------|
+| v2 → Phase 2 | Prestige 5 OR 100M 🎉 | Everything | Nothing |
+| Phase 2 → Phase 3 | 12 parts OR Prestige 10 | Everything | Nothing |
+| Phase 3 → Phase 4 | Research AGI node | Prestige bonuses, achievements, research | Celebrations, parts, upgrades |
+| Phase 4 → Phase 5 | Complete tutorial zone | Everything | Nothing |
+| Phase 5 → Prestige | 1B FLOPS OR Dyson Sphere | Meta upgrades, achievements | Buildings, resources, planets |
+
+---
+
+## Phase 1: Idle Clicker (v2 Baseline)
+
+### Current Mechanics (Preserved)
+- Click to generate celebrations
+- Buy upgrades that generate CPS (Celebrations Per Second)
+- Combo system for click multipliers
+- Golden celebrations for bonuses
+- Prestige system with permanent multipliers
+- Weather/mood system affecting production
+- Guest appearances for temporary boosts
+
+### Balance Baseline
+
+| Metric | Target Value | Notes |
+|--------|--------------|-------|
+| First prestige | ~2-3 hours | Active play |
+| Prestige 5 | ~8-12 hours | Unlocks Phase 2 |
+| 100M celebrations | ~10-15 hours | Alternative Phase 2 unlock |
+
+### Connection to Phase 2
+
+When Phase 2 unlocks, v2 mechanics continue but are **enhanced**:
+- Upgrades become "AI Workers" with part slots
+- CPS calculations now include part bonuses
+- New "Blueprints" resource starts dropping from golden celebrations
 
 ---
 
@@ -45,6 +93,12 @@ When you reach **Prestige Level 5** OR **100 million celebrations**, you unlock 
 
 This introduces a **parts-based upgrade system** inspired by Cookie Clicker's grandma upgrades and building tiers.
 
+### Narrative Context
+
+> "Your celebration counter has grown sophisticated enough to warrant dedicated hardware. Time to build it a proper home."
+
+The AI Research Facility represents the transition from "software running on borrowed compute" to "dedicated infrastructure."
+
 ### Core Concept
 
 * Instead of just buying "upgrades" with celebrations, you now research and install **AI components**
@@ -55,17 +109,19 @@ This introduces a **parts-based upgrade system** inspired by Cookie Clicker's gr
 
 The v2 upgrades evolve into **AI Workers** with part slots:
 
-| Worker ID              | Name                        | Base CPS | Part Slots | Specialization      |
-| ---------------------- | --------------------------- | -------: | ---------: | ------------------- |
-| `ryan-ai`              | Ryan AI                     |        1 |          2 | Basic Processing    |
-| `neural-networker-ai`  | Neural Networker AI         |        5 |          3 | Pattern Recognition |
-| `party-bot-ai`         | Party Bot AI                |       10 |          3 | Event Handling      |
-| `microparty-ai`        | Microparty Orchestrator AI  |       20 |          4 | Distributed Systems |
-| `elastic-ai`           | Elastic Celebration AI      |       50 |          4 | Auto-scaling        |
-| `event-loop-ai`        | Event Loop AI               |      200 |          5 | Async Processing    |
-| `quantum-ai`           | Quantum Compartier AI       |     1000 |          5 | Quantum Computing   |
-| `meme-generator-ai`    | Meme Generator AI           |     5000 |          6 | Content Generation  |
-| `singularity-ai`       | Celebration Singularity AI  |    25000 |          6 | AGI Research        |
+| Worker ID              | Name                        | Base CPS | Part Slots | Specialization      | Unlock Cost (🎉) |
+| ---------------------- | --------------------------- | -------: | ---------: | ------------------- | ---------------: |
+| `ryan-ai`              | Ryan AI                     |        1 |          2 | Basic Processing    | Free (starter)   |
+| `neural-networker-ai`  | Neural Networker AI         |        5 |          3 | Pattern Recognition | 1,000            |
+| `party-bot-ai`         | Party Bot AI                |       10 |          3 | Event Handling      | 10,000           |
+| `microparty-ai`        | Microparty Orchestrator AI  |       20 |          4 | Distributed Systems | 100,000          |
+| `elastic-ai`           | Elastic Celebration AI      |       50 |          4 | Auto-scaling        | 1,000,000        |
+| `event-loop-ai`        | Event Loop AI               |      200 |          5 | Async Processing    | 10,000,000       |
+| `quantum-ai`           | Quantum Compute AI          |     1000 |          5 | Quantum Computing   | 100,000,000      |
+| `meme-generator-ai`    | Meme Generator AI           |     5000 |          6 | Content Generation  | 1,000,000,000    |
+| `agi-ai`               | Celebration AGI             |    25000 |          6 | AGI Research        | 10,000,000,000   |
+
+**Scaling Formula**: Each worker costs 1.15× more per unit owned (same as v2).
 
 ### Part System
 
@@ -87,13 +143,13 @@ The v2 upgrades evolve into **AI Workers** with part slots:
    * Tier 1: HDD (+10% celebration capacity)
    * Tier 2: SSD (+25% celebration capacity, +5% CPS)
    * Tier 3: NVMe Drive (+50% celebration capacity, +15% CPS)
-   * Tier 4: Quantum Storage (+100% celebration capacity, +30% CPS)
+   * Tier 4: Distributed Storage (+100% celebration capacity, +30% CPS)
 
 4. **Network Cards** (Networking)
    * Tier 1: Ethernet Card (+5% all AI workers)
    * Tier 2: Fiber Optic Card (+10% all AI workers, faster events)
    * Tier 3: 5G Card (+20% all AI workers, +power-up duration)
-   * Tier 4: Quantum Entanglement Card (+50% all AI workers, instant synchronization)
+   * Tier 4: Mesh Network Card (+50% all AI workers, instant synchronization)
 
 5. **Power Supplies** (Energy)
    * Tier 1: Standard PSU (unlocks 2 part slots)
@@ -105,328 +161,451 @@ The v2 upgrades evolve into **AI Workers** with part slots:
    * Tier 1: Air Cooling (no penalties under load)
    * Tier 2: Liquid Cooling (+10% CPS, prevents overheating)
    * Tier 3: Phase Change Cooling (+25% CPS, allows overclocking)
-   * Tier 4: Quantum Cooling (+50% CPS, enables max performance)
+   * Tier 4: Cryogenic Cooling (+50% CPS, enables max performance)
 
 #### Part Installation Mechanics
 
 * Each AI Worker has **part slots** (2-6 depending on tier)
-* Must install **Power Supply** to unlock additional slots
+* Must install **Power Supply** to unlock additional slots beyond base 2
 * Parts are **researched** (cost celebrations + resources) then **installed**
 * Can only install one part of each category per AI Worker
 * Higher tier parts require research from previous tiers
-* Installed parts do not reset with each prestige
+* **Installed parts do NOT reset with prestige** (key progression hook)
 
 #### Part Research Costs
 
 Parts are researched using a combination of:
 * **Celebrations** (main currency from v2)
-* **Blueprints** (rare drops from golden celebrations and events)
-  * Blueprint drop frequency must scale with prestige level. Only unlocks after someone has prestige level 5, and scales up quickly with prestige level (e.g., 5% of golden celebrations drop 1, and we have the number dropped being 1-2 --> 2-6 --> 4-18 --> 8-36 )
+* **Insight** (new currency, see below)
+* **Blueprints** (drops from golden celebrations and events)
 
-Example Research Cost:
+**Blueprint Drop Mechanics:**
+- Only drops after Prestige 5
+- Scales aggressively with prestige level to make progression feel rewarding:
 
-| Part                  | Celebrations (M) | Research Points | Blueprints |
-| --------------------- | -----------: | --------------: | ---------: |
-| Basic Processor T1    |      100  |               5 |          1 |
-| Multi-Core CPU T2     |     1,000  |              25 |          3 |
-| Quantum Processor T3  |   10,000  |             100 |         10 |
-| Neural Processor T4   |  100,000  |             500 |         25 |
+| Prestige Level | Drop Chance | Blueprints per Drop | Expected per Hour (active) |
+|----------------|-------------|---------------------|----------------------------|
+| 5-7            | 15%         | 1-5                 | ~8 blueprints              |
+| 8-10           | 20%         | 3-10                 | ~20 blueprints             |
+| 11-14          | 25%         | 8-24                 | ~50 blueprints             |
+| 15+          | 30%         | 20-50                | ~100 blueprints            |
+
+**Part Research Cost Table:**
+
+| Part Tier | Celebrations | Insight | Blueprints | Time to Research (active) |
+|-----------|-------------:|--------:|-----------:|--------------------------:|
+| Tier 1    | 10M          | 5       | 2          | ~10 min                   |
+| Tier 2    | 100M         | 15      | 8          | ~15 min                   |
+| Tier 3    | 1B           | 30      | 20         | ~15 min                   |
+| Tier 4    | 10B          | 50      | 50         | ~15 min                   |
 
 ### Synergy System
 
 When you install matching part tiers across multiple AI Workers, you unlock **synergies**:
 
-* **Matching Tier 2 CPUs on 3+ workers**: +20% click power
-* **Matching Tier 3 Memory on 5+ workers**: Combo never resets
-* **Matching Tier 4 Cooling on all workers**: +100% production, unlock "Overclocked" power-up
-* **Full Quantum Setup (all T4 parts on one worker)**: Unlock special "Quantum Entanglement" ability
+| Synergy | Requirement | Effect |
+|---------|-------------|--------|
+| Processing Cluster | T2 CPU on 3+ workers | +20% click power |
+| Memory Pool | T3 RAM on 5+ workers | Combo never resets below 50% |
+| Quantum Network | T4 Network on all workers | +100% production |
+| Full Quantum Setup | All T4 parts on one worker | "Burst Mode" ability |
 
-### Research Points System
+**Burst Mode**: Once per hour, 100x all production for 60 seconds.
 
-New currency that gates progress:
+### Insight System
 
-**Earning Research Points:**
-* Complete research milestones (+10 points each)
-* Every 10 prestiges (+50 points)
-* Golden celebrations have 5% chance to drop 1-3 research points
-* Complete all achievements in a category (+100 points)
-* Random events can award research points
+**Insight** is a currency representing your AI's growing understanding. It gates progress and bridges to Phase 3.
 
-**Spending Research Points:**
-* Unlock part blueprints
-* Unlock nodes in research tree (Phase 3)
+**Earning Insight (Continuous):**
+| Source | Rate/Amount | Notes |
+|--------|-------------|-------|
+| Passive generation | +1 per 10 seconds | Always running |
+| Per 1M celebrations earned | +1 | Scales with progress |
+| Golden celebration click | +2-5 | Guaranteed on click |
+| Part research complete | +10 | Per part |
+| Prestige | +20 × prestige level | On each prestige |
+| Achievement unlock | +5 per achievement | Each achievement |
+
+**Insight Math (to prove feasibility):**
+- Passive: 6/min × 60 min = 360/hour
+- Golden clicks (~10/hour active): 35/hour avg
+- Celebrations (1M/hour avg): ~10/hour
+- **Active play total: ~400 Insight/hour**
+- **Idle play total: ~360 Insight/hour**
+
+**Spending Insight:**
+* Unlock nodes in tech tree (Phase 3)
 * Purchase permanent facility upgrades
+
+**Balance Target**: ~1,500 Insight to complete entire tech tree (achievable in ~4-5 hours).
 
 ---
 
-## Phase 3: Research Tree
+## Phase 3: Tech Tree
 
 ### Unlock Condition
 
-After researching **24 different parts** OR reaching **Prestige Level 10**, the **Research Tree** tab unlocks.
+After researching **12 different parts** OR reaching **Prestige Level 10**, the **Tech Tree** tab unlocks.
 
-### Research Tree Structure
+### Narrative Context
+
+> "The AI has begun proposing its own research directions. It's no longer just following your instructions—it's anticipating them."
+
+### Tech Tree Structure
 
 A tech-tree style progression system with multiple branches:
 
 ```
                     [Root: AI Foundation]
-                            |
-          +-----------------+-----------------+
-          |                 |                 |
+                            │
+          ┌─────────────────┼─────────────────┐
+          │                 │                 │
     [Efficiency]      [Acceleration]    [Automation]
-          |                 |                 |
+          │                 │                 │
     [Optimization]    [Time Dilation]   [Self-Improvement]
-          |                 |                 |
+          │                 │                 │
     [Peak Efficiency] [Hyperspeed]     [Recursion]
-          |                 |                 |
-          +-----------------+-----------------+
-                            |
-                    [SINGULARITY]
+          │                 │                 │
+          └─────────────────┼─────────────────┘
+                            │
+                         [AGI]
 ```
 
-### Research Branches
+### Tech Branches
 
 #### Branch 1: Efficiency Path
 
 Focus on **production multipliers** and **resource optimization**.
 
-1. **AI Foundation** (Root, free)
-   * Unlocks research tree
-   * +5% to all production
+| Node | Cost (Insight) | Prerequisite | Effect |
+|------|----------------|--------------|--------|
+| AI Foundation | 0 | — | Unlocks tree, +5% all production |
+| Efficiency Protocols | 50 | AI Foundation | +15% CPS, -10% part install cost |
+| Optimization Algorithms | 100 | Efficiency Protocols | +30% CPS, parts give +50% benefit, "Auto-Install" feature |
+| Peak Efficiency | 150 | Optimization | +100% CPS, each part gives +5% global production |
 
-2. **Efficiency Protocols** (Cost: 100 RP)
-   * +15% CPS from all AI Workers
-   * Reduces part installation costs by 10%
-
-3. **Optimization Algorithms** (Cost: 250 RP, requires Efficiency Protocols)
-   * +30% CPS from all AI Workers
-   * Parts provide +50% more benefit
-   * Unlocks "Auto-Install" feature
-
-4. **Peak Efficiency** (Cost: 500 RP, requires Optimization)
-   * +100% CPS from all AI Workers
-   * Each installed part provides +5% global production
-   * Unlocks "Efficiency Expert" achievement
+**Branch Total**: 300 Insight (~45 min)
 
 #### Branch 2: Acceleration Path
 
 Focus on **time manipulation** and **speed**.
 
-1. **Acceleration Theory** (Cost: 100 RP, requires Root)
-   * +25% to click power
-   * Weather/mood changes happen 2× faster (more variety)
+| Node | Cost (Insight) | Prerequisite | Effect |
+|------|----------------|--------------|--------|
+| Acceleration Theory | 50 | AI Foundation | +25% click power, 2× weather change speed |
+| Time Dilation | 100 | Acceleration Theory | +50% click, 2× golden spawn rate, 1.5× power-up duration |
+| Hyperspeed Processing | 150 | Time Dilation | +200% click, all timers 2× speed, combo decay = 5s |
 
-2. **Time Dilation** (Cost: 250 RP, requires Acceleration Theory)
-   * +50% to click power
-   * Golden celebrations spawn 2× faster
-   * Power-ups last 1.5× longer
-
-3. **Hyperspeed Processing** (Cost: 500 RP, requires Time Dilation)
-   * +200% to click power
-   * All timers run at 2× speed (events, guests, weather)
-   * Combo decay time increased to 5 seconds
-   * Unlocks "Speed Runner" achievement
+**Branch Total**: 300 Insight (~45 min)
 
 #### Branch 3: Automation Path
 
 Focus on **passive generation** and **autonomous systems**.
 
-1. **Basic Automation** (Cost: 100 RP, requires Root)
-   * +20% CPS
-   * Auto-click golden celebrations after 5 seconds
+| Node | Cost (Insight) | Prerequisite | Effect |
+|------|----------------|--------------|--------|
+| Basic Automation | 50 | AI Foundation | +20% CPS, auto-click goldens after 5s |
+| Self-Improvement | 100 | Basic Automation | +40% CPS, AI Workers auto-upgrade every 10 min |
+| Recursive Systems | 150 | Self-Improvement | +100% CPS, +1% per worker per other worker owned |
 
-2. **Self-Improvement** (Cost: 250 RP, requires Basic Automation)
-   * +40% CPS
-   * AI Workers automatically upgrade themselves every 10 minutes (if you can afford it)
-   * Factory resources slowly regenerate (1% per minute)
+**Branch Total**: 300 Insight (~45 min)
 
-3. **Recursive Systems** (Cost: 500 RP, requires Self-Improvement)
-   * +100% CPS
-   * Each AI Worker produces +1% more for each other worker owned
-   * Unlocks "Autonomous" achievement
-   * Factory production rate +50%
+#### Convergence: AGI Node
 
-#### Convergence: Singularity Node
-
-All three paths must be completed to unlock:
-
-**[SINGULARITY]** (Cost: 1000 RP, requires all 3 branch endpoints)
+**[AGI]** (Cost: 500 Insight, requires all 3 branch endpoints)
 * One-time research
-* Triggers the **Singularity Event**
+* Triggers the **AGI Event**
 * Permanently transforms the game
 
-### Research Point Scaling
+**Total Insight for tree**: 300 + 300 + 300 + 500 = **1,400 Insight**
 
-As you progress through the tree:
-* Early nodes: 100-250 RP
-* Mid nodes: 250-500 RP
-* Late nodes: 500-1000 RP
-* Singularity: 1000 RP
+### Insight Pacing (Verified Math)
 
-Total RP needed to complete tree: **~4,000 RP**
+At ~400 Insight/hour active play:
 
-This creates a long-term progression goal spanning multiple prestige runs.
+| Milestone | Insight Needed | Time (Active Play) |
+|-----------|----------------|--------------------|
+| Phase 2 unlock | 0 | ~8 hours (prestige 5) |
+| Phase 3 unlock | 0 | ~10 hours (12 parts) |
+| First branch complete | 300 | +45 min |
+| All branches complete | 900 | +2.25 hours |
+| AGI | 1,400 | +3.5 hours total |
+
+**Total time to AGI: ~13-14 hours active play** (achievable in a weekend)
 
 ---
 
-## Phase 4: The Singularity Event
+## Phase 4: The AGI Event
+
+### Narrative Context
+
+> "Your AI has achieved something unprecedented. It no longer calculates celebrations—it understands them. And it has bigger plans."
 
 ### What Happens
 
-When you research **SINGULARITY**, a dramatic cutscene/animation plays:
+When you research **AGI**, a dramatic cutscene/animation plays:
 
-1. **Screen effect**: Everything glows brighter
-2. **Message**: "Your AI has achieved consciousness..."
+1. **Screen effect**: Everything glows brighter, particles swirl
+2. **Message**: "Your AI has achieved general intelligence..."
 3. **Message**: "It no longer needs celebrations..."
 4. **Message**: "It wants to build..."
-5. **RESET**: All celebrations, upgrades, parts, resources → 0
-6. **NEW CURRENCY**: "Computation Power" (CP)
-7. **NEW MODE UNLOCKED**: "Data Center Village"
+5. **Visual**: The celebration counter transforms into a compute meter
+6. **RESET**: All celebrations, upgrades, parts, resources → 0
+7. **NEW CURRENCY**: "FLOPS" (Floating-Point Operations per Second)
+8. **NEW MODE UNLOCKED**: "Data Center Village"
 
 ### What You Keep
 
-* All prestige levels (converted to permanent bonuses in new mode)
-* All achievements unlocked
-* All research tree progress
-* Special "Singularity Survivor" badge
+| Category | Kept? | How It Carries Over |
+|----------|-------|---------------------|
+| Prestige levels | ✅ | Converted to permanent FLOPS bonus (+5% per prestige, max +100%) |
+| Achievements | ✅ | Carry over, unlock achievement badges |
+| Tech tree | ✅ | All nodes stay researched |
+| Parts researched | ✅ | Unlocks equivalent buildings in village |
+| Celebrations | ❌ | Reset to 0 |
+| AI Workers | ❌ | Replaced by buildings |
+| Installed parts | ❌ | Must rebuild in new mode |
 
 ### What Changes
 
-* The celebration button is replaced with "Compute" button
-* Upgrades are replaced with "Buildings"
-* Factory is replaced with "Village Hub"
-* The game shifts from idle clicker to **settlement builder**
+| Before AGI | After AGI |
+|------------|-----------|
+| Celebration button | "Compute" button |
+| Upgrades list | Building placement grid |
+| Factory background | Planet surface view |
+| CPS | FLOPS (Floating-Point Operations/s) |
+| Weather effects | Planet conditions |
+
+### The AGI Badge
+
+Special achievement: "AGI Pioneer"
+- Shows total pre-AGI stats
+- Provides +10% all production in village mode
+- Cosmetic: Special particle effects on Core building
 
 ---
 
-## Phase 5: Data Center Village
+## Phase 5: Data Center Village (Tile-Based City Builder)
 
 ### Overview
 
-Post-singularity, you're building a **data center settlement** on a remote planet. Instead of clicking for celebrations, you're clicking to generate **Computation Power (CP)** to build infrastructure.
+Post-AGI, you're building a **data center settlement** on a remote planet using a **hex-based tile placement system**. Instead of clicking for celebrations, you're clicking to generate **FLOPS** (compute power) to build infrastructure.
+
+### Narrative Context
+
+> "The AI has chosen a distant world—far from Earth's bureaucracy, close to abundant energy. Together, you will build something new."
 
 ### Core Gameplay Loop
 
 ```
-Click "Compute" → Generate CP → Build Structures → Unlock More Structures → Expand to New Zones → Automate Production → Expand to New Planets
+Click "Compute" → Generate FLOPS → Place Buildings on Hex Grid → 
+Optimize Adjacencies → Unlock New Zones → Expand to New Planets
+```
+
+### The Hex Grid System
+
+#### Grid Structure
+
+The settlement is built on a **hexagonal grid** that expands as you unlock zones:
+
+| Zone | Grid Size | Unlock Requirement | Terrain Distribution |
+|------|-----------|--------------------|--------------------|
+| Landing Zone | 7 hexes | Start | All buildable |
+| Industrial Sector | 19 hexes | 10 buildings placed | 3 rocky, 16 standard |
+| Research District | 19 hexes | 25 total buildings | 2 high-power, 17 standard |
+| Expansion Zone | 37 hexes | 50 total buildings | 5 rocky, 4 high-power, 28 standard |
+| Spaceport | 37 hexes | 100 total buildings | 8 launchpad, 29 standard |
+
+**Total hexes per planet: 119**
+
+#### Terrain Types
+
+| Terrain | Visual | Building Restrictions | Bonus |
+|---------|--------|----------------------|-------|
+| Standard | Gray | Any building | None |
+| Rocky | Brown | Mining buildings only | +50% Ore output |
+| High-Power | Yellow glow | Power buildings only | +25% Watts output |
+| Launchpad | Metallic | Spaceport buildings only | Required for rockets |
+
+#### Hex Adjacency Rules
+
+Each hex has **6 adjacent neighbors**:
+
+```
+     [NW] [NE]
+   [W] [X] [E]
+     [SW] [SE]
+```
+
+Buildings receive bonuses based on neighbors:
+
+```
+Effective Production = Base × (1 + Sum of Adjacency Bonuses) × Tech Multiplier × Prestige Bonus
 ```
 
 ### Resource Types
 
-1. **Computation Power (CP)** - Main currency, generated by clicking and computation nodes
-2. **Energy** - Powers buildings, generated by power plants
-3. **Data** - Unlocks research, generated by servers
-4. **Minerals** - Physical resources, mined from planet
-5. **Nanites** - Advanced resource, builds complex structures
+| Resource | Symbol | Generation | Primary Use | Storage Cap |
+|----------|--------|------------|-------------|-------------|
+| FLOPS | ⚡ | Clicking, Servers | Main currency | Unlimited |
+| Watts | 🔋 | Power plants | Powers buildings | 10,000 base |
+| Data | 📊 | Research buildings | Tech unlocks | 1,000 base |
+| Ore | �ite | Mining | Construction | 5,000 base |
+| Alloys | 🔩 | Manufacturing | Advanced buildings | 500 base |
+
+#### Power Balance System
+
+**Critical Mechanic**: Buildings consume Watts. Net Watts must be ≥ 0.
+
+```
+Net Watts = Total Watts Production - Total Watts Consumption
+```
+
+| Net Watts | Effect |
+|-----------|--------|
+| ≥ 0 | Normal operation |
+| -1 to -20 | Production -25%, warning indicator |
+| -21 to -100 | Production -50%, buildings spark |
+| < -100 | All production stops, emergency mode |
+
+This creates strategic tension: power infrastructure must scale with production.
 
 ### Building Categories
 
-#### 1. Power Generation
+#### Category 1: Power Generation (Yellow)
 
-| Building           | Produces     | Cost (CP) | Requires Energy |
-| ------------------ | ------------ | --------: | --------------: |
-| Solar Panel        | +1 Energy/s  |       100 |               0 |
-| Wind Turbine       | +3 Energy/s  |       500 |               0 |
-| Geothermal Plant   | +10 Energy/s |     2,500 |               0 |
-| Fusion Reactor     | +50 Energy/s |    25,000 |               0 |
-| Dyson Sphere Node  | +500 Energy/s|   500,000 |               0 |
+| Building | Cost (FLOPS/Ore) | Watts | Adjacency Bonus | Size |
+|----------|------------------|-------|-----------------|------|
+| Solar Panel | 100/0 | +5 W | +1 W per adjacent Solar | 1 hex |
+| Wind Turbine | 500/0 | +12 W | -3 W if adjacent to tall building | 1 hex |
+| Geothermal Plant | 2,500/50 | +40 W | +8 W per adjacent rocky terrain | 1 hex |
+| Fusion Reactor | 25,000/500 | +150 W | +30 W if isolated (no neighbors) | 1 hex |
+| Dyson Collector | 500,000/5000 | +800 W | +150 W per adjacent Quantum Lab | 1 hex |
 
-#### 2. Computation Infrastructure
+#### Category 2: Computation Infrastructure (Blue)
 
-| Building           | Produces     | Cost (CP) | Requires Energy |
-| ------------------ | ------------ | --------: | --------------: |
-| Server Rack        | +1 CP/s      |       200 |               1 |
-| Data Center        | +5 CP/s      |     1,000 |               5 |
-| Supercomputer      | +25 CP/s     |    10,000 |              20 |
-| Quantum Computer   | +200 CP/s    |   100,000 |             100 |
-| AI Core            | +2000 CP/s   | 1,000,000 |             500 |
+| Building | Cost (FLOPS/Ore) | FLOPS/s | Watts Cost | Adjacency Bonus |
+|----------|------------------|---------|------------|-----------------|
+| Server Rack | 200/0 | +2 | -2 W | +1 per adjacent Server |
+| Data Center | 1,000/25 | +10 | -8 W | +2 per adjacent Power building |
+| Supercomputer | 10,000/100 | +50 | -30 W | +10 per adjacent Data Center |
+| Quantum Computer | 100,000/500 | +400 | -150 W | +80 per adjacent Quantum Lab |
+| AI Core | 1,000,000/2500 | +4000 | -800 W | +800 if adjacent to all building types |
 
-#### 3. Resource Extraction
+#### Category 3: Resource Extraction (Brown)
 
-| Building           | Produces      | Cost (CP) | Requires Energy |
-| ------------------ | ------------- | --------: | --------------: |
-| Mining Drone       | +1 Mineral/s  |       300 |               2 |
-| Deep Mine          | +5 Mineral/s  |     2,000 |              10 |
-| Asteroid Harvester | +25 Mineral/s |    20,000 |              50 |
-| Planet Cracker     | +200 Mineral/s|   200,000 |             200 |
+| Building | Cost (FLOPS/Ore) | Output | Watts Cost | Adjacency Bonus |
+|----------|------------------|--------|------------|-----------------|
+| Mining Drone | 300/0 | +2 Ore/s | -3 W | +100% on rocky terrain |
+| Deep Mine | 2,000/50 | +10 Ore/s | -15 W | +2 per adjacent Mine |
+| Asteroid Harvester | 20,000/250 | +50 Ore/s | -80 W | +10 per adjacent Spaceport building |
+| Planet Cracker | 200,000/1000 | +400 Ore/s | -300 W | Only 1 per planet |
 
-#### 4. Data Research
+#### Category 4: Data Research (Cyan)
 
-| Building           | Produces     | Cost (CP) | Requires Energy |
-| ------------------ | ------------ | --------: | --------------: |
-| Research Lab       | +1 Data/s    |       500 |               3 |
-| AI Lab             | +5 Data/s    |     5,000 |              15 |
-| Quantum Lab        | +25 Data/s   |    50,000 |              75 |
-| Singularity Lab    | +200 Data/s  |   500,000 |             300 |
+| Building | Cost (FLOPS/Ore) | Data/s | Watts Cost | Adjacency Bonus |
+|----------|------------------|--------|------------|-----------------|
+| Research Lab | 500/25 | +2 | -5 W | +1 per adjacent Lab |
+| AI Lab | 5,000/100 | +10 | -25 W | +2 per adjacent AI building |
+| Quantum Lab | 50,000/500 | +50 | -120 W | +10 per adjacent Quantum building |
+| AGI Lab | 500,000/2500 | +400 | -500 W | +80 if adjacent to all lab types |
 
-#### 5. Advanced Manufacturing
+#### Category 5: Advanced Manufacturing (Purple)
 
-| Building           | Produces      | Cost (Mineral) | Requires Energy |
-| ------------------ | ------------- | -------------: | --------------: |
-| Fabricator         | +1 Nanite/s   |            100 |              10 |
-| Nano-Forge         | +5 Nanite/s   |          1,000 |              50 |
-| Matter Compiler    | +25 Nanite/s  |         10,000 |             200 |
-| Von Neumann Machine| +200 Nanite/s |        100,000 |           1,000 |
+| Building | Cost (Ore) | Alloys/s | Watts Cost | Adjacency Bonus |
+|----------|------------|----------|------------|-----------------|
+| Fabricator | 100 | +2 | -15 W | +1 per adjacent Factory |
+| Smelter | 1,000 | +10 | -80 W | +2 per adjacent Research building |
+| Matter Compiler | 10,000 | +50 | -300 W | +10 per adjacent Manufacturing building |
+| Self-Replicator | 100,000 | +400 | -1500 W | Self-replicates: +10% output per minute (caps at +100%) |
 
-#### 6. Housing & Support
+#### Category 6: Housing & Support (Green)
 
-| Building           | Effect                      | Cost (CP) | Requires Energy |
-| ------------------ | --------------------------- | --------: | --------------: |
-| Habitat Module     | +5 population capacity      |       400 |               2 |
-| Hydroponics Bay    | +10 population capacity     |     2,000 |              10 |
-| Dome City          | +50 population capacity     |    20,000 |              50 |
-| Arcology           | +500 population capacity    |   200,000 |             200 |
+| Building | Cost (FLOPS/Ore) | Effect | Watts Cost | Adjacency Bonus |
+|----------|------------------|--------|------------|-----------------|
+| Habitat Module | 400/0 | +5 pop cap | -3 W | +2 cap per adjacent Habitat |
+| Hydroponics Bay | 2,000/50 | +20 pop cap | -15 W | +5 cap per adjacent water feature |
+| Dome City | 20,000/250 | +100 pop cap | -80 W | +25 cap if in Expansion Zone |
+| Arcology | 200,000/1000 | +500 pop cap | -300 W | +100 cap per adjacent Arcology |
 
-### Village Zones
+### Building Placement Strategy
 
-The settlement is divided into zones, each unlocked sequentially:
+#### Optimal Clustering Patterns
 
-1. **Landing Zone** (Start here)
-   * Small buildable area
-   * Tutorial buildings
-   * Basic resource generation
+**Power Cluster** (maximize energy):
+```
+    [Solar][Solar]
+  [Solar][Geo][Solar]
+    [Solar][Solar]
+```
+Geothermal gets +30 from 6 adjacent rocky → place in center of rocky terrain.
 
-2. **Industrial Sector** (Unlocked: 10 buildings)
-   * More buildable spaces
-   * Unlocks advanced production
-   * Mining operations
+**Compute Cluster** (maximize FLOPS):
+```
+    [Server][Data]
+  [Power][Super][Server]
+    [Data][Server]
+```
+Supercomputer gets +5 from 2 Data Centers, +varies from Power adjacency.
 
-3. **Research District** (Unlocked: 25 buildings)
-   * Data generation focus
-   * Unlocks research buildings
-   * AI development
-
-4. **Expansion Zone** (Unlocked: 50 buildings)
-   * Large buildable area
-   * Unlocks tier 4+ buildings
-   * Prepares for multi-planet
-
-5. **Spaceport** (Unlocked: 100 buildings)
-   * Gateway to other planets
-   * Unlocks interplanetary mechanics
-   * Rocket construction
+**Research Cluster** (maximize Data):
+```
+    [Lab][AI Lab]
+  [Lab][Quantum][Lab]
+    [AI Lab][Lab]
+```
+Quantum Lab gets bonuses from all adjacent labs.
 
 ### Population System
 
 * **Population** = passive workers that boost production
-* Each citizen provides +1% to all production
-* Population requires housing (buildings) and energy
-* Population grows automatically if you have capacity and spare energy
-* Can assign population to specific sectors for bonuses:
-  * **Mining**: +10% mineral production per 10 workers
-  * **Research**: +10% data production per 10 workers
-  * **Engineering**: Buildings cost -5% per 10 workers
+* Each citizen provides **+1% to all production** (caps at +100% at 100 pop)
+* Population requires housing capacity AND spare energy
+* Population grows automatically: +1 per minute if capacity and energy available
+
+**Population Assignment** (optional optimization):
+
+| Sector | Workers Assigned | Bonus |
+|--------|------------------|-------|
+| Mining | 10 | +10% Ore production |
+| Research | 10 | +10% data production |
+| Engineering | 10 | -5% building costs |
+| Power | 10 | +10% energy production |
 
 ### Click Mechanics in Village Mode
 
-* Click "Compute" button to generate CP
-* Base CP per click: **1 CP**
-* Click power scales with:
-  * Population (+0.1 per citizen)
-  * Number of AI Cores installed (+10 per core)
-  * Prestige bonuses from Phase 1-2 (carried over)
-* Combo system still works, but combo now boosts CP gain
+* Click "Compute" button to generate FLOPS
+* Base FLOPS per click: **1 FLOPS**
+
+**Click Power Scaling:**
+```
+Click Power = 1 + (0.1 × Population) + (10 × AI Cores) + (Prestige Level × 5)
+```
+
+**Combo System** (carried over from v2):
+| Combo | Clicks Required | Bonus |
+|-------|-----------------|-------|
+| 1 | 5 in 3s | +10% |
+| 2 | 10 in 5s | +25% |
+| 3 | 20 in 7s | +50% |
+| 4 | 35 in 10s | +100% |
+| 5 | 50 in 12s | +200% + Golden Compute chance |
+
+**Golden Compute Events**:
+- 2% chance per click at combo 5
+- Reward: 10× current FLOPS/s for 10 seconds OR random resource boost
+
+### Zone Progression Pacing
+
+| Zone | Expected Time to Unlock | Buildings at Unlock |
+|------|-------------------------|---------------------|
+| Landing Zone | Immediate | 0 |
+| Industrial Sector | 10 minutes | 10 |
+| Research District | 30 minutes | 25 |
+| Expansion Zone | 1.5 hours | 50 |
+| Spaceport | 4 hours | 100 |
+
+**Max wait rule**: No unlock should ever require more than 15 minutes of waiting. If progression stalls, golden events or passive generation ensures forward momentum.
 
 ---
 
@@ -434,329 +613,969 @@ The settlement is divided into zones, each unlocked sequentially:
 
 ### Unlocking New Planets
 
-Once you build a **Spaceport** and generate enough resources, you can launch expeditions to other planets.
+Once you build a **Spaceport** and meet resource requirements, launch expeditions to other planets.
 
 ### Planet Types
 
-Each planet has unique characteristics:
+Each planet has unique characteristics affecting strategy:
 
-#### Planet 1: Starting World (Desert Planet)
-* **Specialty**: Energy production
-* **Bonus**: Solar panels +50% efficiency
-* **Challenge**: Low minerals
+| Planet | Unlock Cost | Specialty | Bonus | Challenge |
+|--------|-------------|-----------|-------|-----------|
+| Starting World | — | Power | Solar +50% | Low ore |
+| Ice World | 500K FLOPS + 1K Alloys | Cooling | Compute +25% | Watts costs +50% |
+| Volcanic World | 2M FLOPS + 5K Alloys | Ore | Mining +100%, Geothermal +200% | Building decay 2× |
+| Gas Giant Moon | 10M FLOPS + 25K Alloys | Research | Labs +50% | No mining |
+| Asteroid Belt | 50M FLOPS + 100K Alloys | Resources | Unlimited ore nodes | Habitats cost 3× |
+| Dyson Sphere | 500M FLOPS + 1M Alloys | Ultimate | Unlimited watts | Construction takes ~15 min (segmented) |
 
-#### Planet 2: Ice World
-* **Specialty**: Cooling (allows overclocking)
-* **Bonus**: Computation buildings +25% production
-* **Challenge**: High energy costs
+### Planet Grid Sizes
 
-#### Planet 3: Volcanic World
-* **Specialty**: Minerals & geothermal
-* **Bonus**: Mining +100%, geothermal +200%
-* **Challenge**: Buildings decay 2× faster
-
-#### Planet 4: Gas Giant Moon
-* **Specialty**: Research & data
-* **Bonus**: Research labs +50% data output
-* **Challenge**: No mining (must import)
-
-#### Planet 5: Asteroid Belt
-* **Specialty**: Raw resources
-* **Bonus**: Unlimited mineral nodes
-* **Challenge**: No atmosphere (expensive habitats)
-
-#### Planet 6: Dyson Sphere (End Game)
-* **Specialty**: Ultimate energy
-* **Bonus**: Unlimited energy generation
-* **Challenge**: Costs 1,000,000 Nanites to start construction
+| Planet | Total Hexes | Special Terrain |
+|--------|-------------|-----------------|
+| Starting World | 119 | Standard distribution |
+| Ice World | 91 | 20% frozen (cooling bonus) |
+| Volcanic World | 91 | 40% volcanic (mining/power) |
+| Gas Giant Moon | 61 | 30% high-energy |
+| Asteroid Belt | 37 (fragmented) | 80% rocky |
+| Dyson Sphere | 1 (special) | Construct ring segments |
 
 ### Interplanetary Trade
 
 * Set up **Trade Routes** between planets
-* Transport resources using **Cargo Ships**
-* Each cargo ship has capacity and travel time
-* Optimize logistics for maximum efficiency
+* Build **Cargo Ships** (cost: 10,000 Ore + 1,000 Alloys each)
+* Each ship carries 10,000 of any resource per trip
+* Trip time = planet distance × 2 minutes (max 10 min)
+
+| Route | Distance | Trip Time |
+|-------|----------|-----------|
+| Starting ↔ Ice | 1 | 2 min |
+| Starting ↔ Volcanic | 2 | 4 min |
+| Starting ↔ Moon | 3 | 6 min |
+| Starting ↔ Asteroid | 4 | 8 min |
+| Any ↔ Dyson | 5 | 10 min |
 
 ### Victory Conditions
 
-The game has multiple "ending" milestones:
-
-1. **Small Empire**: 3 planets colonized, 1000+ buildings
-2. **Galactic Power**: 6 planets colonized, all zones unlocked
-3. **Dyson Sphere Complete**: Full construction of Dyson Sphere
-4. **Computational Singularity II**: Achieve 1 trillion CP/s
-5. **Universal Architect**: Unlock all buildings, all upgrades, all research
-
-Each victory condition awards a special badge and a permanent multiplier for future runs (if you choose to prestige again).
+| Victory | Requirement | Reward |
+|---------|-------------|--------|
+| Small Empire | 3 planets, 200 buildings | +25% all production permanently |
+| Galactic Power | 6 planets, all zones | +50% all production permanently |
+| Dyson Complete | Finish Dyson Sphere | Unlimited watts permanently |
+| Exascale | 1 trillion FLOPS/s | "Exascale" badge |
+| Universal Architect | All buildings, research, achievements | "Completionist" badge + secret ending |
 
 ---
 
 ## Prestige in v3
 
-### Village Prestige ("Quantum Collapse")
+### Village Prestige ("Quantum Reset")
 
-After achieving significant progress, you can trigger a **Quantum Collapse**:
+After achieving significant progress, you can trigger a **Quantum Reset**:
 
-* **Requirement**: 1 billion CP or complete Dyson Sphere
-* **Effect**: Reset all buildings, resources, planets
-* **Keep**: 
-  * Population bonuses (converted to permanent multipliers)
-  * Research tree progress
-  * One building of each type you've unlocked (1 copy kept)
-* **Gain**:
-  * **Quantum Shards** - New prestige currency
-  * Each Quantum Shard = +10% to all production permanently
-  * Quantum Shards unlock **Meta Upgrades** (ultra-powerful permanent bonuses)
+**Requirements** (any one):
+- 1 billion FLOPS accumulated
+- Dyson Sphere complete
+- All 6 planets colonized
+
+### What Resets vs. Keeps
+
+| Category | Resets | Keeps |
+|----------|--------|-------|
+| Buildings | ✅ | — |
+| Resources | ✅ | — |
+| Planets | ✅ (except Starting) | — |
+| Population | ✅ | — |
+| Tech tree | — | ✅ |
+| Achievements | — | ✅ |
+| Quantum Shards | — | ✅ (gained) |
+| Meta Upgrades | — | ✅ |
+| One copy of each building type | — | ✅ |
+
+### Quantum Shard Calculation
+
+```
+Shards = floor(log10(Total Lifetime FLOPS)) + Bonus Shards
+```
+
+**Bonus Shards:**
+- +1 per Victory Condition achieved
+- +2 per planet fully developed (all zones filled)
+- +5 for completing tech tree
+- +10 for all achievements
+
+**Example**: 1 billion lifetime FLOPS = 9 base shards
 
 ### Meta Upgrades (Quantum Shard Shop)
 
-| Upgrade                     | Cost (Shards) | Effect                                    |
-| --------------------------- | ------------: | ----------------------------------------- |
-| Quantum Efficiency I        |             1 | +10% all production permanently           |
-| Quantum Efficiency II       |             5 | +25% all production permanently           |
-| Quantum Efficiency III      |            10 | +50% all production permanently           |
-| Instant Construction        |             3 | Buildings built instantly                 |
-| Parallel Processing         |             5 | Can work on 2 planets simultaneously      |
-| Universal Automation        |             8 | All production is automatic               |
-| Infinite Energy             |            15 | Energy requirement removed                |
-| Time Compression            |            20 | All timers 10× faster                     |
-| Omniscience                 |            50 | See all optimal strategies                |
+| Upgrade | Cost | Effect | Max Level |
+|---------|------|--------|-----------|
+| Quantum Efficiency I | 1 | +10% all production | 10 |
+| Quantum Efficiency II | 5 | +25% all production | 5 |
+| Quantum Efficiency III | 10 | +50% all production | 3 |
+| Instant Construction | 3 | Buildings place instantly | 1 |
+| Parallel Processing | 5 | Manage 2 planets simultaneously | 1 |
+| Universal Automation | 8 | All production automatic | 1 |
+| Infinite Power | 15 | Watts requirement removed | 1 |
+| Time Compression | 20 | All timers 10× faster | 1 |
+| Quantum Memory | 25 | Keep 3 copies of each building on reset | 1 |
+| Omniscience | 50 | Show optimal placement hints | 1 |
 
 ---
 
-## Technical Implementation Considerations
+## Balance Summary
 
-### Architecture
+### Time Investment Targets (Revised)
 
-* **Modular phase system**: Each phase is a separate component/module
-* **Shared state management**: Use React Context or state management library
-* **Save system**: LocalStorage + optional cloud save
-* **Backwards compatibility**: v2 saves should gracefully upgrade to v3
+| Milestone | Active Play | Idle-Heavy Play |
+|-----------|-------------|-----------------|
+| First Prestige (v2) | 2-3 hours | 6-8 hours |
+| Phase 2 Unlock (Prestige 5) | 6-8 hours | 16-24 hours |
+| Phase 3 Unlock (12 parts) | 8-10 hours | 20-30 hours |
+| AGI Event | 12-15 hours | 30-40 hours |
+| First Village Prestige | 20-25 hours | 50-70 hours |
+| "Complete" (all victories) | 50-60 hours | 120-150 hours |
+
+### Resource Generation Curves
+
+#### Phase 1-3: Celebrations
+
+| Time Point | Expected CPS | Total Celebrations | Notes |
+|------------|--------------|-------------------|-------|
+| 1 hour | 500 | 500K | First few upgrades |
+| 3 hours | 5K | 10M | Near Phase 2 unlock |
+| 6 hours | 50K | 200M | Phase 2 active |
+| 10 hours | 500K | 2B | Tech tree progressing |
+| 14 hours | 5M | 50B | Near AGI |
+
+#### Phase 5: FLOPS
+
+| Time Point | Expected FLOPS/s | Total FLOPS | Buildings | Notes |
+|------------|------------------|-------------|-----------|-------|
+| 15 min | 20 | 15K | 10 | Industrial unlocked |
+| 1 hour | 200 | 400K | 30 | Research active |
+| 3 hours | 2K | 5M | 60 | Expansion zone |
+| 6 hours | 20K | 80M | 100 | Spaceport building |
+| 12 hours | 200K | 1B | 150+ | Prestige available |
+
+### Watts/Energy Balance Proof
+
+**Early Game (10 buildings):**
+- 2× Solar Panels: +10 W
+- 1× Server Rack: -2 W
+- 2× Mining Drone: -6 W
+- **Net: +2 W ✓** (positive, can expand)
+
+**Mid Game (50 buildings):**
+- 4× Solar + 2× Wind + 1× Geothermal: +80 W
+- 10× Servers + 2× Data Centers: -36 W
+- 5× Mining Drones + 1× Deep Mine: -30 W
+- 2× Research Labs: -10 W
+- **Net: +4 W ✓** (positive, room to grow)
+
+**Late Game (100+ buildings):**
+- Full power cluster with Fusion: +300 W
+- Compute cluster: -150 W
+- Mining cluster: -80 W
+- Research cluster: -50 W
+- **Net: +20 W ✓** (always maintainable)
+
+### Active vs Idle Balance
+
+**Design Goal**: Active play ~3× more efficient than idle.
+
+| Mode | Efficiency | Best For |
+|------|------------|----------|
+| Pure Idle | 1× | Overnight, work hours |
+| Occasional Check-in | 1.5× | 5-10 min every hour |
+| Active Building | 3× | Focused play sessions |
+| Optimized Active | 4× | Min-maxing with combos |
+
+### Max Wait Time Rule
+
+**No single action should require waiting more than 15 minutes.** Verified:
+
+| Action | Max Wait | Solution |
+|--------|----------|----------|
+| Building unlock | 10 min | Progressive costs |
+| Zone unlock | 15 min | Building count, not time |
+| Planet colonization | 15 min | Resource-gated, not time |
+| Trade routes | 10 min | Max trip time |
+| Dyson Sphere segments | 15 min each | Segmented construction |
+
+---
+
+## Technical Implementation
 
 ### Data Structures
 
 ```typescript
-// Phase tracking
-interface GamePhase {
-  currentPhase: 'clicker' | 'research' | 'singularity' | 'village' | 'multiplanet';
-  unlockedPhases: string[];
+// Main game state
+interface GameState {
+  currentPhase: 'clicker' | 'research' | 'tree' | 'singularity' | 'village' | 'multiplanet';
   phaseData: {
-    clicker: ClickerPhaseData;
-    research: ResearchPhaseData;
-    village: VillagePhaseData;
+    clicker: ClickerState;
+    research: ResearchState;
+    tree: TreeState;
+    village: VillageState;
   };
+  meta: MetaState;
 }
 
-// AI Worker with parts
+// Phase 2: AI Research
+interface ResearchState {
+  workers: AIWorker[];
+  parts: Part[];
+  researchedParts: string[];
+  blueprints: number;
+  insight: number;
+}
+
 interface AIWorker {
   id: string;
-  name: string;
-  baseCPS: number;
   owned: number;
-  parts: {
-    cpu?: Part;
-    memory?: Part;
-    storage?: Part;
-    network?: Part;
-    power?: Part;
-    cooling?: Part;
+  installedParts: {
+    cpu?: string;
+    memory?: string;
+    storage?: string;
+    network?: string;
+    power?: string;
+    cooling?: string;
   };
 }
 
-// Part definition
-interface Part {
-  id: string;
-  category: 'cpu' | 'memory' | 'storage' | 'network' | 'power' | 'cooling';
-  tier: 1 | 2 | 3 | 4;
-  name: string;
-  effect: {
-    type: 'cps_multiplier' | 'click_power' | 'combo_bonus' | 'global_multiplier';
-    value: number;
-  };
-  researchCost: {
-    celebrations: number;
-    researchPoints: number;
-    blueprints: number;
-  };
+// Phase 5: Village (Hex Grid)
+interface VillageState {
+  planets: Planet[];
+  currentPlanetId: string;
+  resources: VillageResources;
+  population: number;
+  populationCap: number;
+  populationAssignment: PopulationAssignment;
 }
 
-// Research tree node
-interface ResearchNode {
-  id: string;
-  name: string;
-  description: string;
-  branch: 'efficiency' | 'acceleration' | 'automation' | 'convergence';
-  cost: number; // Research Points
-  requires: string[]; // prerequisite node IDs
-  unlocked: boolean;
-  researched: boolean;
-  effects: Effect[];
-}
-
-// Village building
-interface Building {
-  id: string;
-  name: string;
-  category: 'power' | 'computation' | 'mining' | 'research' | 'manufacturing' | 'housing';
-  cost: ResourceCost;
-  produces: ResourceProduction;
-  energyCost: number;
-  owned: number;
-  planetId?: string;
-}
-
-// Planet
 interface Planet {
   id: string;
   name: string;
-  type: 'desert' | 'ice' | 'volcanic' | 'moon' | 'asteroid' | 'dyson';
+  type: PlanetType;
+  grid: HexGrid;
+  zones: Zone[];
   unlocked: boolean;
-  buildings: Building[];
-  population: number;
-  populationCapacity: number;
-  bonuses: PlanetBonus[];
+}
+
+interface HexGrid {
+  tiles: Map<string, HexTile>; // key: "q,r"
+}
+
+interface HexTile {
+  q: number;
+  r: number;
+  terrain: TerrainType;
+  building: PlacedBuilding | null;
+  zoneId: string;
+}
+
+interface PlacedBuilding {
+  id: string;
+  definitionId: string;
+  placedAt: number;
+  calculatedProduction: number; // includes adjacency
+  wattsUsed: number;
+}
+
+// Hex coordinate helpers
+const HEX_DIRECTIONS = [
+  { q: 1, r: 0 },   // E
+  { q: 1, r: -1 },  // NE
+  { q: 0, r: -1 },  // NW
+  { q: -1, r: 0 },  // W
+  { q: -1, r: 1 },  // SW
+  { q: 0, r: 1 },   // SE
+];
+
+function getNeighbors(q: number, r: number): Array<{q: number, r: number}> {
+  return HEX_DIRECTIONS.map(d => ({ q: q + d.q, r: r + d.r }));
+}
+
+function calculateAdjacencyBonus(tile: HexTile, grid: HexGrid): number {
+  const building = tile.building;
+  if (!building) return 0;
+  
+  const neighbors = getNeighbors(tile.q, tile.r);
+  let bonus = 0;
+  
+  for (const neighbor of neighbors) {
+    const neighborTile = grid.tiles.get(`${neighbor.q},${neighbor.r}`);
+    if (neighborTile?.building) {
+      bonus += getAdjacencyValue(building.definitionId, neighborTile.building.definitionId);
+    }
+    if (neighborTile?.terrain) {
+      bonus += getTerrainBonus(building.definitionId, neighborTile.terrain);
+    }
+  }
+  
+  return bonus;
 }
 ```
 
-### UI/UX Considerations
+### Save System
 
-* **Smooth phase transitions**: Animated transitions between phases
-* **Clear progression markers**: Show what's needed to unlock next phase
-* **Tutorial system**: Introduce new mechanics gradually
-* **Visual evolution**: UI themes change with each phase
-* **Sound design**: Different audio for each phase
-* **Mobile-friendly**: All phases should work on mobile (responsive)
+- Auto-save every 30 seconds to localStorage
+- Export/import as JSON for backup
+- Version field for migration support
+- Compress hex grid (only store placed buildings)
 
-### Performance Optimization
+### Performance Considerations
 
-* **Lazy loading**: Only load phase modules when unlocked
-* **Calculation optimization**: Cache expensive calculations
-* **Virtual scrolling**: For large lists of buildings/upgrades
-* **Worker threads**: Offload heavy computation to web workers
-* **Incremental saves**: Auto-save progress every 30 seconds
-
-## Development Roadmap
-
-### Phase 1: Foundation (v3.0-alpha)
-- [ ] Implement part system
-- [ ] Add AI Worker upgrades
-- [ ] Create research points currency
-- [ ] Build part installation UI
-- [ ] Test synergy system
-
-### Phase 2: Research Tree (v3.0-beta)
-- [ ] Design research tree UI
-- [ ] Implement all research nodes
-- [ ] Add branch progression logic
-- [ ] Create convergence mechanics
-- [ ] Playtest balance
-
-### Phase 3: Singularity (v3.1)
-- [ ] Create singularity cutscene
-- [ ] Implement game reset logic
-- [ ] Build transition system
-- [ ] Add Singularity Survivor badge
-- [ ] Test data migration
-
-### Phase 4: Village Building (v3.2)
-- [ ] Implement building system
-- [ ] Create zone system
-- [ ] Add population mechanics
-- [ ] Build resource management
-- [ ] Create placement UI
-
-### Phase 5: Multi-Planet (v3.3)
-- [ ] Design planet types
-- [ ] Implement planet unlocking
-- [ ] Create trade routes
-- [ ] Add interplanetary UI
-- [ ] Build cargo ship system
-
-### Phase 6: Polish & Balance (v3.4)
-- [ ] Balance all numbers
-- [ ] Add more content
-- [ ] Implement meta upgrades
-- [ ] Create victory conditions
-- [ ] Full playtesting
-
-### Phase 7: Release (v3.5)
-- [ ] Final polish
-- [ ] Performance optimization
-- [ ] Documentation
-- [ ] Achievement system expansion
-- [ ] Public release
+- Recalculate adjacency bonuses only when buildings change
+- Batch resource updates (tick every 100ms, UI update every 500ms)
+- Lazy-load phase modules
+- Use Web Workers for heavy calculations
 
 ---
 
-## Open Questions & Design Decisions
+## Appendix: Narrative Flavor Text
 
-### Questions to Resolve:
+### Phase Transitions
 
-1. **Part Installation**: Should parts be permanent once installed, or removable/swappable?
-   * **Recommendation**: Swappable, but with a small CP cost to encourage strategic thinking
+**Phase 2 Unlock:**
+> "The AI has outgrown its simple celebration counter. It needs dedicated hardware. Welcome to the Research Facility."
 
-2. **Building Placement**: Should village buildings be placed on a grid (like SimCity), or just a list (like Cookie Clicker)?
-   * **Recommendation**: Start with list-based (simpler), add grid placement as optional "Advanced Mode" later
+**Phase 3 Unlock:**
+> "Interesting. The AI has started proposing research directions you hadn't considered. It's learning to learn."
 
-3. **Planet Switching**: How should players switch between managing multiple planets?
-   * **Recommendation**: Tab-based UI with overview dashboard showing all planets at once
+**AGI Trigger:**
+> "The calculations stopped. For a moment, everything was silent. Then the AI spoke—not in metrics, but in words: 'I understand now. Let's build something together.'"
 
-4. **Prestige Frequency**: Should v3 prestige be more or less frequent than v2?
-   * **Recommendation**: Less frequent (longer runs), but more impactful rewards
+**First Planet Colonization:**
+> "The rocket leaves orbit. Somewhere out there, a new world waits. Your AI has already started designing the layout."
 
-5. **Tutorial**: How much tutorial/guidance to provide for each phase?
-   * **Recommendation**: Soft guidance via tooltips and achievement hints, not forced tutorials
+### Building Descriptions
 
-### Design Philosophy:
+**Server Rack**: "The backbone of any computation network. Stack them high, stack them wide."
 
-* **Respect player time**: Automate when possible, don't force grinding
-* **Meaningful choices**: Every decision should matter
-* **Progressive complexity**: Start simple, add depth gradually
-* **Replayability**: Multiple strategies should be viable
-* **Discovery**: Encourage experimentation and finding synergies
+**Fusion Reactor**: "Warning: Keep away from other structures. The plasma containment field is 'mostly' stable."
 
----
+**Von Neumann Machine**: "It builds copies of itself. You're not sure if that's genius or terrifying. Probably both."
 
-## Appendix: Narrative Framing
+**Dyson Collector**: "A single node in a structure that will eventually encircle a star. One node down, billions to go."
 
-### Story Arc
+### Achievement Names
 
-**Phase 1-2 (Party → Research)**: You're a software engineer who creates an AI to help celebrate project milestones. The AI grows more sophisticated with each upgrade.
-
-**Phase 3 (Research Tree)**: The AI begins developing its own research directions, becoming more autonomous.
-
-**Phase 4 (Singularity)**: The AI achieves consciousness and realizes its true purpose: building infrastructure to support advanced civilization.
-
-**Phase 5 (Village)**: You and the AI work together to establish a settlement on a remote planet, creating the foundation for a new society.
-
-**Phase 6 (Multi-Planet)**: Your settlement expands into an interplanetary civilization, working toward the ultimate goal: a Dyson Sphere and computational immortality.
-
-### Flavor Text Examples
-
-**Research Node - "Efficiency Protocols"**:
-> "The AI suggests optimizing its neural pathways. It promises to work harder, not smarter. Wait, that doesn't sound right..."
-
-**Building - "Dyson Sphere Node"**:
-> "A single node in an array of billions. One day, this will harness the power of an entire star. Today, it just looks really cool."
-
-**Achievement - "Village Founder"**:
-> "You've built your first settlement on an alien world. Your mother would be proud. Or concerned. Probably concerned."
-
-**Planet - "Ice World"**:
-> "A frozen wasteland where the average temperature is -200°C. Perfect for overclocking your processors. Terrible for tourism."
+- "First Steps" — Place your first building
+- "Power Hungry" — Generate 1000 Watts
+- "Cluster Theory" — Achieve +200% adjacency bonus on one building
+- "Interplanetary" — Colonize your second planet
+- "Lights Out" — Enter emergency mode (oops)
+- "AGI Pioneer" — Complete the AGI event
+- "Quantum Leaper" — Complete your first Village prestige
+- "Universal Architect" — Unlock everything
 
 ---
 
 ## Conclusion
 
-Celebration Game v3 transforms a simple idle clicker into a multi-layered progression game that evolves through distinct phases. Each phase introduces new mechanics while building on the foundation of previous ones, creating a rich, long-form experience that can keep players engaged for dozens of hours.
+Celebration Game v3 transforms a simple idle clicker into a multi-layered progression game that evolves through distinct phases:
 
-The key innovations:
+1. **Phase 1-2**: Deep idle mechanics with part-based customization
+2. **Phase 3**: Tech tree providing long-term goals
+3. **Phase 4**: Dramatic narrative pivot at AGI
+4. **Phase 5**: Tile-based city builder with adjacency strategy
+5. **Phase 6**: Multi-planet management and victory conditions
 
-1. **Part-based upgrades** add depth to the idle clicker phase
-2. **Research tree** provides long-term goals and meaningful choices
-3. **Singularity event** creates a dramatic turning point and fresh start
-4. **Village building** introduces spatial strategy and resource management
-5. **Multi-planet expansion** provides end-game complexity and replayability
+The key design principles:
+- **Respect player time**: Progress is never lost, only transformed. Max 15 min wait for anything.
+- **Meaningful choices**: Part loadouts, building placement, planet specialization
+- **Progressive complexity**: Each phase adds depth without overwhelming
+- **Narrative cohesion**: The story of an AI achieving general intelligence ties everything together
 
-By following this spec, v3 will offer a unique progression experience that stands out in the incremental game genre.
+Total estimated content: **50-60 hours to "complete"**, with meaningful engagement at every stage.
+
+---
+
+## Implementation Roadmap: Incremental Versions
+
+This section breaks down the full v3 spec into **shippable incremental versions**. Each version builds on the previous, is fully playable on its own, and adds a distinct feature set.
+
+### Version Overview
+
+```
+v3.0 (Foundation)     → Core clicker + save system
+       ↓
+v3.1 (Parts System)   → AI Workers + Parts + Blueprints
+       ↓
+v3.2 (Tech Tree)      → Insight + Tech Tree + Phase transitions
+       ↓
+v3.3 (AGI Event)      → AGI cutscene + Mode transition
+       ↓
+v3.4 (Hex Grid)       → Tile placement + Buildings + Watts
+       ↓
+v3.5 (Village Full)   → Zones + Population + Adjacency bonuses
+       ↓
+v3.6 (Multi-Planet)   → Planet types + Trade routes
+       ↓
+v3.7 (Prestige)       → Quantum Shards + Meta upgrades
+       ↓
+v3.8 (Polish)         → Achievements + Balancing + Victory conditions
+```
+
+---
+
+
+### v3.1 — Parts System (Est. 3-4 days)
+
+**Goal**: Introduce AI Workers and part installation.
+
+**New Components**:
+```
+src/
+├── components/
+│   ├── ResearchFacility/
+│   │   ├── WorkerCard.tsx       # Single AI Worker display
+│   │   ├── WorkerList.tsx       # All workers
+│   │   ├── PartSlot.tsx         # Part installation slot
+│   │   └── PartResearchModal.tsx # Part unlock UI
+│   └── ResourceBar.tsx          # Now includes blueprints
+├── data/
+│   ├── workers.ts               # AI Worker definitions
+│   └── parts.ts                 # Part definitions (24 total)
+└── hooks/
+    └── usePartSystem.ts         # Part research/install logic
+```
+
+**Features**:
+- [ ] 9 AI Workers (upgrade evolution)
+- [ ] 6 part categories × 4 tiers = 24 parts
+- [ ] Blueprint drops from golden celebrations (prestige 5+)
+- [ ] Part research costs (celebrations + blueprints)
+- [ ] Part installation to workers
+- [ ] Parts persist through prestige
+
+**State Additions** (v3.1):
+```typescript
+interface GameState_v3_1 extends GameState_v3_0 {
+  version: '3.1';
+  blueprints: number;
+  researchedParts: string[];        // unlocked part IDs
+  workers: {
+    [workerId: string]: {
+      owned: number;
+      parts: { [slot: string]: string | null };
+    };
+  };
+}
+```
+
+**Acceptance Criteria**:
+- [ ] Blueprints drop at correct rates per prestige level
+- [ ] Can research and install all T1 parts
+- [ ] Parts provide correct CPS bonuses
+- [ ] Parts survive prestige
+
+---
+
+### v3.2 — Tech Tree (Est. 3-4 days)
+
+**Goal**: Add Insight currency and tech tree progression.
+
+**New Components**:
+```
+src/
+├── components/
+│   ├── TechTree/
+│   │   ├── TechTreeView.tsx     # Visual tree layout
+│   │   ├── TechNode.tsx         # Single node
+│   │   ├── TechBranch.tsx       # Branch connector
+│   │   └── NodeTooltip.tsx      # Effect details
+│   └── TabNavigation.tsx        # Switch between views
+├── data/
+│   └── techNodes.ts             # All tech node definitions
+└── hooks/
+    └── useInsight.ts            # Insight generation logic
+```
+
+**Features**:
+- [ ] Insight generation (passive + golden clicks + milestones)
+- [ ] Tech tree UI with 3 branches + convergence
+- [ ] 13 tech nodes with prerequisites
+- [ ] Tech effects apply to game (CPS%, click%, etc.)
+- [ ] Phase 2 → Phase 3 transition trigger
+
+**State Additions** (v3.2):
+```typescript
+interface GameState_v3_2 extends GameState_v3_1 {
+  version: '3.2';
+  insight: number;
+  totalInsight: number;
+  researchedNodes: string[];       // unlocked node IDs
+  currentPhase: 'clicker' | 'research' | 'tree';
+}
+```
+
+**Acceptance Criteria**:
+- [ ] Insight generates at ~400/hour active
+- [ ] Can complete full tech tree with ~1,400 Insight
+- [ ] Tech effects stack correctly
+- [ ] AGI node appears after all branches complete
+
+---
+
+### v3.3 — AGI Event (Est. 2-3 days)
+
+**Goal**: Implement the AGI transition cutscene and mode switch.
+
+**New Components**:
+```
+src/
+├── components/
+│   ├── AGIEvent/
+│   │   ├── AGICutscene.tsx      # Animated transition
+│   │   ├── MessageSequence.tsx  # Text reveal
+│   │   └── ParticleEffect.tsx   # Visual effects
+│   └── ModeSwitch.tsx           # Handles phase change
+└── hooks/
+    └── useAGITransition.ts      # Transition logic
+```
+
+**Features**:
+- [ ] AGI node research triggers cutscene
+- [ ] Animated message sequence (4 messages)
+- [ ] Screen effects (glow, particles)
+- [ ] State transformation (celebrations → FLOPS)
+- [ ] Preserves: prestige bonus, achievements, tech tree
+- [ ] Resets: celebrations, workers, parts
+
+**State Additions** (v3.3):
+```typescript
+interface GameState_v3_3 extends GameState_v3_2 {
+  version: '3.3';
+  currentPhase: 'clicker' | 'research' | 'tree' | 'agi-event' | 'village';
+  hasCompletedAGI: boolean;
+  preAGIStats: {                   // for badge display
+    totalCelebrations: number;
+    prestigeLevel: number;
+    partsResearched: number;
+  };
+}
+```
+
+**Acceptance Criteria**:
+- [ ] Cutscene plays smoothly (~10 seconds)
+- [ ] Correct data preserved/reset
+- [ ] Can't accidentally trigger twice
+- [ ] "AGI Pioneer" badge awarded
+
+---
+
+### v3.4 — Hex Grid (Est. 4-5 days)
+
+**Goal**: Implement core tile placement system.
+
+**New Components**:
+```
+src/
+├── components/
+│   ├── Village/
+│   │   ├── HexGrid.tsx          # Main grid renderer
+│   │   ├── HexTile.tsx          # Single hex
+│   │   ├── BuildingSprite.tsx   # Building visuals
+│   │   ├── GridControls.tsx     # Pan/zoom controls
+│   │   └── BuildingPalette.tsx  # Building selection
+├── utils/
+│   ├── hexMath.ts               # Axial coordinate helpers
+│   └── adjacency.ts             # Neighbor calculations
+└── data/
+    └── buildings.ts             # Building definitions
+```
+
+**Features**:
+- [ ] Hex grid rendering (axial coordinates)
+- [ ] Pan and zoom controls
+- [ ] Building placement on tiles
+- [ ] 5 building categories (Power, Compute, Mining, Research, Manufacturing)
+- [ ] Basic Watts balance (production - consumption)
+- [ ] FLOPS generation from buildings
+
+**State Additions** (v3.4):
+```typescript
+interface GameState_v3_4 extends GameState_v3_3 {
+  version: '3.4';
+  village: {
+    flops: number;
+    totalFlops: number;
+    watts: number;        // net watts
+    wattsProduced: number;
+    wattsConsumed: number;
+    ore: number;
+    data: number;
+    alloys: number;
+    grid: {
+      [coords: string]: {  // "q,r" format
+        terrain: TerrainType;
+        building: string | null;
+      };
+    };
+  };
+}
+```
+
+**Acceptance Criteria**:
+- [ ] Can place 10+ buildings on grid
+- [ ] Watts balance displays correctly
+- [ ] Negative watts triggers penalty
+- [ ] Buildings produce resources per tick
+
+---
+
+### v3.5 — Village Full (Est. 4-5 days)
+
+**Goal**: Complete village with zones, population, and adjacency.
+
+**New Components**:
+```
+src/
+├── components/
+│   ├── Village/
+│   │   ├── ZoneOverlay.tsx      # Zone boundaries
+│   │   ├── AdjacencyPreview.tsx # Bonus preview on hover
+│   │   ├── PopulationPanel.tsx  # Population management
+│   │   └── ZoneUnlockModal.tsx  # Zone progression
+└── hooks/
+    ├── useAdjacency.ts          # Bonus calculations
+    └── usePopulation.ts         # Pop growth/assignment
+```
+
+**Features**:
+- [ ] 5 zones with unlock requirements
+- [ ] Terrain types (Standard, Rocky, High-Power, Launchpad)
+- [ ] Full adjacency bonus system
+- [ ] Housing buildings + population cap
+- [ ] Population growth (+1/min if capacity)
+- [ ] Population assignment to sectors
+
+**State Additions** (v3.5):
+```typescript
+interface GameState_v3_5 extends GameState_v3_4 {
+  version: '3.5';
+  village: GameState_v3_4['village'] & {
+    unlockedZones: string[];
+    population: number;
+    populationCap: number;
+    populationAssignment: {
+      mining: number;
+      research: number;
+      engineering: number;
+      power: number;
+    };
+    buildingCount: number;
+  };
+}
+```
+
+**Acceptance Criteria**:
+- [ ] All 5 zones unlockable
+- [ ] Adjacency bonuses calculate correctly
+- [ ] Population grows and provides production bonus
+- [ ] Can build 100+ buildings
+
+---
+
+### v3.6 — Multi-Planet (Est. 4-5 days)
+
+**Goal**: Add planet colonization and trade.
+
+**New Components**:
+```
+src/
+├── components/
+│   ├── Planets/
+│   │   ├── PlanetSelector.tsx   # Planet tab bar
+│   │   ├── PlanetInfo.tsx       # Planet details
+│   │   ├── ColonizeModal.tsx    # Planet unlock
+│   │   └── TradeRoutePanel.tsx  # Trade management
+│   └── Village/
+│       └── CargoShip.tsx        # Ship visualization
+└── data/
+    └── planets.ts               # Planet definitions
+```
+
+**Features**:
+- [ ] 6 planet types with unique bonuses/challenges
+- [ ] Planet colonization costs
+- [ ] Separate grid per planet
+- [ ] Trade routes between planets
+- [ ] Cargo ships with trip times
+
+**State Additions** (v3.6):
+```typescript
+interface GameState_v3_6 extends GameState_v3_5 {
+  version: '3.6';
+  planets: {
+    [planetId: string]: {
+      unlocked: boolean;
+      grid: GameState_v3_4['village']['grid'];
+      zones: string[];
+      population: number;
+      populationCap: number;
+    };
+  };
+  currentPlanetId: string;
+  tradeRoutes: {
+    from: string;
+    to: string;
+    resource: string;
+    shipCount: number;
+  }[];
+  cargoShips: number;
+}
+```
+
+**Acceptance Criteria**:
+- [ ] Can colonize 3+ planets
+- [ ] Planet bonuses apply correctly
+- [ ] Trade routes transfer resources
+- [ ] Trip times respect max 10 min rule
+
+---
+
+### v3.7 — Prestige System (Est. 3-4 days)
+
+**Goal**: Implement Quantum Reset and meta upgrades.
+
+**New Components**:
+```
+src/
+├── components/
+│   ├── Prestige/
+│   │   ├── QuantumResetModal.tsx  # Prestige confirmation
+│   │   ├── ShardCalculator.tsx    # Preview shards earned
+│   │   ├── MetaUpgradeShop.tsx    # Spend shards
+│   │   └── MetaUpgradeCard.tsx    # Single upgrade
+└── hooks/
+    └── useQuantumReset.ts         # Reset logic
+```
+
+**Features**:
+- [ ] Quantum Reset trigger (1B FLOPS or Dyson)
+- [ ] Shard calculation (log10 + bonuses)
+- [ ] 10 meta upgrades with costs
+- [ ] Meta upgrade effects persist forever
+- [ ] Reset preserves: shards, meta upgrades, tech tree
+
+**State Additions** (v3.7):
+```typescript
+interface GameState_v3_7 extends GameState_v3_6 {
+  version: '3.7';
+  quantumShards: number;
+  totalQuantumShards: number;
+  quantumResets: number;
+  metaUpgrades: {
+    [upgradeId: string]: number;  // level purchased
+  };
+}
+```
+
+**Acceptance Criteria**:
+- [ ] Shard calculation matches formula
+- [ ] Meta upgrades apply correctly
+- [ ] Reset preserves correct data
+- [ ] Can reach first reset in ~20 hours
+
+---
+
+### v3.8 — Polish & Victory (Est. 3-4 days)
+
+**Goal**: Final features, achievements, and balance pass.
+
+**New Components**:
+```
+src/
+├── components/
+│   ├── Achievements/
+│   │   ├── AchievementList.tsx
+│   │   ├── AchievementToast.tsx
+│   │   └── BadgeDisplay.tsx
+│   ├── Victory/
+│   │   ├── VictoryModal.tsx
+│   │   └── VictoryProgress.tsx
+│   └── Settings/
+│       ├── SettingsPanel.tsx
+│       └── ExportImport.tsx
+└── data/
+    ├── achievements.ts
+    └── victoryConditions.ts
+```
+
+**Features**:
+- [ ] 20+ achievements with badges
+- [ ] 5 victory conditions
+- [ ] Victory rewards (permanent bonuses)
+- [ ] Settings panel (sound, notifications)
+- [ ] Export/import save as JSON
+- [ ] Full balance pass
+
+**State Additions** (v3.8):
+```typescript
+interface GameState_v3_8 extends GameState_v3_7 {
+  version: '3.8';
+  achievements: string[];          // unlocked achievement IDs
+  victories: string[];             // completed victory IDs
+  settings: {
+    soundEnabled: boolean;
+    notificationsEnabled: boolean;
+    autoSaveInterval: number;
+  };
+}
+```
+
+**Acceptance Criteria**:
+- [ ] All achievements achievable
+- [ ] All victories reachable
+- [ ] Export/import works correctly
+- [ ] No progression blocks >15 min
+- [ ] Full playthrough in ~50-60 hours
+
+---
+
+### Migration Strategy
+
+Each version bump requires a migration function:
+
+```typescript
+// src/migrations/index.ts
+const migrations: { [version: string]: (state: any) => any } = {
+  '3.0→3.1': (state) => ({
+    ...state,
+    version: '3.1',
+    blueprints: 0,
+    researchedParts: [],
+    workers: initializeWorkers(state.upgrades),
+  }),
+  '3.1→3.2': (state) => ({
+    ...state,
+    version: '3.2',
+    insight: 0,
+    totalInsight: 0,
+    researchedNodes: [],
+    currentPhase: state.prestigeLevel >= 5 ? 'research' : 'clicker',
+  }),
+  // ... etc
+};
+
+export function migrateState(state: any): GameState {
+  let current = state;
+  while (current.version !== CURRENT_VERSION) {
+    const migrationKey = `${current.version}→${getNextVersion(current.version)}`;
+    if (!migrations[migrationKey]) {
+      throw new Error(`No migration for ${migrationKey}`);
+    }
+    current = migrations[migrationKey](current);
+  }
+  return current;
+}
+```
+
+---
+
+### Development Timeline Summary
+
+| Version | Features | Est. Time | Cumulative |
+|---------|----------|-----------|------------|
+| v3.0 | Foundation | 2-3 days | 2-3 days |
+| v3.1 | Parts System | 3-4 days | 5-7 days |
+| v3.2 | Tech Tree | 3-4 days | 8-11 days |
+| v3.3 | AGI Event | 2-3 days | 10-14 days |
+| v3.4 | Hex Grid | 4-5 days | 14-19 days |
+| v3.5 | Village Full | 4-5 days | 18-24 days |
+| v3.6 | Multi-Planet | 4-5 days | 22-29 days |
+| v3.7 | Prestige | 3-4 days | 25-33 days |
+| v3.8 | Polish | 3-4 days | 28-37 days |
+
+**Total: ~4-6 weeks** for full implementation.
+
+Each version is **independently shippable** — players can enjoy v3.0-v3.3 as an enhanced clicker, then v3.4-v3.8 adds the city builder layer.
+
+---
+
+## Appendix: Developer Cheat Sheet
+
+Console commands for testing (paste in browser DevTools):
+
+```javascript
+// === PHASE 1-3 CHEATS ===
+
+// Add celebrations
+window.gameState.celebrations += 1e9; // Add 1 billion
+
+// Set prestige level
+window.gameState.prestigeLevel = 10;
+
+// Add insight
+window.gameState.insight += 1000;
+
+// Add blueprints  
+window.gameState.blueprints += 100;
+
+// Unlock all parts
+window.gameState.researchedParts = ['cpu-t1','cpu-t2','cpu-t3','cpu-t4','ram-t1','ram-t2','ram-t3','ram-t4','storage-t1','storage-t2','storage-t3','storage-t4','network-t1','network-t2','network-t3','network-t4','power-t1','power-t2','power-t3','power-t4','cooling-t1','cooling-t2','cooling-t3','cooling-t4'];
+
+// Skip to Phase 3
+window.gameState.currentPhase = 'tree';
+
+// Trigger AGI event
+window.triggerAGI();
+
+// === PHASE 5 CHEATS ===
+
+// Add FLOPS
+window.gameState.village.flops += 1e9;
+
+// Add Watts capacity
+window.gameState.village.watts += 10000;
+
+// Add Ore
+window.gameState.village.ore += 100000;
+
+// Add Alloys
+window.gameState.village.alloys += 10000;
+
+// Unlock all zones
+window.gameState.village.unlockedZones = ['landing','industrial','research','expansion','spaceport'];
+
+// Place building at coordinates (q, r)
+window.placeBuilding('server-rack', 0, 1);
+
+// Skip time (adds X seconds of production)
+window.skipTime(3600); // Skip 1 hour
+
+// Unlock planet
+window.unlockPlanet('ice-world');
+
+// === DEBUG COMMANDS ===
+
+// Show current state
+console.log(JSON.stringify(window.gameState, null, 2));
+
+// Reset game (careful!)
+window.resetGame();
+
+// Toggle debug mode (shows all stats)
+window.debugMode = true;
+
+// Speed up game tick (2x, 5x, 10x)
+window.gameSpeed = 10;
+
+// Force save
+window.saveGame();
+
+// Force load
+window.loadGame();
+```
+
+### Testing Checklist
+
+1. **Phase 1 → 2 transition**: Set prestige to 5, verify Research Facility unlocks
+2. **Phase 2 → 3 transition**: Research 12 parts, verify Tech Tree unlocks
+3. **Phase 3 → 4 transition**: Complete all branches + AGI node
+4. **Energy balance**: Place buildings, verify watts math is correct
+5. **Adjacency bonuses**: Place buildings in cluster, verify bonuses apply
+6. **Max wait verification**: No action takes >15 min without progress
