@@ -1,0 +1,187 @@
+.agi-cutscene {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: radial-gradient(ellipse at center, #06121f 0%, #01050c 70%);
+  overflow: hidden;
+  font-family: 'Jost', system-ui, sans-serif;
+  animation: agi-fade-in 0.6s ease both;
+}
+
+@keyframes agi-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.agi-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.agi-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 40px;
+  padding: 24px 24px 16vh;
+  text-align: center;
+}
+
+.agi-messages {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 780px;
+}
+
+.agi-message {
+  margin: 0;
+  font-size: clamp(1.4rem, 3.6vw, 2.6rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: rgba(226, 244, 255, 0.92);
+  text-shadow: 0 0 26px rgba(120, 210, 255, 0.55);
+  animation: agi-message-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.agi-message.bright {
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 0 40px rgba(150, 230, 255, 0.9);
+}
+
+.agi-message.voice {
+  font-style: italic;
+  color: #b9f0ff;
+  text-shadow: 0 0 34px rgba(120, 240, 255, 0.8);
+}
+
+.agi-message.system {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: clamp(0.95rem, 2vw, 1.35rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #7ff0c8;
+  text-shadow: 0 0 24px rgba(80, 255, 190, 0.7);
+}
+
+@keyframes agi-message-in {
+  from { opacity: 0; transform: translateY(18px) scale(0.97); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+.agi-stats {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: agi-message-in 1s ease both;
+}
+
+.agi-stat {
+  min-width: 150px;
+  padding: 14px 20px;
+  border-radius: 14px;
+  background: rgba(12, 34, 54, 0.55);
+  border: 1px solid rgba(130, 220, 255, 0.24);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.agi-stat-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(180, 215, 240, 0.7);
+}
+
+.agi-stat-value {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #dff4ff;
+}
+
+.agi-progress-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.agi-progress-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #4fd3ff, #b8f5ff);
+  box-shadow: 0 0 16px rgba(120, 220, 255, 0.9);
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.agi-log {
+  position: absolute;
+  left: 28px;
+  bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  color: rgba(130, 200, 175, 0.55);
+  pointer-events: none;
+  max-width: 42vw;
+}
+
+.agi-log-line {
+  animation: agi-log-in 0.35s ease both;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.agi-log-line::before {
+  content: '> ';
+  opacity: 0.5;
+}
+
+.agi-log-line.warn {
+  color: rgba(255, 190, 110, 0.72);
+}
+
+@keyframes agi-log-in {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+
+@media (max-width: 900px) {
+  .agi-log { display: none; }
+}
+
+.agi-cutscene { cursor: pointer; }
+
+.agi-continue {
+  position: absolute;
+  right: 28px;
+  bottom: 26px;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(190, 224, 250, 0.55);
+  animation: agi-nudge 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes agi-nudge {
+  0%, 100% { opacity: 0.4; transform: translateX(0); }
+  50% { opacity: 0.9; transform: translateX(4px); }
+}

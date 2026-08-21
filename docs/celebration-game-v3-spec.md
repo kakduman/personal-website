@@ -1480,21 +1480,98 @@ export function migrateState(state: any): GameState {
 
 ### Development Timeline Summary
 
-| Version | Features | Est. Time | Status |
-|---------|----------|-----------|--------|
-| v2 | Foundation | — | ✅ EXISTING |
-| v3.1 | Parts System | 3-4 days | ✅ IMPLEMENTED |
-| v3.2 | Tech Tree | 3-4 days | ✅ IMPLEMENTED |
-| v3.3 | AGI Event | 2-3 days | 🔲 TODO |
-| v3.4 | Hex Grid | 4-5 days | 🔲 TODO |
-| v3.5 | Village Full | 4-5 days | 🔲 TODO |
-| v3.6 | Multi-Planet | 4-5 days | 🔲 TODO |
-| v3.7 | Prestige | 3-4 days | 🔲 TODO |
-| v3.8 | Polish | 3-4 days | 🔲 TODO |
+| Version | Features | Status |
+|---------|----------|--------|
+| v2 | Foundation | ✅ EXISTING (`CelebratePage.tsx`) |
+| v3.1 | Parts System | ✅ IMPLEMENTED (`data/parts.ts`) |
+| v3.2 | Tech Tree | ✅ IMPLEMENTED (`data/techTree.ts`, `components/TechTree/`) |
+| v3.3 | AGI Event | ✅ IMPLEMENTED (`components/AGIEvent/`) |
+| v3.4 | Hex Grid | ✅ IMPLEMENTED (`components/Village/`, `utils/hexMath.ts`) |
+| v3.5 | Village Full | ✅ IMPLEMENTED (zones, terrain, adjacency, population) |
+| v3.6 | Multi-Planet | ✅ IMPLEMENTED (6 worlds, Spaceport gate) |
+| v3.7 | Prestige | ✅ IMPLEMENTED (Quantum Reset + 10 meta upgrades) |
+| v3.8 | Polish | ✅ IMPLEMENTED (18 achievements, 5 victories, offline progress) |
 
-**Remaining: ~3-4 weeks** for full implementation (v3.3-v3.8).
+v3.3–v3.8 live at **`/village`** as a standalone route so they can be played and
+tested without first grinding through `/celebrate`. Hooking the AGI node up to the
+real tech tree is the one remaining wiring step — see "Wiring v3 back into /celebrate".
 
-Each version is **independently shippable** — players can enjoy v2-v3.3 as an enhanced clicker, then v3.4-v3.8 adds the city builder layer.
+---
+
+---
+
+## Reconciliation Log (written during implementation)
+
+The original spec was drafted before v3.1/v3.2 were built, and several parts of it
+contradicted the code or contradicted themselves. What actually shipped:
+
+| Spec said | Reality / change | Why |
+|-----------|------------------|-----|
+| Parts install into per-worker slots; 9 "AI Workers" with 2–6 slots each | `data/parts.ts` shipped parts as **global** modifiers (6 categories × 4 tiers). No `workers.ts` exists. | The implemented model was simpler and already working; rebuilding it into slots would have been a rewrite with no gameplay gain. The spec's worker table is obsolete. |
+| Watts has a 10,000 storage cap **and** a net-balance penalty table | Watts is a pure **rate** (generation vs draw). No storage. | Only the rate reading makes the penalty table coherent. A stored resource with a deficit penalty is two different mechanics. |
+| Industrial Sector unlocks at 10 buildings | Unlocks at **5** | The Landing Zone only has 7 tiles, so the original gate could deadlock before the second zone opened. Later gates rescaled to 15/30/55. |
+| Zone sizes 7/19/19/37/37 = 119 hexes | Ring bands 7/12/18/24/30 = **91 hexes** on the home world | The spec's numbers mixed cumulative and per-zone counts. Ring bands are what a hex grid actually produces. |
+| Wind Turbine: −3 W next to a "tall" building | **+4 W per adjacent empty tile** | Same placement tension, but no hidden "tall" tag the player can't see. |
+| Rocky terrain: mining buildings only | Mining **or power** (so Geothermal can exploit its own adjacency bonus) | The Geothermal Plant's "+8 W per adjacent Ore Seam" was unusable otherwise. |
+| Launchpad: "spaceport buildings only" (never defined) | Added a concrete **Spaceport** building; Bedrock Shelf is reserved for it, and it gates colonisation | Multi-planet expansion had no actual unlock mechanism. |
+| Population +1/minute | ~1 per 3 seconds (×5 with Time Compression) | +1/min meant ~8 hours to fill a single Arcology, well past the spec's own "15 minute max wait" rule. |
+| Trade routes / cargo ships between planets | **Not built.** All colonised worlds produce into one shared resource pool instead. | Shipping resources between planets that share a wallet is bookkeeping without a decision. Noted as cut, not forgotten. |
+| Dyson Sphere as a 1-hex special planet with segmented construction | Helios Ring is a normal (small, power-rich) world; filling it completes the Dyson victory | Kept the goal, dropped a one-off construction minigame. |
+
+
+### Second pass: presentation and legibility
+
+After the first playable build, three things changed on feedback:
+
+**Top-down stays; the globe is gone.** Three world-presentation prototypes were built
+and compared (curved surface with horizon, zoomable orbital globe, landscape basin).
+The globe looked best in isolation but turned the planet into a button and hid the
+tile grid behind a transition — exactly wrong for a game you read at a glance, the way
+Civ and Cities: Skylines do. The site view is now a fixed bird's-eye with depth coming
+from an isometric squash, stepped terrain with cliff faces, cast shadows and
+atmospheric fade. Beyond the claim, ground continues as one unbroken plain with no grid
+on it, fading into haze, ringed by survey markers — the world plainly keeps going, you
+just hold a permit for one claim.
+
+**Names are grounded.** Planets are named for AI researchers whose surnames read like
+places, matched to the site: Hopfield (home), Boltzmann (cold site — annealing),
+Vapnik (geothermal), Pearl (research moon — causality), Markov (quarry), Sutton
+(compute-rich; the Bitter Lesson is about scale). Buildings use real industry terms:
+Open-Pit Mine, Data Hall, Training Cluster, Solar Concentrator, Fabrication Plant,
+Bunkhouse, Residential Tower. Quantum Reset became Restructure; Quantum Shards became
+Patents.
+
+**The economy explains itself.** Emoji are gone from all resource displays — a lightning
+bolt for FLOPS while Watts existed was actively misleading. Every resource now shows a
+word, a number and a rate, with source and sink on hover, and a "How this works" panel
+spells out the loop. Power reads as a budget ("1.1 kW used of 1.24 kW"), never a stored
+resource.
+
+Most importantly, **Research now has a sink**. It previously accumulated with nothing to
+spend it on, which is why the resource meant nothing. Buildings are now unlocked by
+spending Research instead of appearing from a hidden building-count threshold. The
+opening chain — Solar Panel, Server Rack, Excavator, Field Lab — costs no Research, so
+the economy bootstraps; everything after is bought.
+
+### Wiring v3 back into /celebrate
+
+`/village` reads these keys on load and carries them over, but never requires them:
+
+- `personal-website::celebrate-prestige` → +5% production per level, capped +100%
+- `personal-website::celebrate-researched-nodes` → tech-tree global multiplier survives AGI
+- `personal-website::celebrate-researched-parts` → counted for the pre-AGI stat card
+- `personal-website::celebrate-local-count` → shown in the cutscene, then reset
+
+To finish the hand-off, researching the `agi` node in `TechTree.tsx` should navigate to
+`/village` (the cutscene then plays as Phase 4). Village state lives under its own key,
+`personal-website::village-state`, so the two halves never clobber each other.
+
+### Testing
+
+`/village` has a **Dev → Skip to stage** panel (⚙ button, top right) with jumps for every
+phase: cutscene, fresh landing, early settlement, mid game, spaceport ready, multi-planet,
+prestige ready, shard millionaire, and a forced brownout for the power-deficit penalties.
+Each jump rewrites the village save only.
 
 ---
 
